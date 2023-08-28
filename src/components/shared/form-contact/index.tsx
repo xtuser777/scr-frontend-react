@@ -1,10 +1,46 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import FieldsetCard from '../fieldset-card';
 import FormInputText from '../form-input-text';
 import FormInputSelect from '../form-input-select';
 import FormInputGroupText from '../form-input-group-text';
+import FormContactContextType from '../../../contexts/components/shared/form-contact/contact-context-type';
+import { FormContactContext } from '../../../contexts/components/shared/form-contact/contact-context';
 
 const FormContact = () => {
+  const {
+    states,
+    cities,
+    street,
+    number,
+    neighborhood,
+    complement,
+    code,
+    state,
+    city,
+    phone,
+    cellphone,
+    email,
+    errorStreet,
+    errorNumber,
+    errorNeighborhood,
+    errorCode,
+    errorState,
+    errorCity,
+    errorPhone,
+    errorCellphone,
+    errorEmail,
+    handleStreetChange,
+    handleNumberChange,
+    handleNeighborhoodChange,
+    handleComplementChange,
+    handleCodeChange,
+    handleStateChange,
+    handleCityChange,
+    handlePhoneChange,
+    handleCellphoneChange,
+    handleEmailChange,
+  } = useContext<FormContactContextType>(FormContactContext);
+
   return (
     <FieldsetCard legend="Dados de contato" obrigatoryFields>
       <div className="row">
@@ -13,55 +49,44 @@ const FormContact = () => {
           id="street"
           label="Endereço"
           obrigatory
-          value=""
-          message={undefined}
-          handle={() => {
-            /** */
-          }}
+          value={street}
+          message={errorStreet}
+          handle={handleStreetChange}
         />
         <FormInputText
           col={1}
           id="number"
           label="Número"
           obrigatory
-          value=""
-          message={undefined}
-          handle={() => {
-            /** */
-          }}
+          value={number}
+          message={errorNumber}
+          handle={handleNumberChange}
         />
         <FormInputText
           col={3}
           id="neighborhood"
           label="Bairro / Distrito"
           obrigatory
-          value=""
-          message={undefined}
-          handle={() => {
-            /** */
-          }}
+          value={neighborhood}
+          message={errorNeighborhood}
+          handle={handleNeighborhoodChange}
         />
         <FormInputText
           col={2}
           id="complement"
           label="Complemento"
           obrigatory={false}
-          value=""
-          message={undefined}
-          handle={() => {
-            /** */
-          }}
+          value={complement}
+          handle={handleComplementChange}
         />
         <FormInputText
           col={2}
           id="code"
           label="CEP"
           obrigatory
-          value=""
-          message={undefined}
-          handle={() => {
-            /** */
-          }}
+          value={code}
+          message={errorCode}
+          handle={handleCodeChange}
         />
       </div>
       <div className="row">
@@ -69,10 +94,10 @@ const FormContact = () => {
           col={2}
           id="state"
           label="Estado"
-          value="0"
-          handle={() => {
-            /** */
-          }}
+          obrigatory
+          value={state}
+          message={errorState}
+          handle={handleStateChange}
         >
           <option value="0">SELECIONE</option>
         </FormInputSelect>
@@ -80,10 +105,10 @@ const FormContact = () => {
           col={3}
           id="city"
           label="Cidade"
-          value="0"
-          handle={() => {
-            /** */
-          }}
+          obrigatory
+          value={city}
+          message={errorCity}
+          handle={handleCityChange}
         >
           <option value="0">SELECIONE</option>
         </FormInputSelect>
@@ -93,11 +118,9 @@ const FormContact = () => {
           label="Telefone"
           icon="glyphicon-phone-alt"
           obrigatory
-          value=""
-          message={undefined}
-          handle={() => {
-            /** */
-          }}
+          value={phone}
+          message={errorPhone}
+          handle={handlePhoneChange}
         />
         <FormInputGroupText
           col={2}
@@ -105,11 +128,9 @@ const FormContact = () => {
           label="Celular"
           icon="glyphicon-phone"
           obrigatory
-          value=""
-          message={undefined}
-          handle={() => {
-            /** */
-          }}
+          value={cellphone}
+          message={errorCellphone}
+          handle={handleCellphoneChange}
         />
         <FormInputGroupText
           col={3}
@@ -117,11 +138,9 @@ const FormContact = () => {
           label="E-mail"
           icon="glyphicon-envelope"
           obrigatory
-          value=""
-          message={undefined}
-          handle={() => {
-            /** */
-          }}
+          value={email}
+          message={errorEmail}
+          handle={handleEmailChange}
         />
       </div>
     </FieldsetCard>

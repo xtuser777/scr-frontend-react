@@ -5,12 +5,17 @@ const FormInputSelect = (props: {
   id: string;
   label: string;
   value: string;
+  obrigatory: boolean;
+  message?: string;
   children: ReactNode;
   handle: (e: ChangeEvent<HTMLSelectElement>) => void;
 }) => {
   return (
     <div className={`col-sm-${props.col}`}>
-      <label htmlFor={props.id}>{props.label}:</label>
+      <label htmlFor={props.id}>
+        {props.label}
+        {props.obrigatory ? <span className="obrigatory-flag">&nbsp;*</span> : ''}:
+      </label>
       <select
         name={props.id}
         id={props.id}
@@ -20,6 +25,13 @@ const FormInputSelect = (props: {
       >
         {props.children}
       </select>
+      {props.message ? (
+        <span id="msNome" className="label label-danger">
+          {props.message}
+        </span>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
