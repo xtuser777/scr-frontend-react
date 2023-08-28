@@ -12,5 +12,7 @@ export default interface FormIndividualPersonContextType {
   handleNameChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleCpfChange: (e: ChangeEvent<HTMLInputElement>) => Promise<void>;
   handleBirthChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  validateFields: () => Promise<boolean>;
+  clearFields: () => void;
   loadPerson: (person: IIndividualPerson, uniqueCpf: boolean) => void;
 }

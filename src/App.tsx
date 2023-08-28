@@ -9,6 +9,7 @@ import HomeContext from './contexts/home/home-context';
 import UserPage from './pages/user-page';
 import FormIndividualPersonContext from './contexts/components/shared/form-individual-person/individual-person-context';
 import UserContext from './contexts/pages/user/user-context';
+import FormContactContext from './contexts/components/shared/form-contact/contact-context';
 
 function App() {
   return (
@@ -27,11 +28,13 @@ function App() {
           <Route
             path="/configuracao/dados"
             element={
-              <FormIndividualPersonContext>
-                <UserContext>
-                  <UserPage />
-                </UserContext>
-              </FormIndividualPersonContext>
+              <FormContactContext>
+                <FormIndividualPersonContext>
+                  <UserContext>
+                    <UserPage />
+                  </UserContext>
+                </FormIndividualPersonContext>
+              </FormContactContext>
             }
           />
         </Routes>

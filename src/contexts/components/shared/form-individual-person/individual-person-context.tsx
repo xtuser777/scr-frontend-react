@@ -18,6 +18,10 @@ export const FormIndividualPersonContext = createContext<FormIndividualPersonCon
     handleBirthChange: (e: ChangeEvent<HTMLInputElement>) => {
       /** */
     },
+    validateFields: async () => false,
+    clearFields: () => {
+      /** */
+    },
     loadPerson: (person: IIndividualPerson) => {
       /** */
     },
@@ -175,6 +179,20 @@ const FormIndividualPersonProvider = (props: any) => {
     setErrorBirth(validate.birth(e.target.value).message);
   };
 
+  const validateFields = async () => {
+    return (
+      validate.name(name).isValid &&
+      (await validate.cpf(cpf)).isValid &&
+      validate.birth(birth).isValid
+    );
+  };
+
+  const clearFields = () => {
+    setName('');
+    setCpf('');
+    setBirth('');
+  };
+
   const loadPerson = (person: IIndividualPerson, uniqueCpf: boolean) => {
     setPerson(person);
     setUniqueCpf(uniqueCpf);
@@ -196,6 +214,8 @@ const FormIndividualPersonProvider = (props: any) => {
         handleNameChange,
         handleCpfChange,
         handleBirthChange,
+        validateFields,
+        clearFields,
         loadPerson,
       }}
     >

@@ -35,5 +35,7 @@ export default interface FormContactContextType {
   handlePhoneChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleCellphoneChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleEmailChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  validateFields: () => void;
+  clearFields: () => void;
   loadContact: (contact: IContact) => void;
 }

@@ -100,6 +100,11 @@ const FormContact = () => {
           handle={handleStateChange}
         >
           <option value="0">SELECIONE</option>
+          {states.map((state) => (
+            <option key={state.id} value={state.id}>
+              {state.name}
+            </option>
+          ))}
         </FormInputSelect>
         <FormInputSelect
           col={3}
@@ -111,6 +116,11 @@ const FormContact = () => {
           handle={handleCityChange}
         >
           <option value="0">SELECIONE</option>
+          {cities.map((city) => (
+            <option key={city.id} value={city.id}>
+              {city.name}
+            </option>
+          ))}
         </FormInputSelect>
         <FormInputGroupText
           col={2}
