@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Header from './components/shared/header';
 import HomeContext from './contexts/home/home-context';
-import UserPage from './pages/user-page';
 import FormIndividualPersonContext from './contexts/components/shared/form-individual-person/individual-person-context';
 import UserContext from './contexts/pages/user/user-context';
 import FormContactContext from './contexts/components/shared/form-contact/contact-context';
@@ -14,6 +13,9 @@ import FormAuthDataContext from './contexts/components/shared/form-auth-data/aut
 import ParameterizationPage from './pages/configuration/parameterization';
 import FormEnterprisePersonContext from './contexts/components/shared/form-enterprise-person/enterprise-person-context';
 import ParameterizationContext from './contexts/pages/configuration/parameterization/parameterization-contact';
+import UserPage from './pages/configuration/user-page';
+import EmployeesPage from './pages/management/employees';
+import EmployeesContext from './contexts/pages/management/employees/employees-context';
 
 function App() {
   return (
@@ -53,6 +55,14 @@ function App() {
                   </ParameterizationContext>
                 </FormEnterprisePersonContext>
               </FormContactContext>
+            }
+          />
+          <Route
+            path="/representacoes/gerenciar/funcionarios"
+            element={
+              <EmployeesContext>
+                <EmployeesPage />
+              </EmployeesContext>
             }
           />
         </Routes>
