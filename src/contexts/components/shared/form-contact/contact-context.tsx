@@ -296,6 +296,16 @@ const FormContactProvider = (props: any) => {
   };
 
   const validateFields = () => {
+    setErrorStreet(validate.street(street).message);
+    setErrorNumber(validate.number(number).message);
+    setErrorNeighborhood(validate.neighborhood(neighborhood).message);
+    setErrorCode(validate.code(code).message);
+    setErrorState(validate.state(state).message);
+    setErrorCity(validate.city(city).message);
+    setErrorPhone(validate.phone(phone).message);
+    setErrorCellphone(validate.cellphone(cellphone).message);
+    setErrorEmail(validate.email(email).message);
+
     return (
       validate.street(street).isValid &&
       validate.number(number).isValid &&

@@ -1,26 +1,26 @@
 import React from 'react';
 
-const FormButton = (props: {
+const FormLinkButton = (props: {
   col: number;
   id: string;
-  color: string;
   label: boolean;
+  color: string;
   text: string;
-  action: () => void;
+  link: string;
 }) => {
   return (
     <div className={`col-sm-${props.col}`}>
       {props.label ? <label htmlFor={props.id}>&nbsp;</label> : <></>}
-      <button
-        name={props.id}
+      <a
+        role="button"
         id={props.id}
         className={`btn btn-sm ${props.color} expanded`}
-        onClick={props.action}
+        href={props.link}
       >
         {props.text}
-      </button>
+      </a>
     </div>
   );
 };
 
-export default FormButton;
+export default FormLinkButton;

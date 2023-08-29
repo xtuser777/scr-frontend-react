@@ -4,9 +4,11 @@ import FormIndividualPerson from '../../components/shared/form-individual-person
 import UserContextType from '../../contexts/pages/user/user-context-type';
 import { UserContext } from '../../contexts/pages/user/user-context';
 import FormContact from '../../components/shared/form-contact';
+import FormAuthData from '../../components/shared/form-auth-data';
+import FormFooterButtons from '../../components/shared/form-footer-buttons';
 
 const UserPage = () => {
-  // const { individualPersonContext } = useContext<UserContextType>(UserContext);
+  const { persistData } = useContext<UserContextType>(UserContext);
 
   return (
     <div>
@@ -15,6 +17,10 @@ const UserPage = () => {
       <FormIndividualPerson />
 
       <FormContact />
+
+      <FormAuthData />
+
+      <FormFooterButtons link="/" clear={false} save persistData={persistData} />
     </div>
   );
 };

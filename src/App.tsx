@@ -10,6 +10,10 @@ import UserPage from './pages/user-page';
 import FormIndividualPersonContext from './contexts/components/shared/form-individual-person/individual-person-context';
 import UserContext from './contexts/pages/user/user-context';
 import FormContactContext from './contexts/components/shared/form-contact/contact-context';
+import FormAuthDataContext from './contexts/components/shared/form-auth-data/auth-data-context';
+import ParameterizationPage from './pages/configuration/parameterization';
+import FormEnterprisePersonContext from './contexts/components/shared/form-enterprise-person/enterprise-person-context';
+import ParameterizationContext from './contexts/pages/configuration/parameterization/parameterization-contact';
 
 function App() {
   return (
@@ -26,14 +30,28 @@ function App() {
             }
           />
           <Route
-            path="/configuracao/dados"
+            path="/representacoes/configuracao/dados"
+            element={
+              <FormAuthDataContext>
+                <FormContactContext>
+                  <FormIndividualPersonContext>
+                    <UserContext>
+                      <UserPage />
+                    </UserContext>
+                  </FormIndividualPersonContext>
+                </FormContactContext>
+              </FormAuthDataContext>
+            }
+          />
+          <Route
+            path="/representacoes/configuracao/parametrizacao"
             element={
               <FormContactContext>
-                <FormIndividualPersonContext>
-                  <UserContext>
-                    <UserPage />
-                  </UserContext>
-                </FormIndividualPersonContext>
+                <FormEnterprisePersonContext>
+                  <ParameterizationContext>
+                    <ParameterizationPage />
+                  </ParameterizationContext>
+                </FormEnterprisePersonContext>
               </FormContactContext>
             }
           />
