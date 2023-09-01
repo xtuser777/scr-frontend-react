@@ -16,6 +16,7 @@ import ParameterizationContext from './contexts/pages/configuration/parameteriza
 import UserPage from './pages/configuration/user-page';
 import EmployeesPage from './pages/management/employees';
 import EmployeesContext from './contexts/pages/management/employees/employees-context';
+import EmployeePage from './pages/management/employee';
 
 function App() {
   return (
@@ -25,6 +26,14 @@ function App() {
         <Routes>
           <Route
             path="/"
+            element={
+              <HomeContext>
+                <HomePage />
+              </HomeContext>
+            }
+          />
+          <Route
+            path="/representacoes/inicio"
             element={
               <HomeContext>
                 <HomePage />
@@ -64,6 +73,10 @@ function App() {
                 <EmployeesPage />
               </EmployeesContext>
             }
+          />
+          <Route
+            path="/representacoes/gerenciar/funcionario/:method/:id?"
+            element={<EmployeePage />}
           />
         </Routes>
       </div>

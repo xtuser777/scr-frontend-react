@@ -6,7 +6,7 @@ import './style.css';
 const Header = () => {
   const handleLogout = (e: MouseEvent) => {
     e.preventDefault();
-    history.push('/inicio');
+    history.push('/representacoes/inicio');
   };
 
   return (
@@ -51,36 +51,40 @@ const Header = () => {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="/representacoes/gerenciar/funcionario">Funcionários</a>
+                    <a href="/representacoes/gerenciar/funcionarios">Funcionários</a>
                   </li>
                   <li>
-                    <a href="/representacoes/gerenciar/cliente">Clientes</a>
+                    <a href="/representacoes/gerenciar/clientes">Clientes</a>
                   </li>
                   <li>
-                    <a href="/representacoes/gerenciar/motorista">Motoristas</a>
+                    <a href="/representacoes/gerenciar/motoristas">Motoristas</a>
                   </li>
                   <li>
-                    <a href="/representacoes/gerenciar/proprietario">
+                    <a href="/representacoes/gerenciar/proprietarios">
                       Proprietários de Caminhões
                     </a>
                   </li>
                   <li>
-                    <a href="/representacoes/gerenciar/caminhao">Caminhões</a>
+                    <a href="/representacoes/gerenciar/caminhoes">Caminhões</a>
                   </li>
                   <li>
-                    <a href="/representacoes/gerenciar/representacao">Representações</a>
+                    <a href="/representacoes/gerenciar/representacoes">Representações</a>
                   </li>
                   <li>
-                    <a href="/representacoes/gerenciar/produto">Produtos</a>
+                    <a href="/representacoes/gerenciar/produtos">Produtos</a>
                   </li>
                   <li>
-                    <a href="/representacoes/gerenciar/tipocaminhao">Tipos de Caminhão</a>
+                    <a href="/representacoes/gerenciar/tiposcaminhao">
+                      Tipos de Caminhão
+                    </a>
                   </li>
                   <li>
-                    <a href="/representacoes/gerenciar/categoria">Categorias de Contas</a>
+                    <a href="/representacoes/gerenciar/categorias">
+                      Categorias de Contas
+                    </a>
                   </li>
                   <li>
-                    <a href="/representacoes/gerenciar/formapagamento">
+                    <a href="/representacoes/gerenciar/formaspagamento">
                       Formas de Pagamento
                     </a>
                   </li>

@@ -6,9 +6,14 @@ import axios from '../../../../services/axios';
 
 export const FormAuthDataContext = createContext<FormAuthDataContextType>({
   data: new Employee().toAttributes,
+  levels: [],
+  level: '0',
   login: '',
   password: '',
   passwordConfirm: '',
+  handleLevelChange: async (e: ChangeEvent<HTMLSelectElement>) => {
+    /** */
+  },
   handleLoginChange: async (e: ChangeEvent<HTMLInputElement>) => {
     /** */
   },
@@ -31,10 +36,12 @@ const FormAuthDataProvider = (props: any) => {
   const [data, setData] = useState<IEmployee>(new Employee().toAttributes);
   const [levels, setLevels] = useState<ILevel[]>([]);
 
+  const [level, setLevel] = useState('0');
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
+  const [errorLevel, setErrorLevel] = useState<string | undefined>(undefined);
   const [errorLogin, setErrorLogin] = useState<string | undefined>(undefined);
   const [errorPassword, setErrorPassword] = useState<string | undefined>(undefined);
   const [errorPasswordConfirm, setErrorPasswordConfirm] = useState<string | undefined>(
@@ -144,6 +151,11 @@ const FormAuthDataProvider = (props: any) => {
     },
   };
 
+  const handleLevelChange = async (e: ChangeEvent<HTMLSelectElement>) => {
+    setLevel(e.target.value);
+    setErrorLevel((await validate.level(e.target.value)).message);
+  };
+
   const handleLoginChange = async (e: ChangeEvent<HTMLInputElement>) => {
     setLogin(e.target.value);
     setErrorLogin((await validate.login(e.target.value)).message);
@@ -158,23 +170,27 @@ const FormAuthDataProvider = (props: any) => {
   };
 
   const validateFields = async () => {
+    setErrorLevel((await validate.level(level)).message);
     setErrorLogin((await validate.login(login)).message);
     setErrorPassword(validate.password(password).message);
     setErrorPasswordConfirm(validate.passwordConfirm(passwordConfirm, password).message);
 
     return (
+      (await validate.level(level)).isValid &&
       (await validate.login(login)).isValid &&
       validate.password(password).isValid &&
       validate.passwordConfirm(passwordConfirm, password).isValid
     );
   };
   const clearFields = () => {
+    setLevel('0');
     setLogin('');
     setPassword('');
     setPasswordConfirm('');
   };
   const loadData = (data: IEmployee) => {
     setData(data);
+    setLevel(data.level.id.toString());
     setLogin(data.login);
   };
 
@@ -182,12 +198,16 @@ const FormAuthDataProvider = (props: any) => {
     <FormAuthDataContext.Provider
       value={{
         data,
+        levels,
+        level,
         login,
         password,
         passwordConfirm,
+        errorLevel,
         errorLogin,
         errorPassword,
         errorPasswordConfirm,
+        handleLevelChange,
         handleLoginChange,
         handlePasswordChange,
         handlePasswordConfirmChange,

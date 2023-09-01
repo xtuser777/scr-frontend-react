@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import FormButton from '../../shared/form-button';
 import axios from '../../../services/axios';
 import { HomeContext } from '../../../contexts/home/home-context';
-import { HomeContextType } from '../../../contexts/home-context-type';
+import { HomeContextType } from '../../../contexts/home/home-context-type';
 
 const FormHomeReport = () => {
   const { filter, date, orderType } = useContext<HomeContextType>(HomeContext);
@@ -34,6 +34,7 @@ const FormHomeReport = () => {
       <FormButton
         col={4}
         id="do-report"
+        color="btn-primary"
         label={false}
         text="GERAR PDF"
         action={handlePdfClick}

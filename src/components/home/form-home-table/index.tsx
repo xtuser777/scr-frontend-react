@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import FieldsetCard from '../../shared/fieldset-card';
 import FormTable from '../../shared/form-table';
 import { HomeContext } from '../../../contexts/home/home-context';
-import { HomeContextType } from '../../../contexts/home-context-type';
 import { formatarData } from '../../../utils/format';
+import { HomeContextType } from '../../../contexts/home/home-context-type';
 
 const FormHomeTable = () => {
   const { data, events } = useContext<HomeContextType>(HomeContext);
 
   return (
-    <FieldsetCard legend="Eventos do Sistema">
+    <FieldsetCard legend="Eventos do Sistema" obrigatoryFields={false}>
       <FormTable id="table-events">
         <thead>
           <tr>

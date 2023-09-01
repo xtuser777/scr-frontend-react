@@ -15,7 +15,7 @@ const UserPage = () => {
       <CardTitle title="Dados do Funcionário" />
       <FormIndividualPerson />
       <FormContact />
-      <FormAuthData />
+      <FormAuthData type={2} />
       <FormFooterButtons link="/" clear={false} save persistData={persistData} />
     </div>
   );
