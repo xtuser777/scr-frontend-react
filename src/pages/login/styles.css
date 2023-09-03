@@ -1,0 +1,32 @@
+.container-login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: rgb(0,120,212);
+}
+.box {
+  border-radius: 10px;
+  width: 300px;
+  padding: 50px 10px 20px 10px;
+  background: white;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
+.btn-login {
+  width: 100%;
+}
+.logo {
+  background-image: url("../../../public/images/logo-personalizado.png");
+  background-size: cover;
+  background-position: center;
+  height: 150px;
+  width: 150px;
+  margin: auto;
+  padding: 0px;
+  border-radius: 0px;
+}

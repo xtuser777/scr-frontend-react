@@ -4,7 +4,6 @@ import HomePage from './pages/home-page';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import Header from './components/shared/header';
 import HomeContext from './contexts/home/home-context';
 import FormIndividualPersonContext from './contexts/components/shared/form-individual-person/individual-person-context';
 import UserContext from './contexts/pages/user/user-context';
@@ -17,69 +16,100 @@ import UserPage from './pages/configuration/user-page';
 import EmployeesPage from './pages/management/employees';
 import EmployeesContext from './contexts/pages/management/employees/employees-context';
 import EmployeePage from './pages/management/employee';
+import EmployeeContext from './contexts/pages/management/employee/employee-context';
+import LoginPage from './pages/login';
+import Layout from './components/shared/layout';
+import LoginContext from './contexts/pages/login/login-context';
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <div className="container">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <HomeContext>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <HomeContext>
+              <Layout>
                 <HomePage />
-              </HomeContext>
-            }
-          />
-          <Route
-            path="/representacoes/inicio"
-            element={
-              <HomeContext>
+              </Layout>
+            </HomeContext>
+          }
+        />
+        <Route
+          path="/representacoes/inicio"
+          element={
+            <HomeContext>
+              <Layout>
                 <HomePage />
-              </HomeContext>
-            }
-          />
-          <Route
-            path="/representacoes/configuracao/dados"
-            element={
-              <FormAuthDataContext>
-                <FormContactContext>
-                  <FormIndividualPersonContext>
-                    <UserContext>
-                      <UserPage />
-                    </UserContext>
-                  </FormIndividualPersonContext>
-                </FormContactContext>
-              </FormAuthDataContext>
-            }
-          />
-          <Route
-            path="/representacoes/configuracao/parametrizacao"
-            element={
+              </Layout>
+            </HomeContext>
+          }
+        />
+        <Route
+          path="/representacoes/configuracao/dados"
+          element={
+            <FormAuthDataContext>
               <FormContactContext>
-                <FormEnterprisePersonContext>
-                  <ParameterizationContext>
-                    <ParameterizationPage />
-                  </ParameterizationContext>
-                </FormEnterprisePersonContext>
+                <FormIndividualPersonContext>
+                  <UserContext>
+                    <Layout>
+                      <UserPage />
+                    </Layout>
+                  </UserContext>
+                </FormIndividualPersonContext>
               </FormContactContext>
-            }
-          />
-          <Route
-            path="/representacoes/gerenciar/funcionarios"
-            element={
-              <EmployeesContext>
+            </FormAuthDataContext>
+          }
+        />
+        <Route
+          path="/representacoes/configuracao/parametrizacao"
+          element={
+            <FormContactContext>
+              <FormEnterprisePersonContext>
+                <ParameterizationContext>
+                  <Layout>
+                    <ParameterizationPage />
+                  </Layout>
+                </ParameterizationContext>
+              </FormEnterprisePersonContext>
+            </FormContactContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/funcionarios"
+          element={
+            <EmployeesContext>
+              <Layout>
                 <EmployeesPage />
-              </EmployeesContext>
-            }
-          />
-          <Route
-            path="/representacoes/gerenciar/funcionario/:method/:id?"
-            element={<EmployeePage />}
-          />
-        </Routes>
-      </div>
+              </Layout>
+            </EmployeesContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/funcionario/:method/:id?"
+          element={
+            <FormAuthDataContext>
+              <FormContactContext>
+                <FormIndividualPersonContext>
+                  <EmployeeContext>
+                    <Layout>
+                      <EmployeePage />
+                    </Layout>
+                  </EmployeeContext>
+                </FormIndividualPersonContext>
+              </FormContactContext>
+            </FormAuthDataContext>
+          }
+        />
+        <Route
+          path="/representacoes/login"
+          element={
+            <LoginContext>
+              <LoginPage />
+            </LoginContext>
+          }
+        />
+      </Routes>
       <ToastContainer autoClose={3000} theme="colored" pauseOnHover />
     </BrowserRouter>
   );

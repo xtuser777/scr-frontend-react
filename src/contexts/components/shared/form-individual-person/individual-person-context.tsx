@@ -180,6 +180,10 @@ const FormIndividualPersonProvider = (props: any) => {
   };
 
   const validateFields = async () => {
+    setErrorName(validate.name(name).message);
+    setErrorCpf((await validate.cpf(cpf)).message);
+    setErrorBirth(validate.birth(birth).message);
+
     return (
       validate.name(name).isValid &&
       (await validate.cpf(cpf)).isValid &&
