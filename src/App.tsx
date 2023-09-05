@@ -20,6 +20,11 @@ import EmployeeContext from './contexts/pages/management/employee/employee-conte
 import LoginPage from './pages/login';
 import Layout from './components/shared/layout';
 import LoginContext from './contexts/pages/login/login-context';
+import ClientsPage from './pages/management/clients';
+import ClientPage from './pages/management/client';
+import FormClientType from './components/management/client/form-client-type';
+import ClientContext from './contexts/pages/management/client/client-context';
+import ClientsContext from './contexts/pages/management/clients/clients-context';
 
 function App() {
   return (
@@ -99,6 +104,32 @@ function App() {
                 </FormIndividualPersonContext>
               </FormContactContext>
             </FormAuthDataContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/clientes"
+          element={
+            <ClientsContext>
+              <Layout>
+                <ClientsPage />
+              </Layout>
+            </ClientsContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/cliente/:method/:id?"
+          element={
+            <FormContactContext>
+              <FormIndividualPersonContext>
+                <FormEnterprisePersonContext>
+                  <ClientContext>
+                    <Layout>
+                      <ClientPage />
+                    </Layout>
+                  </ClientContext>
+                </FormEnterprisePersonContext>
+              </FormIndividualPersonContext>
+            </FormContactContext>
           }
         />
         <Route
