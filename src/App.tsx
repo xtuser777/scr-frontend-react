@@ -22,9 +22,12 @@ import Layout from './components/shared/layout';
 import LoginContext from './contexts/pages/login/login-context';
 import ClientsPage from './pages/management/clients';
 import ClientPage from './pages/management/client';
-import FormClientType from './components/management/client/form-client-type';
 import ClientContext from './contexts/pages/management/client/client-context';
 import ClientsContext from './contexts/pages/management/clients/clients-context';
+import DriversPage from './pages/management/drivers';
+import DriversContext from './contexts/pages/management/drivers/drivers-context';
+import DriverContext from './contexts/pages/management/driver/driver-context';
+import DriverPage from './pages/management/driver';
 
 function App() {
   return (
@@ -128,6 +131,30 @@ function App() {
                     </Layout>
                   </ClientContext>
                 </FormEnterprisePersonContext>
+              </FormIndividualPersonContext>
+            </FormContactContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/motoristas"
+          element={
+            <DriversContext>
+              <Layout>
+                <DriversPage />
+              </Layout>
+            </DriversContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/motorista/:method/:id?"
+          element={
+            <FormContactContext>
+              <FormIndividualPersonContext>
+                <DriverContext>
+                  <Layout>
+                    <DriverPage />
+                  </Layout>
+                </DriverContext>
               </FormIndividualPersonContext>
             </FormContactContext>
           }
