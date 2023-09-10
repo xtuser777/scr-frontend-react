@@ -34,6 +34,12 @@ import ProprietaryContext from './contexts/pages/management/proprietary/propriet
 import ProprietariesContext from './contexts/pages/management/proprietaries/proprietaries-context';
 import RepresentationsContext from './contexts/pages/management/representations/representations-context';
 import RepresentationsPage from './pages/management/representations';
+import RepresentationPage from './pages/management/representation';
+import RepresentationContext from './contexts/pages/management/representation/representation-contact';
+import TrucksContext from './contexts/pages/management/trucks/trucks-context';
+import TrucksPage from './pages/management/trucks';
+import TruckContext from './contexts/pages/management/truck/truck-context';
+import TruckPage from './pages/management/truck';
 
 function App() {
   return (
@@ -199,6 +205,40 @@ function App() {
                 <RepresentationsPage />
               </Layout>
             </RepresentationsContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/representacao/:method/:id?"
+          element={
+            <FormContactContext>
+              <FormEnterprisePersonContext>
+                <RepresentationContext>
+                  <Layout>
+                    <RepresentationPage />
+                  </Layout>
+                </RepresentationContext>
+              </FormEnterprisePersonContext>
+            </FormContactContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/caminhoes"
+          element={
+            <TrucksContext>
+              <Layout>
+                <TrucksPage />
+              </Layout>
+            </TrucksContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/caminhao/:method/:id?"
+          element={
+            <TruckContext>
+              <Layout>
+                <TruckPage />
+              </Layout>
+            </TruckContext>
           }
         />
         <Route
