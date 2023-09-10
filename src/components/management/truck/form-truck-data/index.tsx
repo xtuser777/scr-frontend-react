@@ -41,7 +41,7 @@ const FormTruckData = () => {
       <div className="row">
         <FormInputText
           col={2}
-          id="placa"
+          id="plate"
           label="Placa"
           obrigatory
           value={plate}
@@ -50,7 +50,7 @@ const FormTruckData = () => {
         />
         <FormInputText
           col={3}
-          id="marca"
+          id="brand"
           label="Marca"
           obrigatory
           value={brand}
@@ -59,7 +59,7 @@ const FormTruckData = () => {
         />
         <FormInputText
           col={4}
-          id="modelo"
+          id="model"
           label="Modelo"
           obrigatory
           value={model}
@@ -68,7 +68,7 @@ const FormTruckData = () => {
         />
         <FormInputText
           col={3}
-          id="cor"
+          id="color"
           label="Cor"
           obrigatory
           value={color}
@@ -79,7 +79,7 @@ const FormTruckData = () => {
       <div className="row">
         <FormInputText
           col={2}
-          id="ano-fabricacao"
+          id="manufacture-year"
           label="Ano Fabricação"
           obrigatory
           value={manufactureYear}
@@ -88,7 +88,7 @@ const FormTruckData = () => {
         />
         <FormInputText
           col={2}
-          id="ano-modelo"
+          id="model-year"
           label="Ano Modelo"
           obrigatory
           value={modelYear}
@@ -97,7 +97,7 @@ const FormTruckData = () => {
         />
         <FormInputSelect
           col={3}
-          id="tipo"
+          id="type"
           label="Tipo"
           obrigatory
           value={type}
@@ -113,7 +113,7 @@ const FormTruckData = () => {
         </FormInputSelect>
         <FormInputSelect
           col={5}
-          id="proprietario"
+          id="proprietary"
           label="Proprietário"
           obrigatory
           value={proprietary}

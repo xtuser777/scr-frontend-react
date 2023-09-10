@@ -76,15 +76,21 @@ const TruckProvider = (props: any) => {
   const validate = {
     plate: (value: string) => {
       if (value.length <= 0) {
-        setErrorPlate('A placa do caminhão precisa ser preenchida.');
-        return false;
+        return {
+          message: 'A placa do caminhão precisa ser preenchida.',
+          isValid: false,
+        };
       } else if (value.length < 8) {
-        setErrorPlate('A placa do caminhão é inválida.');
-        return false;
+        return {
+          message: 'A placa do caminhão é inválida.',
+          isValid: false,
+        };
       } else {
-        setErrorPlate(undefined);
         truck.plate = value;
-        return true;
+        return {
+          message: undefined,
+          isValid: true,
+        };
       }
     },
     brand: (value: string) => {
@@ -127,86 +133,138 @@ const TruckProvider = (props: any) => {
     },
     color: (value: string) => {
       if (value.length <= 0) {
-        setErrorColor('A cor do caminhão precisa ser preenchida.');
-        return false;
+        return {
+          message: 'A cor do caminhão precisa ser preenchida.',
+          isValid: false,
+        };
       } else if (value.length < 3) {
-        setErrorColor('A cor do caminhão é inválida.');
-        return false;
+        return {
+          message: 'A cor do caminhão é inválida.',
+          isValid: false,
+        };
       } else {
-        setErrorColor(undefined);
         truck.color = value;
-        return true;
+        return {
+          message: undefined,
+          isValid: true,
+        };
       }
     },
     manufactureYear: (value: string) => {
       if (Number(value) < 1980) {
-        setErrorManufactureYear('O ano de fabricação do caminhão é inválida.');
-        return false;
+        return {
+          message: 'O ano de fabricação do caminhão é inválida.',
+          isValid: false,
+        };
       } else {
-        setErrorManufactureYear(undefined);
         truck.manufactureYear = Number(value);
-        return true;
+        return {
+          message: undefined,
+          isValid: true,
+        };
       }
     },
     modelYear: (value: string) => {
       if (Number(value) < 1980) {
-        setErrorModelYear('O ano do modelo do caminhão é inválida.');
-        return false;
+        return {
+          message: 'O ano do modelo do caminhão é inválida.',
+          isValid: false,
+        };
       } else {
-        setErrorModelYear(undefined);
         truck.modelYear = Number(value);
-        return true;
+        return {
+          message: undefined,
+          isValid: true,
+        };
       }
     },
     type: (value: string) => {
       if (value == '0') {
-        setErrorType('O tipo de caminhão precisa ser selecionado.');
-        return false;
+        return {
+          message: 'O tipo de caminhão precisa ser selecionado.',
+          isValid: false,
+        };
       } else {
-        setErrorType(undefined);
         truck.type = (
           types.find((item) => item.id == Number(value)) as TruckType
         ).toAttributes;
-        return true;
+        return {
+          message: undefined,
+          isValid: true,
+        };
       }
     },
     proprietary: (value: string) => {
       if (value == '0') {
-        setErrorProprietary('O proprietário do caminhão precisa ser selecionado.');
-        return false;
+        return {
+          message: 'O proprietário do caminhão precisa ser selecionado.',
+          isValid: false,
+        };
       } else {
-        setErrorProprietary(undefined);
         truck.proprietary = (
           proprietaries.find((item) => item.id == Number(value)) as Proprietary
         ).toAttributes;
-        return true;
+        return {
+          message: undefined,
+          isValid: true,
+        };
       }
     },
   };
 
   const handlePlateChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPlate(e.target.value);
+    setPlate(e.target.value.toUpperCase());
+    setErrorPlate(validate.plate(e.target.value).message);
   };
   const handleBrandChange = (e: ChangeEvent<HTMLInputElement>) => {
     setBrand(e.target.value);
+    setErrorBrand(validate.brand(e.target.value).message);
   };
   const handleModelChange = (e: ChangeEvent<HTMLInputElement>) => {
     setModel(e.target.value);
+    setErrorModel(validate.model(e.target.value).message);
   };
   const handleColorChange = (e: ChangeEvent<HTMLInputElement>) => {
     setColor(e.target.value);
+    setErrorColor(validate.color(e.target.value).message);
   };
   const handleModelYearChange = (e: ChangeEvent<HTMLInputElement>) => {
     setModelYear(e.target.value);
+    setErrorModelYear(validate.modelYear(e.target.value).message);
   };
   const handleManufactureYearChange = (e: ChangeEvent<HTMLInputElement>) => {
     setManufactureYear(e.target.value);
+    setErrorManufactureYear(validate.manufactureYear(e.target.value).message);
   };
   const handleTypeChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setType(e.target.value);
+    setErrorType(validate.type(e.target.value).message);
   };
   const handleProprietaryChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setProprietary(e.target.value);
+    setErrorProprietary(validate.proprietary(e.target.value).message);
+  };
+
+  const validateFields = () => {
+    setErrorPlate(validate.plate(plate).message);
+    setErrorBrand(validate.brand(brand).message);
+    setErrorModel(validate.model(model).message);
+    setErrorColor(validate.color(color).message);
+    setErrorModelYear(validate.modelYear(modelYear).message);
+    setErrorManufactureYear(validate.manufactureYear(manufactureYear).message);
+    setErrorType(validate.type(type).message);
+    setErrorProprietary(validate.proprietary(proprietary).message);
+
+    return (
+      validate.plate(plate).isValid &&
+      validate.brand(brand).isValid &&
+      validate.model(model).isValid &&
+      validate.color(color).isValid &&
+      validate.modelYear(modelYear).isValid &&
+      validate.manufactureYear(manufactureYear).isValid &&
+      validate.type(type).isValid &&
+      validate.proprietary(proprietary).isValid
+    );
   };
 
   const clearFields = () => {
@@ -220,7 +278,7 @@ const TruckProvider = (props: any) => {
     setProprietary('0');
   };
   const persistData = async () => {
-    /** */
+    validateFields();
   };
 
   return (
