@@ -28,6 +28,12 @@ import DriversPage from './pages/management/drivers';
 import DriversContext from './contexts/pages/management/drivers/drivers-context';
 import DriverContext from './contexts/pages/management/driver/driver-context';
 import DriverPage from './pages/management/driver';
+import ProprietariesPage from './pages/management/proprietaries';
+import ProprietaryPage from './pages/management/proprietary';
+import ProprietaryContext from './contexts/pages/management/proprietary/proprietary-context';
+import ProprietariesContext from './contexts/pages/management/proprietaries/proprietaries-context';
+import RepresentationsContext from './contexts/pages/management/representations/representations-context';
+import RepresentationsPage from './pages/management/representations';
 
 function App() {
   return (
@@ -157,6 +163,42 @@ function App() {
                 </DriverContext>
               </FormIndividualPersonContext>
             </FormContactContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/proprietarios"
+          element={
+            <ProprietariesContext>
+              <Layout>
+                <ProprietariesPage />
+              </Layout>
+            </ProprietariesContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/proprietario/:method/:id?"
+          element={
+            <FormContactContext>
+              <FormIndividualPersonContext>
+                <FormEnterprisePersonContext>
+                  <ProprietaryContext>
+                    <Layout>
+                      <ProprietaryPage />
+                    </Layout>
+                  </ProprietaryContext>
+                </FormEnterprisePersonContext>
+              </FormIndividualPersonContext>
+            </FormContactContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/representacoes"
+          element={
+            <RepresentationsContext>
+              <Layout>
+                <RepresentationsPage />
+              </Layout>
+            </RepresentationsContext>
           }
         />
         <Route

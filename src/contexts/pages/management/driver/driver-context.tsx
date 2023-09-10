@@ -58,84 +58,110 @@ const DriverProvider = (props: any) => {
   const validate = {
     cnh: (value: string) => {
       if (value.length == 0) {
-        setErrorCnh('A CNH do motorista precisa ser preenchida.');
-        return false;
+        return {
+          message: 'A CNH do motorista precisa ser preenchida.',
+          isValid: false,
+        };
       } else {
-        setErrorCnh(undefined);
         driver.cnh = value;
-        return true;
+        return {
+          message: undefined,
+          isValid: true,
+        };
       }
     },
     bank: (value: string) => {
       if (value.length == 0) {
-        setErrorBank('O número do banco precisa ser preenchido.');
-        return false;
+        return {
+          message: 'O número do banco precisa ser preenchido.',
+          isValid: false,
+        };
       } else {
-        setErrorBank(undefined);
         driver.bankData.bank = value;
-        return true;
+        return {
+          message: undefined,
+          isValid: true,
+        };
       }
     },
     agency: (value: string) => {
       if (value.length == 0) {
-        setErrorAgency('A agência do banco precisa ser preenchida.');
-        return false;
+        return {
+          message: 'A agência do banco precisa ser preenchida.',
+          isValid: false,
+        };
       } else {
-        setErrorAgency(undefined);
         driver.bankData.agency = value;
-        return true;
+        return {
+          message: undefined,
+          isValid: true,
+        };
       }
     },
     account: (value: string) => {
       if (value.length == 0) {
-        setErrorAccount('A conta do banco precisa ser preenchida');
-        return false;
+        return {
+          message: 'A conta do banco precisa ser preenchida.',
+          isValid: false,
+        };
       } else {
-        setErrorAccount(undefined);
         driver.bankData.account = value;
-        return true;
+        return {
+          message: undefined,
+          isValid: true,
+        };
       }
     },
     type: (value: string) => {
       if (value == '0') {
-        setErrorType('O tipo de conta precisa ser selecionado.');
-        return false;
+        return {
+          message: 'O tipo de conta precisa ser selecionado.',
+          isValid: false,
+        };
       } else {
-        setErrorType(undefined);
         driver.bankData.type = Number(value);
-        return true;
+        return {
+          message: undefined,
+          isValid: true,
+        };
       }
     },
   };
 
   const handleCnhChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCnh(e.target.value);
-    validate.cnh(e.target.value);
+    setErrorCnh(validate.cnh(e.target.value).message);
   };
   const handleBankChange = (e: ChangeEvent<HTMLInputElement>) => {
     setBank(e.target.value);
-    validate.bank(e.target.value);
+    setErrorBank(validate.bank(e.target.value).message);
   };
   const handleAgencyChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAgency(e.target.value);
-    validate.agency(e.target.value);
+    setErrorAgency(validate.agency(e.target.value).message);
   };
   const handleAccountChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAccount(e.target.value);
-    validate.account(e.target.value);
+    setErrorAccount(validate.account(e.target.value).message);
   };
   const handleTypeChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setType(e.target.value);
-    validate.type(e.target.value);
+    setErrorType(validate.type(e.target.value).message);
   };
 
   const validateFields = () => {
+    setErrorCnh(validate.cnh(cnh).message);
+    setErrorBank(validate.bank(bank).message);
+    setErrorAgency(validate.agency(agency).message);
+    setErrorAccount(validate.account(account).message);
+    setErrorType(validate.type(type).message);
+
     return (
-      validate.cnh(cnh) &&
-      validate.bank(bank) &&
-      validate.agency(agency) &&
-      validate.account(account) &&
-      validate.type(type)
+      validate.cnh(cnh).isValid &&
+      validate.bank(bank).isValid &&
+      validate.agency(agency).isValid &&
+      validate.account(account).isValid &&
+      validate.type(type).isValid
     );
   };
 
