@@ -40,6 +40,8 @@ import TrucksContext from './contexts/pages/management/trucks/trucks-context';
 import TrucksPage from './pages/management/trucks';
 import TruckContext from './contexts/pages/management/truck/truck-context';
 import TruckPage from './pages/management/truck';
+import TruckTypesContext from './contexts/pages/management/truck-types/truck-types-context';
+import TruckTypesPage from './pages/management/truck-types';
 
 function App() {
   return (
@@ -239,6 +241,16 @@ function App() {
                 <TruckPage />
               </Layout>
             </TruckContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/tiposcaminhao"
+          element={
+            <TruckTypesContext>
+              <Layout>
+                <TruckTypesPage />
+              </Layout>
+            </TruckTypesContext>
           }
         />
         <Route
