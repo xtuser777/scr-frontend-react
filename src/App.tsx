@@ -44,6 +44,8 @@ import TruckTypesContext from './contexts/pages/management/truck-types/truck-typ
 import TruckTypesPage from './pages/management/truck-types';
 import TruckTypeContext from './contexts/pages/management/truck-type/truck-type-context';
 import TruckTypePage from './pages/management/truck-type';
+import PaymentFormsContext from './contexts/pages/management/payment-forms/payment-forms-context';
+import PaymentFormsPage from './pages/management/payment-forms';
 
 function App() {
   return (
@@ -263,6 +265,16 @@ function App() {
                 <TruckTypePage />
               </Layout>
             </TruckTypeContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/formaspagamento"
+          element={
+            <PaymentFormsContext>
+              <Layout>
+                <PaymentFormsPage />
+              </Layout>
+            </PaymentFormsContext>
           }
         />
         <Route
