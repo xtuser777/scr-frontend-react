@@ -42,6 +42,8 @@ import TruckContext from './contexts/pages/management/truck/truck-context';
 import TruckPage from './pages/management/truck';
 import TruckTypesContext from './contexts/pages/management/truck-types/truck-types-context';
 import TruckTypesPage from './pages/management/truck-types';
+import TruckTypeContext from './contexts/pages/management/truck-type/truck-type-context';
+import TruckTypePage from './pages/management/truck-type';
 
 function App() {
   return (
@@ -251,6 +253,16 @@ function App() {
                 <TruckTypesPage />
               </Layout>
             </TruckTypesContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/tipocaminhao/:method/:id?"
+          element={
+            <TruckTypeContext>
+              <Layout>
+                <TruckTypePage />
+              </Layout>
+            </TruckTypeContext>
           }
         />
         <Route
