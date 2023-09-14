@@ -46,6 +46,8 @@ import TruckTypeContext from './contexts/pages/management/truck-type/truck-type-
 import TruckTypePage from './pages/management/truck-type';
 import PaymentFormsContext from './contexts/pages/management/payment-forms/payment-forms-context';
 import PaymentFormsPage from './pages/management/payment-forms';
+import PaymentFormContext from './contexts/pages/management/payment-form/payment-form-context';
+import PaymentFormPage from './pages/management/payment-form';
 
 function App() {
   return (
@@ -275,6 +277,16 @@ function App() {
                 <PaymentFormsPage />
               </Layout>
             </PaymentFormsContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/formapagamento/:method/:id?"
+          element={
+            <PaymentFormContext>
+              <Layout>
+                <PaymentFormPage />
+              </Layout>
+            </PaymentFormContext>
           }
         />
         <Route
