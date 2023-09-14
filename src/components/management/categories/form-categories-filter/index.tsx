@@ -4,14 +4,17 @@ import FormInputText from '../../../shared/form-input-text';
 import FormButton from '../../../shared/form-button';
 import FormInputSelect from '../../../shared/form-input-select';
 import FormLinkButton from '../../../shared/form-link-button';
-import PaymentFormsContextType from '../../../../contexts/pages/management/payment-forms/payment-forms-context-type';
-import { PaymentFormsContext } from '../../../../contexts/pages/management/payment-forms/payment-forms-context';
+import CategoriesContextType from '../../../../contexts/pages/management/categories/categories-context-type';
+import { CategoriesContext } from '../../../../contexts/pages/management/categories/categories-context';
 
-const FormPaymentFormsFilter = () => {
+const FormCategoriesFilter = () => {
   const { filter, handleFilterChange, orderBy, handleOrderByChange, handleFilterClick } =
-    useContext<PaymentFormsContextType>(PaymentFormsContext);
+    useContext<CategoriesContextType>(CategoriesContext);
   return (
-    <FieldsetCard legend="Filtragem de formas de pagamento" obrigatoryFields={false}>
+    <FieldsetCard
+      legend="Filtragem de categorias de contas a pagar"
+      obrigatoryFields={false}
+    >
       <div className="row">
         <FormInputText
           col={10}
@@ -43,10 +46,6 @@ const FormPaymentFormsFilter = () => {
           <option value="2">REGISTRO (DECRESCENTE)</option>
           <option value="3">DESCRIÇÃO (CRESCENTE)</option>
           <option value="4">DESCRIÇÃO (DECRESCENTE)</option>
-          <option value="5">VÍNCULO (CRESCENTE)</option>
-          <option value="6">VÍNCULO (DECRESCENTE)</option>
-          <option value="7">PRAZO (CRESCENTE)</option>
-          <option value="8">PRAZO (DECRESCENTE)</option>
         </FormInputSelect>
         <FormLinkButton
           col={2}
@@ -54,11 +53,11 @@ const FormPaymentFormsFilter = () => {
           color="btn-success"
           label
           text="NOVO"
-          link="/representacoes/gerenciar/formapagamento/novo"
+          link="/representacoes/gerenciar/categoria/novo"
         />
       </div>
     </FieldsetCard>
   );
 };
 
-export default FormPaymentFormsFilter;
+export default FormCategoriesFilter;
