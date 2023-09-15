@@ -1,18 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/home-page';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import HomeContext from './contexts/home/home-context';
 import FormIndividualPersonContext from './contexts/components/shared/form-individual-person/individual-person-context';
-import UserContext from './contexts/pages/user/user-context';
 import FormContactContext from './contexts/components/shared/form-contact/contact-context';
 import FormAuthDataContext from './contexts/components/shared/form-auth-data/auth-data-context';
-import ParameterizationPage from './pages/configuration/parameterization';
 import FormEnterprisePersonContext from './contexts/components/shared/form-enterprise-person/enterprise-person-context';
-import ParameterizationContext from './contexts/pages/configuration/parameterization/parameterization-contact';
-import UserPage from './pages/configuration/user-page';
 import EmployeesPage from './pages/management/employees';
 import EmployeesContext from './contexts/pages/management/employees/employees-context';
 import EmployeePage from './pages/management/employee';
@@ -52,61 +46,19 @@ import CategoriesContext from './contexts/pages/management/categories/categories
 import CategoriesPage from './pages/management/categories';
 import CategoryContext from './contexts/pages/management/category/category-context';
 import CategoryPage from './pages/management/category';
+import HomeRoute from './routes/home';
+import EventsRoute from './routes/events';
+import UserDataRoute from './routes/configuration/data';
+import ParameterizationRoute from './routes/configuration/parameterization';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <HomeContext>
-              <Layout>
-                <HomePage />
-              </Layout>
-            </HomeContext>
-          }
-        />
-        <Route
-          path="/representacoes/inicio"
-          element={
-            <HomeContext>
-              <Layout>
-                <HomePage />
-              </Layout>
-            </HomeContext>
-          }
-        />
-        <Route
-          path="/representacoes/configuracao/dados"
-          element={
-            <FormAuthDataContext>
-              <FormContactContext>
-                <FormIndividualPersonContext>
-                  <UserContext>
-                    <Layout>
-                      <UserPage />
-                    </Layout>
-                  </UserContext>
-                </FormIndividualPersonContext>
-              </FormContactContext>
-            </FormAuthDataContext>
-          }
-        />
-        <Route
-          path="/representacoes/configuracao/parametrizacao"
-          element={
-            <FormContactContext>
-              <FormEnterprisePersonContext>
-                <ParameterizationContext>
-                  <Layout>
-                    <ParameterizationPage />
-                  </Layout>
-                </ParameterizationContext>
-              </FormEnterprisePersonContext>
-            </FormContactContext>
-          }
-        />
+        <HomeRoute />
+        <EventsRoute />
+        <UserDataRoute />
+        <ParameterizationRoute />
         <Route
           path="/representacoes/gerenciar/funcionarios"
           element={
