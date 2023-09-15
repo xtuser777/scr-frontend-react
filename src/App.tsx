@@ -50,6 +50,8 @@ import PaymentFormContext from './contexts/pages/management/payment-form/payment
 import PaymentFormPage from './pages/management/payment-form';
 import CategoriesContext from './contexts/pages/management/categories/categories-context';
 import CategoriesPage from './pages/management/categories';
+import CategoryContext from './contexts/pages/management/category/category-context';
+import CategoryPage from './pages/management/category';
 
 function App() {
   return (
@@ -299,6 +301,16 @@ function App() {
                 <CategoriesPage />
               </Layout>
             </CategoriesContext>
+          }
+        />
+        <Route
+          path="/representacoes/gerenciar/categoria/:method/:id?"
+          element={
+            <CategoryContext>
+              <Layout>
+                <CategoryPage />
+              </Layout>
+            </CategoryContext>
           }
         />
         <Route
