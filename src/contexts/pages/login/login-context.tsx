@@ -1,5 +1,7 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import LoginContextType from './login-context-type';
+import LoginService from '../../../services/login-service';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginContext = createContext<LoginContextType>({
   user: '',
@@ -16,6 +18,8 @@ export const LoginContext = createContext<LoginContextType>({
 });
 
 const LoginProvider = (props: any) => {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
 
@@ -62,7 +66,12 @@ const LoginProvider = (props: any) => {
   };
 
   const handleLoginClick = async () => {
-    validateFields();
+    if (validateFields()) {
+      const service = new LoginService();
+      if (await service.login(user, password)) {
+        navigate('/scr/inicio');
+      }
+    }
   };
 
   return (

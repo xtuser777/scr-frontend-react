@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import UserDataRoute from '../routes/configuration/data';
 import ParameterizationRoute from '../routes/configuration/parameterization';
 import EventsRoute from '../routes/events';
@@ -53,7 +52,6 @@ const Router = () => {
         <Route path="/scr/gerenciar/categoria/:method/:id?" element={<CategoryRoute />} />
         <Route path="/scr/login" element={<LoginRoute />} />
       </Routes>
-      <ToastContainer autoClose={3000} theme="colored" pauseOnHover />
     </BrowserRouter>
   );
 };

@@ -1,12 +1,16 @@
 import React, { MouseEvent } from 'react';
-import history from '../../../services/history';
 
 import './style.css';
+import { useNavigate } from 'react-router-dom';
+import LoginService from '../../../services/login-service';
 
 const Header = () => {
+  const navigate = useNavigate();
+  const loginService = new LoginService();
   const handleLogout = (e: MouseEvent) => {
     e.preventDefault();
-    history.push('/scr/inicio');
+    loginService.logout();
+    navigate('/scr/inicio');
   };
 
   return (
