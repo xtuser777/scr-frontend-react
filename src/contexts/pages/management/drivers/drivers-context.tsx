@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import DriversContextType from './drivers-context-type';
-import { IDriver } from '../../../../models/Driver';
+import { IDriver } from '../../../../models/driver';
 
 export const DriversContext = createContext<DriversContextType>({
   drivers: [],

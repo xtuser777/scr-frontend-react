@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { IIndividualPerson } from '../../../../models/IndividualPerson';
+import { IIndividualPerson } from '../../../../models/individual-person';
 
 export default interface FormIndividualPersonContextType {
   person: IIndividualPerson;

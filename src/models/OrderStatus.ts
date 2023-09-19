@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import axios from '../services/axios';
-import { IEmployee, Employee } from './Employee';
+import { IEmployee, Employee } from './employee';
 import { IStatus, Status } from './Status';
 import { isAxiosError } from 'axios';
 

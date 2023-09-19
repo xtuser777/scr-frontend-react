@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { IClient } from '../../../../models/Client';
+import { IClient } from '../../../../models/client';
 
 export default interface ClientsContextType {
   clients: IClient[];

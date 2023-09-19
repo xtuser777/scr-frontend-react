@@ -5,20 +5,23 @@ import FormContactContext from '../../../contexts/components/shared/form-contact
 import FormIndividualPersonContext from '../../../contexts/components/shared/form-individual-person/individual-person-context';
 import EmployeeContext from '../../../contexts/pages/management/employee/employee-context';
 import EmployeePage from '../../../pages/management/employee';
+import { Protected } from '../../../components/shared/protected';
 
 const EmployeeRoute = () => {
   return (
-    <FormAuthDataContext>
-      <FormContactContext>
-        <FormIndividualPersonContext>
-          <EmployeeContext>
-            <Layout>
-              <EmployeePage />
-            </Layout>
-          </EmployeeContext>
-        </FormIndividualPersonContext>
-      </FormContactContext>
-    </FormAuthDataContext>
+    <Protected>
+      <FormAuthDataContext>
+        <FormContactContext>
+          <FormIndividualPersonContext>
+            <EmployeeContext>
+              <Layout>
+                <EmployeePage />
+              </Layout>
+            </EmployeeContext>
+          </FormIndividualPersonContext>
+        </FormContactContext>
+      </FormAuthDataContext>
+    </Protected>
   );
 };
 

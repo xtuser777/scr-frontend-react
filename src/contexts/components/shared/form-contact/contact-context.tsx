@@ -1,8 +1,8 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import FormContactContextType from './contact-context-type';
-import { Contact, IContact } from '../../../../models/Contact';
-import { IState } from '../../../../models/State';
-import { ICity } from '../../../../models/City';
+import { Contact, IContact } from '../../../../models/contact';
+import { IState } from '../../../../models/state';
+import { ICity } from '../../../../models/city';
 import isEmail from 'validator/lib/isEmail';
 
 export const FormContactContext = createContext<FormContactContextType>({

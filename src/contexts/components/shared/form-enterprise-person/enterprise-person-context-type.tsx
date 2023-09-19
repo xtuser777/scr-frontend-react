@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { IEnterprisePerson } from '../../../../models/EnterprisePerson';
+import { IEnterprisePerson } from '../../../../models/enterprise-person';
 
 export default interface FormEnterprisePersonContextType {
   person: IEnterprisePerson;

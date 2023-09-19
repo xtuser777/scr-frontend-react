@@ -2,14 +2,17 @@ import React from 'react';
 import Layout from '../../../components/shared/layout';
 import CategoriesContext from '../../../contexts/pages/management/categories/categories-context';
 import CategoriesPage from '../../../pages/management/categories';
+import { Protected } from '../../../components/shared/protected';
 
 const CategoriesRoute = () => {
   return (
-    <CategoriesContext>
-      <Layout>
-        <CategoriesPage />
-      </Layout>
-    </CategoriesContext>
+    <Protected>
+      <CategoriesContext>
+        <Layout>
+          <CategoriesPage />
+        </Layout>
+      </CategoriesContext>
+    </Protected>
   );
 };
 

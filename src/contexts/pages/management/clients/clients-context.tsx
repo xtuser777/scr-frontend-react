@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import ClientsContextType from './clients-context-type';
-import { IClient } from '../../../../models/Client';
+import { IClient } from '../../../../models/client';
 
 export const ClientsContext = createContext<ClientsContextType>({
   clients: [],

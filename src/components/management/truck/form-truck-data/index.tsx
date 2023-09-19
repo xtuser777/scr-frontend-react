@@ -3,8 +3,8 @@ import FieldsetCard from '../../../shared/fieldset-card';
 import FormInputText from '../../../shared/form-input-text';
 import TruckContextType from '../../../../contexts/pages/management/truck/truck-context-type';
 import { TruckContext } from '../../../../contexts/pages/management/truck/truck-context';
-import { EnterprisePerson } from '../../../../models/EnterprisePerson';
-import { IndividualPerson } from '../../../../models/IndividualPerson';
+import { EnterprisePerson } from '../../../../models/enterprise-person';
+import { IndividualPerson } from '../../../../models/individual-person';
 import FormInputSelect from '../../../shared/form-input-select';
 
 const FormTruckData = () => {

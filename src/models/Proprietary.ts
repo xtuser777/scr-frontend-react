@@ -1,10 +1,10 @@
 import { toast } from 'react-toastify';
 import axios from '../services/axios';
-import { IDriver } from './Driver';
-import { IPerson, Person } from './Person';
+import { IDriver } from './driver';
+import { IPerson, Person } from './person';
 import { AxiosRequestConfig, isAxiosError } from 'axios';
-import { IndividualPerson } from './IndividualPerson';
-import { EnterprisePerson } from './EnterprisePerson';
+import { IndividualPerson } from './individual-person';
+import { EnterprisePerson } from './enterprise-person';
 
 export interface IProprietary {
   id: number;

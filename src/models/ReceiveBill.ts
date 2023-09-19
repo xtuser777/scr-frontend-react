@@ -1,6 +1,6 @@
 import { AxiosRequestConfig, isAxiosError } from 'axios';
 import axios from '../services/axios';
-import { IEmployee, Employee } from './Employee';
+import { IEmployee, Employee } from './employee';
 import { IFreightOrder } from './FreightOrder';
 import { IPaymentForm } from './PaymentForm';
 import { IRepresentation } from './Representation';

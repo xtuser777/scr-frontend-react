@@ -1,5 +1,5 @@
 import axios from '../services/axios';
-import { IEmployee, Employee } from './Employee';
+import { IEmployee, Employee } from './employee';
 import { IFreightOrder } from './FreightOrder';
 import { ISaleOrder } from './SaleOrder';
 

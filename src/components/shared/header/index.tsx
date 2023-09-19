@@ -3,14 +3,16 @@ import React, { MouseEvent } from 'react';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
 import LoginService from '../../../services/login-service';
+import { Security, UserToken } from '../../../utils/security';
 
 const Header = () => {
   const navigate = useNavigate();
+  const user: UserToken = Security.getUser();
   const loginService = new LoginService();
   const handleLogout = (e: MouseEvent) => {
     e.preventDefault();
     loginService.logout();
-    navigate('/scr/inicio');
+    navigate('/scr/login');
   };
 
   return (
@@ -54,9 +56,13 @@ const Header = () => {
                   Gerenciar <span className="caret"></span>
                 </a>
                 <ul className="dropdown-menu">
-                  <li>
-                    <a href="/scr/gerenciar/funcionarios">Funcionários</a>
-                  </li>
+                  {user.user.level == 1 ? (
+                    <li>
+                      <a href="/scr/gerenciar/funcionarios">Funcionários</a>
+                    </li>
+                  ) : (
+                    <></>
+                  )}
                   <li>
                     <a href="/scr/gerenciar/clientes">Clientes</a>
                   </li>
@@ -127,74 +133,86 @@ const Header = () => {
                   <li>
                     <a href="/scr/pedido/status">Alterar status</a>
                   </li>
-                  <li>
-                    <a href="/scr/pedido/autorizar">Autorizar Carregamento</a>
-                  </li>
+                  {user.user.level == 1 ? (
+                    <li>
+                      <a href="/scr/pedido/autorizar">Autorizar Carregamento</a>
+                    </li>
+                  ) : (
+                    <></>
+                  )}
                 </ul>
               </li>
-              <li className="dropdown">
-                <a
-                  href="#"
-                  className="dropdown-toggle white"
-                  data-toggle="dropdown"
-                  role="button"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Controlar
-                  <span className="caret"></span>
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a href="/scr/controlar/contas/pagar">Contas a Pagar</a>
-                  </li>
-                  <li>
-                    <a href="/scr/controlar/contas/receber">Contas a Receber</a>
-                  </li>
-                  <li>
-                    <a href="/scr/controlar/lancar/despesas">Lançar Despesas</a>
-                  </li>
-                </ul>
-              </li>
-              <li className="dropdown">
-                <a
-                  href="#"
-                  className="dropdown-toggle white"
-                  data-toggle="dropdown"
-                  role="button"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Relatório
-                  <span className="caret"></span>
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a href="/scr/relatorio/cliente/">Clientes</a>
-                  </li>
-                  <li>
-                    <a href="/scr/relatorio/pedido/venda">Pedido de Venda</a>
-                  </li>
-                  <li>
-                    <a href="/scr/relatorio/pedido/frete">Pedido de Frete</a>
-                  </li>
-                  <li>
-                    <a href="/scr/relatorio/orcamento/venda">Orçamento de Venda</a>
-                  </li>
-                  <li>
-                    <a href="/scr/relatorio/orcamento/frete">Orçamento de Frete</a>
-                  </li>
-                  <li>
-                    <a href="/scr/relatorio/conta/pagar">Contas a Pagar</a>
-                  </li>
-                  <li>
-                    <a href="/scr/relatorio/conta/receber">Contas a Receber</a>
-                  </li>
-                  <li>
-                    <a href="/scr/relatorio/produto">Produtos</a>
-                  </li>
-                </ul>
-              </li>
+              {user.user.level > 0 && user.user.level < 3 ? (
+                <li className="dropdown">
+                  <a
+                    href="#"
+                    className="dropdown-toggle white"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Controlar
+                    <span className="caret"></span>
+                  </a>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a href="/scr/controlar/contas/pagar">Contas a Pagar</a>
+                    </li>
+                    <li>
+                      <a href="/scr/controlar/contas/receber">Contas a Receber</a>
+                    </li>
+                    <li>
+                      <a href="/scr/controlar/lancar/despesas">Lançar Despesas</a>
+                    </li>
+                  </ul>
+                </li>
+              ) : (
+                <></>
+              )}
+              {user.user.level == 1 ? (
+                <li className="dropdown">
+                  <a
+                    href="#"
+                    className="dropdown-toggle white"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Relatório
+                    <span className="caret"></span>
+                  </a>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a href="/scr/relatorio/cliente/">Clientes</a>
+                    </li>
+                    <li>
+                      <a href="/scr/relatorio/pedido/venda">Pedido de Venda</a>
+                    </li>
+                    <li>
+                      <a href="/scr/relatorio/pedido/frete">Pedido de Frete</a>
+                    </li>
+                    <li>
+                      <a href="/scr/relatorio/orcamento/venda">Orçamento de Venda</a>
+                    </li>
+                    <li>
+                      <a href="/scr/relatorio/orcamento/frete">Orçamento de Frete</a>
+                    </li>
+                    <li>
+                      <a href="/scr/relatorio/conta/pagar">Contas a Pagar</a>
+                    </li>
+                    <li>
+                      <a href="/scr/relatorio/conta/receber">Contas a Receber</a>
+                    </li>
+                    <li>
+                      <a href="/scr/relatorio/produto">Produtos</a>
+                    </li>
+                  </ul>
+                </li>
+              ) : (
+                <></>
+              )}
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <li>
@@ -216,15 +234,19 @@ const Header = () => {
                 </a>
                 <ul className="dropdown-menu">
                   <li className="dropdown-header">Configurações</li>
-                  <li>
-                    <a href="/scr/configuracao/parametrizacao">Parametrização</a>
-                  </li>
+                  {user.user.level == 1 ? (
+                    <li>
+                      <a href="/scr/configuracao/parametrizacao">Parametrização</a>
+                    </li>
+                  ) : (
+                    <></>
+                  )}
                   <li>
                     <a href="/scr/configuracao/dados">Meus Dados</a>
                   </li>
                   <li role="separator" className="divider"></li>
                   <li>
-                    <a href="/scr/login/logout.php">Sair</a>
+                    <a onClick={handleLogout}>Sair</a>
                   </li>
                 </ul>
               </li>

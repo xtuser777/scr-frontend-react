@@ -4,18 +4,21 @@ import FormContactContext from '../../../contexts/components/shared/form-contact
 import FormIndividualPersonContext from '../../../contexts/components/shared/form-individual-person/individual-person-context';
 import DriverContext from '../../../contexts/pages/management/driver/driver-context';
 import DriverPage from '../../../pages/management/driver';
+import { Protected } from '../../../components/shared/protected';
 
 const DriverRoute = () => {
   return (
-    <FormContactContext>
-      <FormIndividualPersonContext>
-        <DriverContext>
-          <Layout>
-            <DriverPage />
-          </Layout>
-        </DriverContext>
-      </FormIndividualPersonContext>
-    </FormContactContext>
+    <Protected>
+      <FormContactContext>
+        <FormIndividualPersonContext>
+          <DriverContext>
+            <Layout>
+              <DriverPage />
+            </Layout>
+          </DriverContext>
+        </FormIndividualPersonContext>
+      </FormContactContext>
+    </Protected>
   );
 };
 

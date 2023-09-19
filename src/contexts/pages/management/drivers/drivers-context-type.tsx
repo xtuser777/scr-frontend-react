@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { IDriver } from '../../../../models/Driver';
+import { IDriver } from '../../../../models/driver';
 
 export default interface DriversContextType {
   drivers: IDriver[];

@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { IEmployee } from '../../../../models/Employee';
+import { IEmployee } from '../../../../models/employee';
 
 export default interface EmployeesContextType {
   employees: IEmployee[];

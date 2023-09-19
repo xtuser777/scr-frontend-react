@@ -1,7 +1,7 @@
 import { AxiosRequestConfig, isAxiosError } from 'axios';
-import { City, ICity } from './City';
-import { Client, IClient } from './Client';
-import { Employee, IEmployee } from './Employee';
+import { City, ICity } from './city';
+import { Client, IClient } from './client';
+import { Employee, IEmployee } from './employee';
 import { IFreightItem } from './FreightItem';
 import { IRepresentation } from './Representation';
 import { ISaleBudget } from './SaleBudget';

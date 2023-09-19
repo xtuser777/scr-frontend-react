@@ -5,20 +5,23 @@ import FormEnterprisePersonContext from '../../../contexts/components/shared/for
 import FormIndividualPersonContext from '../../../contexts/components/shared/form-individual-person/individual-person-context';
 import ProprietaryContext from '../../../contexts/pages/management/proprietary/proprietary-context';
 import ProprietaryPage from '../../../pages/management/proprietary';
+import { Protected } from '../../../components/shared/protected';
 
 const ProprietaryRoute = () => {
   return (
-    <FormContactContext>
-      <FormIndividualPersonContext>
-        <FormEnterprisePersonContext>
-          <ProprietaryContext>
-            <Layout>
-              <ProprietaryPage />
-            </Layout>
-          </ProprietaryContext>
-        </FormEnterprisePersonContext>
-      </FormIndividualPersonContext>
-    </FormContactContext>
+    <Protected>
+      <FormContactContext>
+        <FormIndividualPersonContext>
+          <FormEnterprisePersonContext>
+            <ProprietaryContext>
+              <Layout>
+                <ProprietaryPage />
+              </Layout>
+            </ProprietaryContext>
+          </FormEnterprisePersonContext>
+        </FormIndividualPersonContext>
+      </FormContactContext>
+    </Protected>
   );
 };
 

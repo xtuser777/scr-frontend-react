@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
-import { IEmployee } from '../../../../models/Employee';
-import { ILevel } from '../../../../models/Level';
+import { IEmployee } from '../../../../models/employee';
+import { ILevel } from '../../../../models/level';
 
 export default interface FormAuthDataContextType {
   data: IEmployee;

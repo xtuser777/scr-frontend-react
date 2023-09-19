@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
-import { IState } from '../../../../models/State';
-import { ICity } from '../../../../models/City';
-import { IContact } from '../../../../models/Contact';
+import { IState } from '../../../../models/state';
+import { ICity } from '../../../../models/city';
+import { IContact } from '../../../../models/contact';
 
 export default interface FormContactContextType {
   states: IState[];

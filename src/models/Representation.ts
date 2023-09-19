@@ -1,8 +1,8 @@
 import { AxiosRequestConfig, isAxiosError } from 'axios';
 import axios from '../services/axios';
-import { IPerson, Person } from './Person';
+import { IPerson, Person } from './person';
 import { toast } from 'react-toastify';
-import { IEnterprisePerson } from './EnterprisePerson';
+import { IEnterprisePerson } from './enterprise-person';
 
 export interface IRepresentation {
   id: number;

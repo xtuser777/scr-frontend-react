@@ -1,8 +1,8 @@
 import { AxiosRequestConfig, isAxiosError } from 'axios';
 import axios from '../services/axios';
 import { BillPayCategory, IBillPayCategory } from './BillPayCategory';
-import { IDriver } from './Driver';
-import { IEmployee, Employee } from './Employee';
+import { IDriver } from './driver';
+import { IEmployee, Employee } from './employee';
 import { IFreightOrder } from './FreightOrder';
 import { IPaymentForm } from './PaymentForm';
 import { ISaleOrder } from './SaleOrder';

@@ -4,7 +4,7 @@ import FormContactContextType from '../../../components/shared/form-contact/cont
 import { FormIndividualPersonContext } from '../../../components/shared/form-individual-person/individual-person-context';
 import FormIndividualPersonContextType from '../../../components/shared/form-individual-person/individual-person-context-type';
 import DriverContextType from './driver-context-type';
-import { Driver } from '../../../../models/Driver';
+import { Driver } from '../../../../models/driver';
 
 export const DriverContext = createContext<DriverContextType>({
   cnh: '',

@@ -1,7 +1,7 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import FormAuthDataContextType from './auth-data-context-type';
-import { Employee, IEmployee } from '../../../../models/Employee';
-import { ILevel, Level } from '../../../../models/Level';
+import { Employee, IEmployee } from '../../../../models/employee';
+import { ILevel, Level } from '../../../../models/level';
 import axios from '../../../../services/axios';
 
 export const FormAuthDataContext = createContext<FormAuthDataContextType>({

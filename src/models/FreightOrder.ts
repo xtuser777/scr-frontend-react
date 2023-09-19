@@ -1,8 +1,8 @@
 import { AxiosRequestConfig, isAxiosError } from 'axios';
-import { ICity, City } from './City';
-import { IClient, Client } from './Client';
-import { IDriver, Driver } from './Driver';
-import { IEmployee, Employee } from './Employee';
+import { ICity, City } from './city';
+import { IClient, Client } from './client';
+import { IDriver, Driver } from './driver';
+import { IEmployee, Employee } from './employee';
 import { IFreightBudget } from './FreightBudget';
 import { IFreightItem } from './FreightItem';
 import { ILoadStep } from './LoadStep';

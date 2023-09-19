@@ -1,7 +1,7 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import FormIndividualPersonContextType from './individual-person-context-type';
-import { IIndividualPerson, IndividualPerson } from '../../../../models/IndividualPerson';
-import { Employee } from '../../../../models/Employee';
+import { IIndividualPerson, IndividualPerson } from '../../../../models/individual-person';
+import { Employee } from '../../../../models/employee';
 
 export const FormIndividualPersonContext = createContext<FormIndividualPersonContextType>(
   {

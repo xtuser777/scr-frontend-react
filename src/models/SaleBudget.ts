@@ -1,8 +1,8 @@
 import { AxiosRequestConfig, isAxiosError } from 'axios';
-import { IClient } from './Client';
-import { Employee, IEmployee } from './Employee';
+import { IClient } from './client';
+import { Employee, IEmployee } from './employee';
 import { ISaleItem } from './SaleItem';
-import { City, ICity } from './City';
+import { City, ICity } from './city';
 import axios from '../services/axios';
 import { toast } from 'react-toastify';
 

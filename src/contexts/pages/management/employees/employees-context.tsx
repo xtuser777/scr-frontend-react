@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import EmployeesContextType from './employees-context-type';
-import { IEmployee } from '../../../../models/Employee';
+import { IEmployee } from '../../../../models/employee';
 
 export const EmployeesContext = createContext<EmployeesContextType>({
   employees: [],

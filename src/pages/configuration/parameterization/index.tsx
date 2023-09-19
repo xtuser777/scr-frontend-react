@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import CardTitle from '../../../components/shared/card-title';
 import FormEnterprisePerson from '../../../components/shared/form-enterprise-person';
-import ParameterizationContextType from '../../../contexts/pages/configuration/parameterization/parameterization-contact-type';
-import { ParameterizationContext } from '../../../contexts/pages/configuration/parameterization/parameterization-contact';
+import ParameterizationContextType from '../../../contexts/pages/configuration/parameterization/parameterization-context-type';
+import { ParameterizationContext } from '../../../contexts/pages/configuration/parameterization/parameterization-context';
 import FormContact from '../../../components/shared/form-contact';
 import FormFooterButtons from '../../../components/shared/form-footer-buttons';
 

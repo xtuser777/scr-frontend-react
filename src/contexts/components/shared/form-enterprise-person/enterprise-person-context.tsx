@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import FormEnterprisePersonContextType from './enterprise-person-context-type';
-import { EnterprisePerson, IEnterprisePerson } from '../../../../models/EnterprisePerson';
+import { EnterprisePerson, IEnterprisePerson } from '../../../../models/enterprise-person';
 
 export const FormEnterprisePersonContext = createContext<FormEnterprisePersonContextType>(
   {
