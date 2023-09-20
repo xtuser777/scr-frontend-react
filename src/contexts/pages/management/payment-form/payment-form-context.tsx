@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import PaymentFormContextType from './payment-form-context-type';
-import { PaymentForm } from '../../../../models/PaymentForm';
+import { PaymentForm } from '../../../../models/payment-form';
 
 export const PaymentFormContext = createContext<PaymentFormContextType>({
   description: '',

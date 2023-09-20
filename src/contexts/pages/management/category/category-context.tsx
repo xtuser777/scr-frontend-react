@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import CategoryContextType from './category-context-type';
-import { BillPayCategory } from '../../../../models/BillPayCategory';
+import { BillPayCategory } from '../../../../models/bill-pay-category';
 
 export const CategoryContext = createContext<CategoryContextType>({
   description: '',

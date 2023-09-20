@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { IBillPayCategory } from '../../../../models/BillPayCategory';
+import { IBillPayCategory } from '../../../../models/bill-pay-category';
 
 export default interface BillPayCategorysContextType {
   categories: IBillPayCategory[];

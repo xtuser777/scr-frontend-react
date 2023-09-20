@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import Parameterization from '../models/parameterization';
 import axios from './axios';
 import { AxiosError, AxiosRequestConfig } from 'axios';
-import { Security } from '../utils/security';
+import { processApiError } from '../utils/process-api-error';
 
 class ParameterizationService {
   async save(parameterization: Parameterization) {
@@ -18,26 +18,7 @@ class ParameterizationService {
         return false;
       }
     } catch (e) {
-      const error = e as AxiosError;
-      switch (error.response?.status) {
-        case 404:
-          toast.error('Erro de requisição: Rota não encontrada.');
-          break;
-        case 400:
-          toast.error(`Erro na requisição: ${error.response.data}`);
-          break;
-        case 401:
-          toast.error('Token de autenticação inválido. Faça login novamente.');
-          Security.clear();
-          window.document.location.reload();
-          break;
-        case 500:
-          toast.error('Erro de servidor.');
-          break;
-        default:
-          toast.error(`Erro desconhecido: ${error}`);
-          break;
-      }
+      processApiError(e as AxiosError);
       return false;
     }
   }
@@ -55,26 +36,7 @@ class ParameterizationService {
         return false;
       }
     } catch (e) {
-      const error = e as AxiosError;
-      switch (error.response?.status) {
-        case 404:
-          toast.error('Erro de requisição: Rota não encontrada.');
-          break;
-        case 400:
-          toast.error(`Erro na requisição: ${error.response.data}`);
-          break;
-        case 401:
-          toast.error('Token de autenticação inválido. Faça login novamente.');
-          Security.clear();
-          window.document.location.reload();
-          break;
-        case 500:
-          toast.error('Erro de servidor.');
-          break;
-        default:
-          toast.error(`Erro desconhecido: ${error}`);
-          break;
-      }
+      processApiError(e as AxiosError);
       return false;
     }
   }
@@ -86,26 +48,7 @@ class ParameterizationService {
 
       return parameterization;
     } catch (e) {
-      const error = e as AxiosError;
-      switch (error.response?.status) {
-        case 404:
-          toast.error('Erro de requisição: Rota não encontrada.');
-          break;
-        case 400:
-          toast.error(`Erro na requisição: ${error.response.data}`);
-          break;
-        case 401:
-          toast.error('Token de autenticação inválido. Faça login novamente.');
-          Security.clear();
-          window.document.location.reload();
-          break;
-        case 500:
-          toast.error('Erro de servidor.');
-          break;
-        default:
-          toast.error(`Erro desconhecido: ${error}`);
-          break;
-      }
+      processApiError(e as AxiosError);
       return undefined;
     }
   }

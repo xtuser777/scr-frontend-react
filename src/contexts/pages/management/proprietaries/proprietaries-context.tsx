@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import ProprietariesContextType from './proprietaries-context-type';
-import { IProprietary } from '../../../../models/Proprietary';
+import { IProprietary } from '../../../../models/proprietary';
 
 export const ProprietariesContext = createContext<ProprietariesContextType>({
   proprietaries: [],

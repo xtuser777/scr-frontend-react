@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { IPaymentForm } from '../../../../models/PaymentForm';
+import { IPaymentForm } from '../../../../models/payment-form';
 
 export default interface PaymentFormsContextType {
   paymentForms: IPaymentForm[];

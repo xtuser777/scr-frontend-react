@@ -1,7 +1,7 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import CategoriesContextType from './categories-context-type';
-import { ITruckType } from '../../../../models/TruckType';
-import { IBillPayCategory } from '../../../../models/BillPayCategory';
+import { ITruckType } from '../../../../models/truck-type';
+import { IBillPayCategory } from '../../../../models/bill-pay-category';
 
 export const CategoriesContext = createContext<CategoriesContextType>({
   categories: [],

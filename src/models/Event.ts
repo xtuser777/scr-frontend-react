@@ -1,7 +1,7 @@
 import axios from '../services/axios';
 import { IEmployee, Employee } from './employee';
-import { IFreightOrder } from './FreightOrder';
-import { ISaleOrder } from './SaleOrder';
+import { IFreightOrder } from './freight-order';
+import { ISaleOrder } from './sale-order';
 
 export interface IEvent {
   id: number;

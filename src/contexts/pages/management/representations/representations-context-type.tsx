@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { IRepresentation } from '../../../../models/Representation';
+import { IRepresentation } from '../../../../models/representation';
 
 export default interface RepresentationsContextType {
   representations: IRepresentation[];

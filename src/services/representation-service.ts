@@ -1,15 +1,15 @@
 import { AxiosError, AxiosRequestConfig } from 'axios';
+import axios from '../services/axios';
 import { toast } from 'react-toastify';
-import Employee from '../models/employee';
-import axios from './axios';
+import Representation from '../models/representation';
 import { processApiError } from '../utils/process-api-error';
 
-class EmployeeService {
-  async save(employee: Employee) {
+class RepresentationService {
+  save = async (representation: Representation) => {
     try {
-      const response: AxiosRequestConfig = await axios.post('/employee', { employee });
+      const response: AxiosRequestConfig = await axios.post('/representation', { representation });
       if (response.data.length == 0) {
-        toast.success('Funcionário cadastrado com sucesso!');
+        toast.success('Representação cadastrada com sucesso!');
         return true;
       } else {
         toast.error(`Erro: ${response.data}`);
@@ -19,15 +19,15 @@ class EmployeeService {
       processApiError(e as AxiosError);
       return false;
     }
-  }
+  };
 
-  async update(employee: Employee) {
+  async update(representation: Representation) {
     try {
-      const response: AxiosRequestConfig = await axios.put(`/employee/${employee.id}`, {
-        employee,
+      const response: AxiosRequestConfig = await axios.put(`/representation/${representation.id}`, {
+        representation,
       });
       if (response.data.length == 0) {
-        toast.success('Funcionário atualizado com sucesso!');
+        toast.success('Representação atualizada com sucesso!');
         return true;
       } else {
         toast.error(`Erro: ${response.data}`);
@@ -41,9 +41,9 @@ class EmployeeService {
 
   async delete(id: number) {
     try {
-      const response: AxiosRequestConfig = await axios.delete(`/employee/${id}`);
+      const response: AxiosRequestConfig = await axios.delete(`/representation/${id}`);
       if (response.data.length == 0) {
-        toast.success('Funcionário excluído com sucesso!');
+        toast.success('Representação excluída com sucesso!');
         return true;
       } else {
         toast.error(`Erro: ${response.data}`);
@@ -57,10 +57,10 @@ class EmployeeService {
 
   async getOne(id: number) {
     try {
-      const response = await axios.get(`/employee/${id}`);
-      const user = response.data ? new Employee(response.data) : undefined;
+      const response = await axios.get(`/representation/${id}`);
+      const representation: Representation = response.data;
 
-      return user;
+      return representation;
     } catch (e) {
       processApiError(e as AxiosError);
       return undefined;
@@ -69,11 +69,11 @@ class EmployeeService {
 
   async get() {
     try {
-      const response = await axios.get(`/employee`);
-      const users: Employee[] = [];
-      for (const data of response.data) users.push(data);
+      const response = await axios.get(`/representation`);
+      const reps: Representation[] = [];
+      for (const data of response.data) reps.push(data);
 
-      return users;
+      return reps;
     } catch (e) {
       processApiError(e as AxiosError);
       return [];
@@ -81,4 +81,4 @@ class EmployeeService {
   }
 }
 
-export default EmployeeService;
+export default RepresentationService;

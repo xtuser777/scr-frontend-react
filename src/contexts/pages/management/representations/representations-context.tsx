@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import RepresentationsContextType from './representations-context-type';
-import { IRepresentation } from '../../../../models/Representation';
+import { IRepresentation } from '../../../../models/representation';
 
 export const RepresentationsContext = createContext<RepresentationsContextType>({
   representations: [],

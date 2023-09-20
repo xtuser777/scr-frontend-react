@@ -1,4 +1,4 @@
-import { BankData } from './BankData';
+import BankData from './bank-data';
 import Person from './person';
 
 class Driver {

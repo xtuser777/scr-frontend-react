@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { ITruck } from '../../../../models/Truck';
+import { ITruck } from '../../../../models/truck';
 
 export default interface TrucksContextType {
   trucks: ITruck[];

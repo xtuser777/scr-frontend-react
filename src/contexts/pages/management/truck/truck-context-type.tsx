@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
-import { IProprietary } from '../../../../models/Proprietary';
-import { ITruckType } from '../../../../models/TruckType';
+import { IProprietary } from '../../../../models/proprietary';
+import { ITruckType } from '../../../../models/truck-type';
 
 export default interface TruckContextType {
   types: ITruckType[];

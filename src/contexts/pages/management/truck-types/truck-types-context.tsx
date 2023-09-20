@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import TruckTypesContextType from './truck-types-context-type';
-import { ITruckType } from '../../../../models/TruckType';
+import { ITruckType } from '../../../../models/truck-type';
 
 export const TruckTypesContext = createContext<TruckTypesContextType>({
   truckTypes: [],

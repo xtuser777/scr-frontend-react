@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { IProprietary } from '../../../../models/Proprietary';
+import { IProprietary } from '../../../../models/proprietary';
 
 export default interface ProprietariesContextType {
   proprietaries: IProprietary[];

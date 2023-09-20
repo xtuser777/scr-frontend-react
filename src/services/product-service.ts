@@ -1,15 +1,15 @@
-import { AxiosError, AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig, AxiosError } from 'axios';
 import { toast } from 'react-toastify';
-import Driver from '../models/driver';
+import Product from '../models/product';
 import axios from './axios';
 import { processApiError } from '../utils/process-api-error';
 
-class DriverService {
-  save = async (driver: Driver) => {
+class ProductService {
+  save = async (product: Product) => {
     try {
-      const response: AxiosRequestConfig = await axios.post('/driver', { driver });
+      const response: AxiosRequestConfig = await axios.post('/product', { product });
       if (response.data.length == 0) {
-        toast.success('Motorista cadastrado com sucesso!');
+        toast.success('Produto cadastrado com sucesso!');
         return true;
       } else {
         toast.error(`Erro: ${response.data}`);
@@ -21,11 +21,11 @@ class DriverService {
     }
   };
 
-  update = async (driver: Driver) => {
+  update = async (product: Product) => {
     try {
-      const response: AxiosRequestConfig = await axios.put('/driver/' + driver.id, { driver });
+      const response: AxiosRequestConfig = await axios.put('/product/' + product.id, { product });
       if (response.data.length == 0) {
-        toast.success('Motorista atualizado com sucesso!');
+        toast.success('Produto atualizado com sucesso!');
         return true;
       } else {
         toast.error(`Erro: ${response.data}`);
@@ -39,9 +39,9 @@ class DriverService {
 
   delete = async (id: number) => {
     try {
-      const response: AxiosRequestConfig = await axios.delete('/driver/' + id);
+      const response: AxiosRequestConfig = await axios.delete('/product/' + id);
       if (response.data.length == 0) {
-        toast.success('Motorista removido com sucesso!');
+        toast.success('Produto removido com sucesso!');
         return true;
       } else {
         toast.error(`Erro: ${response.data}`);
@@ -53,30 +53,31 @@ class DriverService {
     }
   };
 
-  async getOne(id: number) {
+  getOne = async (id: number) => {
+    if (id <= 0) return undefined;
     try {
-      const response = await axios.get(`/driver/${id}`);
-      const driver: Driver | undefined = response.data;
+      const response = await axios.get('/product/' + id);
+      const product: Product | undefined = response.data;
 
-      return driver;
+      return product;
     } catch (e) {
       processApiError(e as AxiosError);
       return undefined;
     }
-  }
+  };
 
-  async get() {
+  get = async () => {
     try {
-      const response = await axios.get(`/driver`);
-      const drivers: Driver[] = [];
-      for (const data of response.data) drivers.push(data);
+      const response = await axios.get('/product');
+      const products: Product[] = [];
+      for (const data of response.data) products.push(data);
 
-      return drivers;
+      return products;
     } catch (e) {
       processApiError(e as AxiosError);
       return [];
     }
-  }
+  };
 }
 
-export default DriverService;
+export default ProductService;

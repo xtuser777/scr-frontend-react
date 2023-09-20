@@ -1,15 +1,15 @@
 import { AxiosError, AxiosRequestConfig } from 'axios';
-import { toast } from 'react-toastify';
-import Driver from '../models/driver';
 import axios from './axios';
+import { toast } from 'react-toastify';
+import PaymentForm from '../models/payment-form';
 import { processApiError } from '../utils/process-api-error';
 
-class DriverService {
-  save = async (driver: Driver) => {
+class PaymentFormService {
+  save = async (form: PaymentForm) => {
     try {
-      const response: AxiosRequestConfig = await axios.post('/driver', { driver });
+      const response: AxiosRequestConfig = await axios.post('payment-form', { form });
       if (response.data.length == 0) {
-        toast.success('Motorista cadastrado com sucesso!');
+        toast.success('Forma de pagamento cadastrada com sucesso!');
         return true;
       } else {
         toast.error(`Erro: ${response.data}`);
@@ -21,11 +21,11 @@ class DriverService {
     }
   };
 
-  update = async (driver: Driver) => {
+  update = async (form: PaymentForm) => {
     try {
-      const response: AxiosRequestConfig = await axios.put('/driver/' + driver.id, { driver });
+      const response: AxiosRequestConfig = await axios.put('payment-form/' + form.id, { form });
       if (response.data.length == 0) {
-        toast.success('Motorista atualizado com sucesso!');
+        toast.success('Forma de pagamento atualizada com sucesso!');
         return true;
       } else {
         toast.error(`Erro: ${response.data}`);
@@ -39,9 +39,9 @@ class DriverService {
 
   delete = async (id: number) => {
     try {
-      const response: AxiosRequestConfig = await axios.delete('/driver/' + id);
+      const response: AxiosRequestConfig = await axios.delete('payment-form/' + id);
       if (response.data.length == 0) {
-        toast.success('Motorista removido com sucesso!');
+        toast.success('Forma de pagamento removida com sucesso!');
         return true;
       } else {
         toast.error(`Erro: ${response.data}`);
@@ -53,30 +53,31 @@ class DriverService {
     }
   };
 
-  async getOne(id: number) {
+  getOne = async (id: number) => {
+    if (id <= 0) return undefined;
     try {
-      const response = await axios.get(`/driver/${id}`);
-      const driver: Driver | undefined = response.data;
+      const response = await axios.get('/payment-form/' + id);
+      const form: PaymentForm | undefined = response.data;
 
-      return driver;
+      return form;
     } catch (e) {
       processApiError(e as AxiosError);
       return undefined;
     }
-  }
+  };
 
-  async get() {
+  get = async () => {
     try {
-      const response = await axios.get(`/driver`);
-      const drivers: Driver[] = [];
-      for (const data of response.data) drivers.push(data);
+      const response = await axios.get('/payment-form');
+      const forms: PaymentForm[] = [];
+      for (const data of response.data) forms.push(data);
 
-      return drivers;
+      return forms;
     } catch (e) {
       processApiError(e as AxiosError);
       return [];
     }
-  }
+  };
 }
 
-export default DriverService;
+export default PaymentFormService;

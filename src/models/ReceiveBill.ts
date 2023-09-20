@@ -1,10 +1,10 @@
 import { AxiosRequestConfig, isAxiosError } from 'axios';
 import axios from '../services/axios';
 import { IEmployee, Employee } from './employee';
-import { IFreightOrder } from './FreightOrder';
-import { IPaymentForm } from './PaymentForm';
-import { IRepresentation } from './Representation';
-import { ISaleOrder } from './SaleOrder';
+import { IFreightOrder } from './freight-order';
+import { IPaymentForm } from './payment-form';
+import { IRepresentation } from './representation';
+import { ISaleOrder } from './sale-order';
 import { toast } from 'react-toastify';
 
 export interface IReceiveBill {
