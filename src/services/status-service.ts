@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import Status from '../models/Status';
+import Status from '../models/status';
 import { processApiError } from '../utils/process-api-error';
 import axios from './axios';
 

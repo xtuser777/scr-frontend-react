@@ -1,5 +1,5 @@
 import Employee from './employee';
-import Status from './Status';
+import Status from './status';
 
 class OrderStatus {
   constructor(
