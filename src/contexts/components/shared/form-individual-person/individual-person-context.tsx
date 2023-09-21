@@ -1,37 +1,35 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import FormIndividualPersonContextType from './individual-person-context-type';
-import { IIndividualPerson, IndividualPerson } from '../../../../models/individual-person';
-import { Employee } from '../../../../models/employee';
+import IndividualPerson from '../../../../models/individual-person';
+import Employee from '../../../../models/employee';
+import EmployeeService from '../../../../services/employee-service';
+import Person from '../../../../models/person';
 
-export const FormIndividualPersonContext = createContext<FormIndividualPersonContextType>(
-  {
-    person: new IndividualPerson().toAttributes,
-    name: '',
-    cpf: '',
-    birth: '',
-    handleNameChange: (e: ChangeEvent<HTMLInputElement>) => {
-      /** */
-    },
-    handleCpfChange: async (e: ChangeEvent<HTMLInputElement>) => {
-      /** */
-    },
-    handleBirthChange: (e: ChangeEvent<HTMLInputElement>) => {
-      /** */
-    },
-    validateFields: async () => false,
-    clearFields: () => {
-      /** */
-    },
-    loadPerson: (person: IIndividualPerson) => {
-      /** */
-    },
+export const FormIndividualPersonContext = createContext<FormIndividualPersonContextType>({
+  person: new IndividualPerson(),
+  name: '',
+  cpf: '',
+  birth: '',
+  handleNameChange: (e: ChangeEvent<HTMLInputElement>) => {
+    /** */
   },
-);
+  handleCpfChange: async (e: ChangeEvent<HTMLInputElement>) => {
+    /** */
+  },
+  handleBirthChange: (e: ChangeEvent<HTMLInputElement>) => {
+    /** */
+  },
+  validateFields: async () => false,
+  clearFields: () => {
+    /** */
+  },
+  loadPerson: (person: IndividualPerson) => {
+    /** */
+  },
+});
 
 const FormIndividualPersonProvider = (props: any) => {
-  const [person, setPerson] = useState<IIndividualPerson>(
-    new IndividualPerson().toAttributes,
-  );
+  const [person, setPerson] = useState<IndividualPerson>(new IndividualPerson());
 
   const [uniqueCpf, setUniqueCpf] = useState(false);
 
@@ -90,9 +88,9 @@ const FormIndividualPersonProvider = (props: any) => {
   };
 
   const verifyCpf = async (cpf: string) => {
-    const users = await new Employee().get();
+    const users = await new EmployeeService().get();
     const user = users.find(
-      (item) => (item.person.individual as IIndividualPerson).cpf == cpf,
+      (item) => ((item.person as Person).individual as IndividualPerson).cpf == cpf,
     );
 
     return !!user && person.cpf != cpf;
@@ -197,7 +195,7 @@ const FormIndividualPersonProvider = (props: any) => {
     setBirth('');
   };
 
-  const loadPerson = (person: IIndividualPerson, uniqueCpf: boolean) => {
+  const loadPerson = (person: IndividualPerson, uniqueCpf: boolean) => {
     setPerson(person);
     setUniqueCpf(uniqueCpf);
     setName(person.name);

@@ -1,8 +1,8 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import TruckContextType from './truck-context-type';
-import { ITruckType, TruckType } from '../../../../models/truck-type';
-import { IProprietary, Proprietary } from '../../../../models/proprietary';
-import { Truck } from '../../../../models/truck';
+import TruckType from '../../../../models/truck-type';
+import Proprietary from '../../../../models/proprietary';
+import Truck from '../../../../models/truck';
 
 export const TruckContext = createContext<TruckContextType>({
   types: [],
@@ -50,8 +50,8 @@ export const TruckContext = createContext<TruckContextType>({
 const TruckProvider = (props: any) => {
   const [truck, setTruck] = useState(new Truck());
 
-  const [types, setTypes] = useState<ITruckType[]>([]);
-  const [proprietaries, setProprietaries] = useState<IProprietary[]>([]);
+  const [types, setTypes] = useState<TruckType[]>([]);
+  const [proprietaries, setProprietaries] = useState<Proprietary[]>([]);
 
   const [plate, setPlate] = useState('');
   const [brand, setBrand] = useState('');
@@ -67,9 +67,7 @@ const TruckProvider = (props: any) => {
   const [errorModel, setErrorModel] = useState<string | undefined>(undefined);
   const [errorColor, setErrorColor] = useState<string | undefined>(undefined);
   const [errorModelYear, setErrorModelYear] = useState<string | undefined>(undefined);
-  const [errorManufactureYear, setErrorManufactureYear] = useState<string | undefined>(
-    undefined,
-  );
+  const [errorManufactureYear, setErrorManufactureYear] = useState<string | undefined>(undefined);
   const [errorType, setErrorType] = useState<string | undefined>(undefined);
   const [errorProprietary, setErrorProprietary] = useState<string | undefined>(undefined);
 
@@ -185,9 +183,7 @@ const TruckProvider = (props: any) => {
           isValid: false,
         };
       } else {
-        truck.type = (
-          types.find((item) => item.id == Number(value)) as TruckType
-        ).toAttributes;
+        truck.type = types.find((item) => item.id == Number(value));
         return {
           message: undefined,
           isValid: true,
@@ -201,9 +197,7 @@ const TruckProvider = (props: any) => {
           isValid: false,
         };
       } else {
-        truck.proprietary = (
-          proprietaries.find((item) => item.id == Number(value)) as Proprietary
-        ).toAttributes;
+        truck.proprietary = proprietaries.find((item) => item.id == Number(value));
         return {
           message: undefined,
           isValid: true,

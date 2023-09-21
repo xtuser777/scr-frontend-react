@@ -1,11 +1,12 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import FormAuthDataContextType from './auth-data-context-type';
-import { Employee, IEmployee } from '../../../../models/employee';
-import { ILevel, Level } from '../../../../models/level';
+import Employee from '../../../../models/employee';
+import Level from '../../../../models/level';
 import axios from '../../../../services/axios';
+import EmployeeService from '../../../../services/employee-service';
 
 export const FormAuthDataContext = createContext<FormAuthDataContextType>({
-  data: new Employee().toAttributes,
+  data: new Employee(),
   levels: [],
   level: '0',
   login: '',
@@ -27,14 +28,14 @@ export const FormAuthDataContext = createContext<FormAuthDataContextType>({
   clearFields: () => {
     /** */
   },
-  loadData: (data: IEmployee) => {
+  loadData: (data: Employee) => {
     /** */
   },
 });
 
 const FormAuthDataProvider = (props: any) => {
-  const [data, setData] = useState<IEmployee>(new Employee().toAttributes);
-  const [levels, setLevels] = useState<ILevel[]>([]);
+  const [data, setData] = useState<Employee>(new Employee());
+  const [levels, setLevels] = useState<Level[]>([]);
 
   const [level, setLevel] = useState('0');
   const [login, setLogin] = useState('');
@@ -44,13 +45,11 @@ const FormAuthDataProvider = (props: any) => {
   const [errorLevel, setErrorLevel] = useState<string | undefined>(undefined);
   const [errorLogin, setErrorLogin] = useState<string | undefined>(undefined);
   const [errorPassword, setErrorPassword] = useState<string | undefined>(undefined);
-  const [errorPasswordConfirm, setErrorPasswordConfirm] = useState<string | undefined>(
-    undefined,
-  );
+  const [errorPasswordConfirm, setErrorPasswordConfirm] = useState<string | undefined>(undefined);
 
   const verifyAdmin = async () => {
-    const users = await new Employee().get();
-    const user = users.filter((item) => item.level.id == 1);
+    const users = await new EmployeeService().get();
+    const user = users.filter((item) => item.level?.id == 1);
 
     return user.length == 1 && data.level && data.level.id == 1;
   };
@@ -79,9 +78,7 @@ const FormAuthDataProvider = (props: any) => {
           isValid: false,
         };
       }*/ else {
-        data.level = (
-          levels.find((item) => item.id == Number(value)) as Level
-        ).toAttributes;
+        data.level = levels.find((item) => item.id == Number(value));
         return {
           message: undefined,
           isValid: true,
@@ -188,9 +185,9 @@ const FormAuthDataProvider = (props: any) => {
     setPassword('');
     setPasswordConfirm('');
   };
-  const loadData = (data: IEmployee) => {
+  const loadData = (data: Employee) => {
     setData(data);
-    setLevel(data.level.id.toString());
+    setLevel((data.level as Level).id.toString());
     setLogin(data.login);
   };
 

@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import EmployeesContextType from './employees-context-type';
-import { IEmployee } from '../../../../models/employee';
+import Employee from '../../../../models/employee';
 
 export const EmployeesContext = createContext<EmployeesContextType>({
   employees: [],
@@ -31,8 +31,8 @@ export const EmployeesContext = createContext<EmployeesContextType>({
 });
 
 const EmployeesProvider = (props: any) => {
-  const [data, setData] = useState<IEmployee[]>([]);
-  const [employees, setEmployees] = useState<IEmployee[]>([]);
+  const [data, setData] = useState<Employee[]>([]);
+  const [employees, setEmployees] = useState<Employee[]>([]);
 
   const [filter, setFilter] = useState('');
   const [admission, setAdmission] = useState('');

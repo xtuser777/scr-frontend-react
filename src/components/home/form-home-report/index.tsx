@@ -19,10 +19,9 @@ const FormHomeReport = () => {
         })
         .substring(0, 8);
       const guia = window.open(
-        `http://localhost:3001/reports/RelatorioEventos${fileDate.replaceAll(
-          '-',
-          '',
-        )}-${time.trim().replaceAll(':', '')}.pdf`,
+        `http://localhost:3001/reports/RelatorioEventos${fileDate.replaceAll('-', '')}-${time
+          .trim()
+          .replaceAll(':', '')}.pdf`,
         '_blank',
       );
     }

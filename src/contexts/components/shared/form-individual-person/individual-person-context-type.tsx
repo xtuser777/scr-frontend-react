@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
-import { IIndividualPerson } from '../../../../models/individual-person';
+import IndividualPerson from '../../../../models/individual-person';
 
 export default interface FormIndividualPersonContextType {
-  person: IIndividualPerson;
+  person: IndividualPerson;
   name: string;
   cpf: string;
   birth: string;
@@ -14,5 +14,5 @@ export default interface FormIndividualPersonContextType {
   handleBirthChange: (e: ChangeEvent<HTMLInputElement>) => void;
   validateFields: () => Promise<boolean>;
   clearFields: () => void;
-  loadPerson: (person: IIndividualPerson, uniqueCpf: boolean) => void;
+  loadPerson: (person: IndividualPerson, uniqueCpf: boolean) => void;
 }

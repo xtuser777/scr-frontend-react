@@ -1,7 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import CategoriesContextType from './categories-context-type';
-import { ITruckType } from '../../../../models/truck-type';
-import { IBillPayCategory } from '../../../../models/bill-pay-category';
+import BillPayCategory from '../../../../models/bill-pay-category';
 
 export const CategoriesContext = createContext<CategoriesContextType>({
   categories: [],
@@ -22,8 +21,8 @@ export const CategoriesContext = createContext<CategoriesContextType>({
 });
 
 const CategoriesProvider = (props: any) => {
-  const [data, setData] = useState<IBillPayCategory[]>([]);
-  const [categories, setCategories] = useState<IBillPayCategory[]>([]);
+  const [data, setData] = useState<BillPayCategory[]>([]);
+  const [categories, setCategories] = useState<BillPayCategory[]>([]);
 
   const [filter, setFilter] = useState('');
   const [orderBy, setOrderby] = useState('1');

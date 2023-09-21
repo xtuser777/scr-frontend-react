@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useContext, useState } from 'react';
 import EmployeeContextType from './employee-context-type';
-import { Employee, IEmployee } from '../../../../models/employee';
+import Employee from '../../../../models/employee';
 import FormIndividualPersonContextType from '../../../components/shared/form-individual-person/individual-person-context-type';
 import { FormIndividualPersonContext } from '../../../components/shared/form-individual-person/individual-person-context';
 import FormContactContextType from '../../../components/shared/form-contact/contact-context-type';
@@ -32,7 +32,7 @@ const EmployeeProvider = (props: any) => {
   const contactContext = useContext<FormContactContextType>(FormContactContext);
   const authDataContext = useContext<FormAuthDataContextType>(FormAuthDataContext);
 
-  const [employee, setEmployee] = useState<IEmployee>(new Employee());
+  const [employee, setEmployee] = useState<Employee>(new Employee());
 
   const [admission, setAdmission] = useState('');
   const [type, setType] = useState('0');

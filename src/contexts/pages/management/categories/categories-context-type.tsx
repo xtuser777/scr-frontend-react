@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
-import { IBillPayCategory } from '../../../../models/bill-pay-category';
+import BillPayCategory from '../../../../models/bill-pay-category';
 
 export default interface BillPayCategorysContextType {
-  categories: IBillPayCategory[];
+  categories: BillPayCategory[];
   filter: string;
   orderBy: string;
   handleFilterChange: (e: ChangeEvent<HTMLInputElement>) => void;

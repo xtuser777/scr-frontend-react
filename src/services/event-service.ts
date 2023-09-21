@@ -1,6 +1,7 @@
 import { AxiosError } from 'axios';
 import { processApiError } from '../utils/process-api-error';
 import axios from './axios';
+import Event from '../models/event';
 
 class EventService {
   async getOne(id: number) {
@@ -16,7 +17,7 @@ class EventService {
     }
   }
 
-  async get() {
+  async get(): Promise<Event[]> {
     try {
       const response = await axios.get('/event');
       const events: Event[] = [];

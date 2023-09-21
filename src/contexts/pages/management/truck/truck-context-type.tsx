@@ -1,10 +1,10 @@
 import { ChangeEvent } from 'react';
-import { IProprietary } from '../../../../models/proprietary';
-import { ITruckType } from '../../../../models/truck-type';
+import Proprietary from '../../../../models/proprietary';
+import TruckType from '../../../../models/truck-type';
 
 export default interface TruckContextType {
-  types: ITruckType[];
-  proprietaries: IProprietary[];
+  types: TruckType[];
+  proprietaries: Proprietary[];
   plate: string;
   brand: string;
   model: string;

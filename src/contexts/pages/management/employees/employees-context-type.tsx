@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
-import { IEmployee } from '../../../../models/employee';
+import Employee from '../../../../models/employee';
 
 export default interface EmployeesContextType {
-  employees: IEmployee[];
+  employees: Employee[];
   filter: string;
   admission: string;
   orderBy: string;

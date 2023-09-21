@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import TrucksContextType from './trucks-context-type';
-import { ITruck } from '../../../../models/truck';
+import Truck from '../../../../models/truck';
 
 export const TrucksContext = createContext<TrucksContextType>({
   trucks: [],
@@ -21,8 +21,8 @@ export const TrucksContext = createContext<TrucksContextType>({
 });
 
 const TrucksProvider = (props: any) => {
-  const [data, setData] = useState<ITruck[]>([]);
-  const [trucks, setTrucks] = useState<ITruck[]>([]);
+  const [data, setData] = useState<Truck[]>([]);
+  const [trucks, setTrucks] = useState<Truck[]>([]);
 
   const [filter, setFilter] = useState('');
   const [orderBy, setOrderby] = useState('1');

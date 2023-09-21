@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import ProprietariesContextType from './proprietaries-context-type';
-import { IProprietary } from '../../../../models/proprietary';
+import Proprietary from '../../../../models/proprietary';
 
 export const ProprietariesContext = createContext<ProprietariesContextType>({
   proprietaries: [],
@@ -25,8 +25,8 @@ export const ProprietariesContext = createContext<ProprietariesContextType>({
 });
 
 const ProprietariesProvider = (props: any) => {
-  const [data, setData] = useState<IProprietary[]>([]);
-  const [proprietaries, setProprietaries] = useState<IProprietary[]>([]);
+  const [data, setData] = useState<Proprietary[]>([]);
+  const [proprietaries, setProprietaries] = useState<Proprietary[]>([]);
 
   const [filter, setFilter] = useState('');
   const [register, setRegister] = useState('');

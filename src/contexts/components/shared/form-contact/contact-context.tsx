@@ -1,9 +1,10 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import FormContactContextType from './contact-context-type';
-import { Contact, IContact } from '../../../../models/contact';
-import { IState } from '../../../../models/state';
-import { ICity } from '../../../../models/city';
+import Contact from '../../../../models/contact';
+import State from '../../../../models/state';
+import City from '../../../../models/city';
 import isEmail from 'validator/lib/isEmail';
+import Address from '../../../../models/address';
 
 export const FormContactContext = createContext<FormContactContextType>({
   states: [],
@@ -54,34 +55,16 @@ export const FormContactContext = createContext<FormContactContextType>({
   clearFields: () => {
     /** */
   },
-  loadContact: (contact: IContact) => {
+  loadContact: (contact: Contact) => {
     /** */
   },
 });
 
 const FormContactProvider = (props: any) => {
-  const [contact, setContact] = useState<IContact>(new Contact().toAttributes);
+  const [contact, setContact] = useState<Contact>(new Contact());
 
-  const [states, setStates] = useState<IState[]>([
-    {
-      id: 26,
-      name: 'São Paulo',
-      acronym: 'SP',
-      cities: [
-        {
-          id: 5181,
-          name: 'Rancharia',
-          state: {
-            id: 26,
-            name: 'São Paulo',
-            acronym: 'SP',
-            cities: [],
-          },
-        },
-      ],
-    },
-  ]);
-  const [cities, setCities] = useState<ICity[]>([]);
+  const [states, setStates] = useState<State[]>([]);
+  const [cities, setCities] = useState<City[]>([]);
 
   const [street, setStreet] = useState('');
   const [number, setNumber] = useState('');
@@ -97,9 +80,7 @@ const FormContactProvider = (props: any) => {
 
   const [errorStreet, setErrorStreet] = useState<string | undefined>(undefined);
   const [errorNumber, setErrorNumber] = useState<string | undefined>(undefined);
-  const [errorNeighborhood, setErrorNeighborhood] = useState<string | undefined>(
-    undefined,
-  );
+  const [errorNeighborhood, setErrorNeighborhood] = useState<string | undefined>(undefined);
   const [errorCode, setErrorCode] = useState<string | undefined>(undefined);
   const [errorState, setErrorState] = useState<string | undefined>(undefined);
   const [errorCity, setErrorCity] = useState<string | undefined>(undefined);
@@ -115,7 +96,7 @@ const FormContactProvider = (props: any) => {
           isValid: false,
         };
       } else {
-        contact.address.street = value;
+        (contact.address as Address).street = value;
         return {
           message: undefined,
           isValid: true,
@@ -129,7 +110,7 @@ const FormContactProvider = (props: any) => {
           isValid: false,
         };
       } else {
-        contact.address.number = value;
+        (contact.address as Address).number = value;
         return {
           message: undefined,
           isValid: true,
@@ -143,7 +124,7 @@ const FormContactProvider = (props: any) => {
           isValid: false,
         };
       } else {
-        contact.address.neighborhood = value;
+        (contact.address as Address).neighborhood = value;
         return {
           message: undefined,
           isValid: true,
@@ -162,7 +143,7 @@ const FormContactProvider = (props: any) => {
           isValid: false,
         };
       } else {
-        contact.address.code = value;
+        (contact.address as Address).code = value;
         return {
           message: undefined,
           isValid: true,
@@ -189,7 +170,7 @@ const FormContactProvider = (props: any) => {
           isValid: false,
         };
       } else {
-        contact.address.city = cities.find((item) => item.id == Number(value)) as ICity;
+        (contact.address as Address).city = cities.find((item) => item.id == Number(value));
         return {
           message: undefined,
           isValid: true,
@@ -333,16 +314,16 @@ const FormContactProvider = (props: any) => {
     setEmail('');
   };
 
-  const loadContact = (contact: IContact) => {
+  const loadContact = (contact: Contact) => {
     setContact(contact);
-    setStreet(contact.address.street);
-    setNumber(contact.address.number);
-    setNeighborhood(contact.address.neighborhood);
-    setComplement(contact.address.complement);
-    setCode(contact.address.code);
-    setState(contact.address.city.state.id.toString());
+    setStreet((contact.address as Address).street);
+    setNumber((contact.address as Address).number);
+    setNeighborhood((contact.address as Address).neighborhood);
+    setComplement((contact.address as Address).complement);
+    setCode((contact.address as Address).code);
+    setState((((contact.address as Address).city as City).state as State).id.toString());
     setCities(states[0].cities);
-    setCity(contact.address.city.id.toString());
+    setCity(((contact.address as Address).city as City).id.toString());
     setPhone(contact.phone);
     setCellphone(contact.cellphone);
     setEmail(contact.email);

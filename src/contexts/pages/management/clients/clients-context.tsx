@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import ClientsContextType from './clients-context-type';
-import { IClient } from '../../../../models/client';
+import Client from '../../../../models/client';
 
 export const ClientsContext = createContext<ClientsContextType>({
   clients: [],
@@ -25,8 +25,8 @@ export const ClientsContext = createContext<ClientsContextType>({
 });
 
 const ClientsProvider = (props: any) => {
-  const [data, setData] = useState<IClient[]>([]);
-  const [clients, setClients] = useState<IClient[]>([]);
+  const [data, setData] = useState<Client[]>([]);
+  const [clients, setClients] = useState<Client[]>([]);
 
   const [filter, setFilter] = useState('');
   const [register, setRegister] = useState('');

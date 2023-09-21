@@ -4,7 +4,8 @@ import FormContactContextType from '../../../components/shared/form-contact/cont
 import { FormIndividualPersonContext } from '../../../components/shared/form-individual-person/individual-person-context';
 import FormIndividualPersonContextType from '../../../components/shared/form-individual-person/individual-person-context-type';
 import DriverContextType from './driver-context-type';
-import { Driver } from '../../../../models/driver';
+import Driver from '../../../../models/driver';
+import BankData from '../../../../models/bank-data';
 
 export const DriverContext = createContext<DriverContextType>({
   cnh: '',
@@ -77,7 +78,7 @@ const DriverProvider = (props: any) => {
           isValid: false,
         };
       } else {
-        driver.bankData.bank = value;
+        (driver.bankData as BankData).bank = value;
         return {
           message: undefined,
           isValid: true,
@@ -91,7 +92,7 @@ const DriverProvider = (props: any) => {
           isValid: false,
         };
       } else {
-        driver.bankData.agency = value;
+        (driver.bankData as BankData).agency = value;
         return {
           message: undefined,
           isValid: true,
@@ -105,7 +106,7 @@ const DriverProvider = (props: any) => {
           isValid: false,
         };
       } else {
-        driver.bankData.account = value;
+        (driver.bankData as BankData).account = value;
         return {
           message: undefined,
           isValid: true,
@@ -119,7 +120,7 @@ const DriverProvider = (props: any) => {
           isValid: false,
         };
       } else {
-        driver.bankData.type = Number(value);
+        (driver.bankData as BankData).type = Number(value);
         return {
           message: undefined,
           isValid: true,

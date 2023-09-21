@@ -1,44 +1,38 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import FormEnterprisePersonContextType from './enterprise-person-context-type';
-import { EnterprisePerson, IEnterprisePerson } from '../../../../models/enterprise-person';
+import EnterprisePerson from '../../../../models/enterprise-person';
 
-export const FormEnterprisePersonContext = createContext<FormEnterprisePersonContextType>(
-  {
-    person: new EnterprisePerson().toAttributes,
-    corporateName: '',
-    fantasyName: '',
-    cnpj: '',
-    handleCorporateNameChange: (e: ChangeEvent<HTMLInputElement>) => {
-      /** */
-    },
-    handleFantasyNameChange: (e: ChangeEvent<HTMLInputElement>) => {
-      /** */
-    },
-    handleCnpjChange: (e: ChangeEvent<HTMLInputElement>) => {
-      /** */
-    },
-    validateFields: () => false,
-    clearFields: () => {
-      /** */
-    },
-    loadPerson: (person: IEnterprisePerson) => {
-      /** */
-    },
+export const FormEnterprisePersonContext = createContext<FormEnterprisePersonContextType>({
+  person: new EnterprisePerson(),
+  corporateName: '',
+  fantasyName: '',
+  cnpj: '',
+  handleCorporateNameChange: (e: ChangeEvent<HTMLInputElement>) => {
+    /** */
   },
-);
+  handleFantasyNameChange: (e: ChangeEvent<HTMLInputElement>) => {
+    /** */
+  },
+  handleCnpjChange: (e: ChangeEvent<HTMLInputElement>) => {
+    /** */
+  },
+  validateFields: () => false,
+  clearFields: () => {
+    /** */
+  },
+  loadPerson: (person: EnterprisePerson) => {
+    /** */
+  },
+});
 
 const FormEnterprisePersonProvider = (props: any) => {
-  const [person, setPerson] = useState<IEnterprisePerson>(
-    new EnterprisePerson().toAttributes,
-  );
+  const [person, setPerson] = useState<EnterprisePerson>(new EnterprisePerson());
 
   const [corporateName, setCorporateName] = useState('');
   const [fantasyName, setFantasyName] = useState('');
   const [cnpj, setCnpj] = useState('');
 
-  const [errorCorporateName, setErrorCorporateName] = useState<string | undefined>(
-    undefined,
-  );
+  const [errorCorporateName, setErrorCorporateName] = useState<string | undefined>(undefined);
   const [errorFantasyName, setErrorFantasyName] = useState<string | undefined>(undefined);
   const [errorCnpj, setErrorCnpj] = useState<string | undefined>(undefined);
 
@@ -175,7 +169,7 @@ const FormEnterprisePersonProvider = (props: any) => {
     setFantasyName('');
     setCnpj('');
   };
-  const loadPerson = (person: IEnterprisePerson) => {
+  const loadPerson = (person: EnterprisePerson) => {
     setPerson(person);
     setCorporateName(person.corporateName);
     setFantasyName(person.fantasyName);

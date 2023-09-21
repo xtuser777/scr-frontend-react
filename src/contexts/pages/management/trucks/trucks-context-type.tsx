@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
-import { ITruck } from '../../../../models/truck';
+import Truck from '../../../../models/truck';
 
 export default interface TrucksContextType {
-  trucks: ITruck[];
+  trucks: Truck[];
   filter: string;
   orderBy: string;
   handleFilterChange: (e: ChangeEvent<HTMLInputElement>) => void;

@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
-import { IPaymentForm } from '../../../../models/payment-form';
+import PaymentForm from '../../../../models/payment-form';
 
 export default interface PaymentFormsContextType {
-  paymentForms: IPaymentForm[];
+  paymentForms: PaymentForm[];
   filter: string;
   orderBy: string;
   handleFilterChange: (e: ChangeEvent<HTMLInputElement>) => void;

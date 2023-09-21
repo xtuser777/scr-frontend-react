@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
-import { IProprietary } from '../../../../models/proprietary';
+import Proprietary from '../../../../models/proprietary';
 
 export default interface ProprietariesContextType {
-  proprietaries: IProprietary[];
+  proprietaries: Proprietary[];
   filter: string;
   register: string;
   orderBy: string;

@@ -36,7 +36,7 @@ const HomeProvider = (props: any) => {
 
   const getData = async () => {
     const service = new EventService();
-    const data = await service.get();
+    const data: Event[] = await service.get();
     setData(data);
     setEvents(data);
   };

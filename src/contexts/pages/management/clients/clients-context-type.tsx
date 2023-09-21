@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
-import { IClient } from '../../../../models/client';
+import Client from '../../../../models/client';
 
 export default interface ClientsContextType {
-  clients: IClient[];
+  clients: Client[];
   filter: string;
   register: string;
   orderBy: string;

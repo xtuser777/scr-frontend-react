@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
-import { IDriver } from '../../../../models/driver';
+import Driver from '../../../../models/driver';
 
 export default interface DriversContextType {
-  drivers: IDriver[];
+  drivers: Driver[];
   filter: string;
   register: string;
   orderBy: string;

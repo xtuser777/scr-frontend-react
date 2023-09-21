@@ -14,9 +14,8 @@ export const UserContext = createContext<UserContextType>({
 });
 
 const UserProvider = (props: any) => {
-  const individualPersonContext = useContext<FormIndividualPersonContextType>(
-    IndividualPersonContext,
-  );
+  const individualPersonContext =
+    useContext<FormIndividualPersonContextType>(IndividualPersonContext);
   const contactContext = useContext<FormContactContextType>(FormContactContext);
   const authContext = useContext<FormAuthDataContextType>(FormAuthDataContext);
 
@@ -127,9 +126,7 @@ const UserProvider = (props: any) => {
     await authContext.validateFields();
   };
 
-  return (
-    <UserContext.Provider value={{ persistData }}>{props.children}</UserContext.Provider>
-  );
+  return <UserContext.Provider value={{ persistData }}>{props.children}</UserContext.Provider>;
 };
 
 export default UserProvider;

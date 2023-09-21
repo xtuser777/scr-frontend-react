@@ -6,7 +6,7 @@ import { formatarData } from '../../../utils/format';
 import { HomeContextType } from '../../../contexts/home/home-context-type';
 
 const FormHomeTable = () => {
-  const { data, events } = useContext<HomeContextType>(HomeContext);
+  const { events } = useContext<HomeContextType>(HomeContext);
 
   return (
     <FieldsetCard legend="Eventos do Sistema" obrigatoryFields={false}>
@@ -28,11 +28,9 @@ const FormHomeTable = () => {
               <td>{formatarData(event.date)}</td>
               <td>{event.time}</td>
               <td>
-                {event.saleOrder
-                  ? event.saleOrder.description
-                  : event.freightOrder?.description}
+                {event.saleOrder ? event.saleOrder.description : event.freightOrder?.description}
               </td>
-              <td>{event.author.person.individual?.name}</td>
+              <td>{event?.author?.person?.individual?.name}</td>
             </tr>
           ))}
         </tbody>

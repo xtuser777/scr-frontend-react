@@ -1,10 +1,10 @@
 import { ChangeEvent } from 'react';
-import { IEmployee } from '../../../../models/employee';
-import { ILevel } from '../../../../models/level';
+import Employee from '../../../../models/employee';
+import Level from '../../../../models/level';
 
 export default interface FormAuthDataContextType {
-  data: IEmployee;
-  levels: ILevel[];
+  data: Employee;
+  levels: Level[];
   level: string;
   login: string;
   password: string;
@@ -19,5 +19,5 @@ export default interface FormAuthDataContextType {
   handlePasswordConfirmChange: (e: ChangeEvent<HTMLInputElement>) => void;
   validateFields: () => Promise<boolean>;
   clearFields: () => void;
-  loadData: (data: IEmployee) => void;
+  loadData: (data: Employee) => void;
 }

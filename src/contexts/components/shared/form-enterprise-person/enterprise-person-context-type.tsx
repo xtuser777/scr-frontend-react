@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
-import { IEnterprisePerson } from '../../../../models/enterprise-person';
+import EnterprisePerson from '../../../../models/enterprise-person';
 
 export default interface FormEnterprisePersonContextType {
-  person: IEnterprisePerson;
+  person: EnterprisePerson;
   corporateName: string;
   fantasyName: string;
   cnpj: string;
@@ -14,5 +14,5 @@ export default interface FormEnterprisePersonContextType {
   handleCnpjChange: (e: ChangeEvent<HTMLInputElement>) => void;
   validateFields: () => boolean;
   clearFields: () => void;
-  loadPerson: (person: IEnterprisePerson) => void;
+  loadPerson: (person: EnterprisePerson) => void;
 }

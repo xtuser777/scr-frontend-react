@@ -9,8 +9,6 @@ import { HomeContextType } from '../../../contexts/home/home-context-type';
 
 const FormHomeDataSearch = () => {
   const {
-    data,
-    events,
     filter,
     date,
     orderType,

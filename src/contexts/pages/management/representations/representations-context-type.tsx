@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
-import { IRepresentation } from '../../../../models/representation';
+import Representation from '../../../../models/representation';
 
 export default interface RepresentationsContextType {
-  representations: IRepresentation[];
+  representations: Representation[];
   filter: string;
   register: string;
   orderBy: string;

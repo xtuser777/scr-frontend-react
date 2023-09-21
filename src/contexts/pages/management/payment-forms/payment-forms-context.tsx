@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import PaymentFormsContextType from './payment-forms-context-type';
-import { IPaymentForm } from '../../../../models/payment-form';
+import PaymentForm from '../../../../models/payment-form';
 
 export const PaymentFormsContext = createContext<PaymentFormsContextType>({
   paymentForms: [],
@@ -21,8 +21,8 @@ export const PaymentFormsContext = createContext<PaymentFormsContextType>({
 });
 
 const PaymentFormsProvider = (props: any) => {
-  const [data, setData] = useState<IPaymentForm[]>([]);
-  const [paymentForms, setPaymentForms] = useState<IPaymentForm[]>([]);
+  const [data, setData] = useState<PaymentForm[]>([]);
+  const [paymentForms, setPaymentForms] = useState<PaymentForm[]>([]);
 
   const [filter, setFilter] = useState('');
   const [orderBy, setOrderby] = useState('1');

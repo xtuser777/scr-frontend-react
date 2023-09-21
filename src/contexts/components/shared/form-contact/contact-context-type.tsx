@@ -1,11 +1,11 @@
 import { ChangeEvent } from 'react';
-import { IState } from '../../../../models/state';
-import { ICity } from '../../../../models/city';
-import { IContact } from '../../../../models/contact';
+import State from '../../../../models/state';
+import City from '../../../../models/city';
+import Contact from '../../../../models/contact';
 
 export default interface FormContactContextType {
-  states: IState[];
-  cities: ICity[];
+  states: State[];
+  cities: City[];
   street: string;
   number: string;
   neighborhood: string;
@@ -37,5 +37,5 @@ export default interface FormContactContextType {
   handleEmailChange: (e: ChangeEvent<HTMLInputElement>) => void;
   validateFields: () => void;
   clearFields: () => void;
-  loadContact: (contact: IContact) => void;
+  loadContact: (contact: Contact) => void;
 }

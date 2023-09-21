@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import DriversContextType from './drivers-context-type';
-import { IDriver } from '../../../../models/driver';
+import Driver from '../../../../models/driver';
 
 export const DriversContext = createContext<DriversContextType>({
   drivers: [],
@@ -25,8 +25,8 @@ export const DriversContext = createContext<DriversContextType>({
 });
 
 const DriversProvider = (props: any) => {
-  const [data, setData] = useState<IDriver[]>([]);
-  const [drivers, setDrivers] = useState<IDriver[]>([]);
+  const [data, setData] = useState<Driver[]>([]);
+  const [drivers, setDrivers] = useState<Driver[]>([]);
 
   const [filter, setFilter] = useState('');
   const [register, setRegister] = useState('');

@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, useState } from 'react';
 import RepresentationsContextType from './representations-context-type';
-import { IRepresentation } from '../../../../models/representation';
+import Representation from '../../../../models/representation';
 
 export const RepresentationsContext = createContext<RepresentationsContextType>({
   representations: [],
@@ -25,8 +25,8 @@ export const RepresentationsContext = createContext<RepresentationsContextType>(
 });
 
 const RepresentationsProvider = (props: any) => {
-  const [data, setData] = useState<IRepresentation[]>([]);
-  const [representations, setRepresentations] = useState<IRepresentation[]>([]);
+  const [data, setData] = useState<Representation[]>([]);
+  const [representations, setRepresentations] = useState<Representation[]>([]);
 
   const [filter, setFilter] = useState('');
   const [register, setRegister] = useState('');
