@@ -1,10 +1,11 @@
-import { ChangeEvent, createContext, useState } from 'react';
+import { ChangeEvent, createContext, useState, useEffect } from 'react';
 import FormContactContextType from './contact-context-type';
 import Contact from '../../../../models/contact';
 import State from '../../../../models/state';
 import City from '../../../../models/city';
 import isEmail from 'validator/lib/isEmail';
 import Address from '../../../../models/address';
+import StateService from '../../../../services/state-service';
 
 export const FormContactContext = createContext<FormContactContextType>({
   states: [],
@@ -87,6 +88,16 @@ const FormContactProvider = (props: any) => {
   const [errorPhone, setErrorPhone] = useState<string | undefined>(undefined);
   const [errorCellphone, setErrorCellphone] = useState<string | undefined>(undefined);
   const [errorEmail, setErrorEmail] = useState<string | undefined>(undefined);
+
+  const getStates = async () => {
+    const service = new StateService();
+    const states = await service.get();
+    setStates(states);
+  };
+
+  useEffect(() => {
+    getStates();
+  });
 
   const validate = {
     street: (value: string) => {
