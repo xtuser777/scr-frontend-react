@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { Event } from '../../models/Event';
+import { Event } from '../../models/event';
 
 export interface HomeContextType {
   data: Event[];

@@ -1,6 +1,7 @@
 import { ChangeEvent, createContext, useEffect, useState } from 'react';
 import { HomeContextType } from './home-context-type';
-import { Event } from '../../models/Event';
+import Event from '../../models/event';
+import EventService from '../../services/event-service';
 
 export const HomeContext = createContext<HomeContextType>({
   data: [],
@@ -34,7 +35,8 @@ const HomeProvider = (props: any) => {
   const [orderType, setOrderType] = useState('0');
 
   const getData = async () => {
-    const data = await new Event().get();
+    const service = new EventService();
+    const data = await service.get();
     setData(data);
     setEvents(data);
   };
