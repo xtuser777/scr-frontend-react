@@ -38,5 +38,5 @@ export default interface FormContactContextType {
   handleEmailChange: (e: ChangeEvent<HTMLInputElement>) => void;
   validateFields: () => boolean;
   clearFields: () => void;
-  loadContact: (contact: Contact) => void;
+  loadContact: (contact: Contact) => Promise<void>;
 }

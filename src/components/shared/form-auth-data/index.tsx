@@ -4,6 +4,7 @@ import FormInputGroupText from '../form-input-group-text';
 import FormAuthDataContextType from '../../../contexts/components/shared/form-auth-data/auth-data-context-type';
 import { FormAuthDataContext } from '../../../contexts/components/shared/form-auth-data/auth-data-context';
 import FormInputSelect from '../form-input-select';
+import FormInputGroupPassword from '../form-input-group-password';
 
 const FormAuthData = (props: { type: number }) => {
   const {
@@ -55,20 +56,20 @@ const FormAuthData = (props: { type: number }) => {
           message={errorLogin}
           handle={handleLoginChange}
         />
-        <FormInputGroupText
+        <FormInputGroupPassword
           col={props.type == 1 ? 3 : 4}
           id="password"
-          icon="glyphicon-user"
+          icon="glyphicon-lock"
           label="Senha"
           obrigatory
           value={password}
           message={errorPassword}
           handle={handlePasswordChange}
         />
-        <FormInputGroupText
+        <FormInputGroupPassword
           col={props.type == 1 ? 3 : 4}
           id="password-confirm"
-          icon="glyphicon-user"
+          icon="glyphicon-lock"
           label="Confirmar Senha"
           obrigatory
           value={passwordConfirm}

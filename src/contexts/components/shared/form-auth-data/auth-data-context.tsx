@@ -2,7 +2,6 @@ import { ChangeEvent, createContext, useState } from 'react';
 import FormAuthDataContextType from './auth-data-context-type';
 import Employee from '../../../../models/employee';
 import Level from '../../../../models/level';
-import axios from '../../../../services/axios';
 import EmployeeService from '../../../../services/employee-service';
 
 export const FormAuthDataContext = createContext<FormAuthDataContextType>({
@@ -45,7 +44,9 @@ const FormAuthDataProvider = (props: any) => {
   const [errorLevel, setErrorLevel] = useState<string | undefined>(undefined);
   const [errorLogin, setErrorLogin] = useState<string | undefined>(undefined);
   const [errorPassword, setErrorPassword] = useState<string | undefined>(undefined);
-  const [errorPasswordConfirm, setErrorPasswordConfirm] = useState<string | undefined>(undefined);
+  const [errorPasswordConfirm, setErrorPasswordConfirm] = useState<string | undefined>(
+    undefined,
+  );
 
   const verifyAdmin = async () => {
     const users = await new EmployeeService().get();
@@ -72,13 +73,14 @@ const FormAuthDataProvider = (props: any) => {
           message: 'O nível de usuário precisa ser selecionado.',
           isValid: false,
         };
-      } /*else if ((await verifyAdmin()) && value != '1') {
+      } else if ((await verifyAdmin()) && value != '1') {
         return {
           message: 'O não é permitido alterar o último administrador.',
           isValid: false,
         };
-      }*/ else {
-        data.level = levels.find((item) => item.id == Number(value));
+      } else {
+        const level = levels.find((item) => item.id == Number(value));
+        if (level) data.level = level;
         return {
           message: undefined,
           isValid: true,
@@ -91,12 +93,12 @@ const FormAuthDataProvider = (props: any) => {
           message: 'O login precisa ser preenchido',
           isValid: false,
         };
-      } /* else if (await vefifyLogin(value)) {
+      } else if (await vefifyLogin(value)) {
         return {
           message: 'O login já exite no cadastro',
           isValid: false,
         };
-      }*/ else {
+      } else {
         data.login = value;
         return {
           message: undefined,

@@ -55,7 +55,7 @@ export const FormContactContext = createContext<FormContactContextType>({
   clearFields: () => {
     /** */
   },
-  loadContact: (contact: Contact) => {
+  loadContact: async (contact: Contact) => {
     /** */
   },
 });
@@ -80,7 +80,9 @@ const FormContactProvider = (props: any) => {
 
   const [errorStreet, setErrorStreet] = useState<string | undefined>(undefined);
   const [errorNumber, setErrorNumber] = useState<string | undefined>(undefined);
-  const [errorNeighborhood, setErrorNeighborhood] = useState<string | undefined>(undefined);
+  const [errorNeighborhood, setErrorNeighborhood] = useState<string | undefined>(
+    undefined,
+  );
   const [errorCode, setErrorCode] = useState<string | undefined>(undefined);
   const [errorState, setErrorState] = useState<string | undefined>(undefined);
   const [errorCity, setErrorCity] = useState<string | undefined>(undefined);
@@ -92,10 +94,12 @@ const FormContactProvider = (props: any) => {
     const service = new StateService();
     const states = await service.get();
     setStates(states);
+
+    return states;
   };
 
   useEffect(() => {
-    getStates();
+    if (states.length == 0) getStates();
   }, []);
 
   const validate = {
@@ -180,7 +184,9 @@ const FormContactProvider = (props: any) => {
           isValid: false,
         };
       } else {
-        (contact.address as Address).city = cities.find((item) => item.id == Number(value));
+        (contact.address as Address).city = cities.find(
+          (item) => item.id == Number(value),
+        );
         return {
           message: undefined,
           isValid: true,
@@ -324,7 +330,7 @@ const FormContactProvider = (props: any) => {
     setEmail('');
   };
 
-  const loadContact = (contact: Contact) => {
+  const loadContact = async (contact: Contact) => {
     setContact(contact);
     setStreet((contact.address as Address).street);
     setNumber((contact.address as Address).number);
@@ -332,11 +338,15 @@ const FormContactProvider = (props: any) => {
     setComplement((contact.address as Address).complement);
     setCode((contact.address as Address).code);
     setState((((contact.address as Address).city as City).state as State).id.toString());
-    setCities(states[(((contact.address as Address).city as City).state as State).id - 1].cities);
+    const states = await getStates();
+    setCities(
+      states[(((contact.address as Address).city as City).state as State).id - 1].cities,
+    );
     setCity(((contact.address as Address).city as City).id.toString());
     setPhone(contact.phone);
     setCellphone(contact.cellphone);
     setEmail(contact.email);
+    setErrorEmail(validate.email(contact.email).message);
   };
 
   return (

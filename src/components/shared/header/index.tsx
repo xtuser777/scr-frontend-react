@@ -1,7 +1,7 @@
 import React, { MouseEvent } from 'react';
 
 import './style.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LoginService from '../../../services/login-service';
 import { Security, UserToken } from '../../../utils/security';
 
@@ -33,16 +33,16 @@ const Header = () => {
               <span className="icon-bar"></span>
             </button>
 
-            <a className="navbar-brand white-bold" href="/scr/inicio">
+            <Link className="navbar-brand white-bold" to="/">
               SCR
-            </a>
+            </Link>
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
               <li>
-                <a className="font-navbar white" href="/scr/inicio">
+                <Link className="font-navbar white" to="/scr/inicio">
                   Início
-                </a>
+                </Link>
               </li>
               <li className="dropdown">
                 <a
@@ -58,37 +58,37 @@ const Header = () => {
                 <ul className="dropdown-menu">
                   {user.user.level == 1 ? (
                     <li>
-                      <a href="/scr/gerenciar/funcionarios">Funcionários</a>
+                      <Link to="/scr/gerenciar/funcionarios">Funcionários</Link>
                     </li>
                   ) : (
                     <></>
                   )}
                   <li>
-                    <a href="/scr/gerenciar/clientes">Clientes</a>
+                    <Link to="/scr/gerenciar/clientes">Clientes</Link>
                   </li>
                   <li>
-                    <a href="/scr/gerenciar/motoristas">Motoristas</a>
+                    <Link to="/scr/gerenciar/motoristas">Motoristas</Link>
                   </li>
                   <li>
-                    <a href="/scr/gerenciar/proprietarios">Proprietários de Caminhões</a>
+                    <Link to="/scr/gerenciar/proprietarios">Proprietários de Caminhões</Link>
                   </li>
                   <li>
-                    <a href="/scr/gerenciar/caminhoes">Caminhões</a>
+                    <Link to="/scr/gerenciar/caminhoes">Caminhões</Link>
                   </li>
                   <li>
-                    <a href="/scr/gerenciar/scr">Representações</a>
+                    <Link to="/scr/gerenciar/scr">Representações</Link>
                   </li>
                   <li>
-                    <a href="/scr/gerenciar/produtos">Produtos</a>
+                    <Link to="/scr/gerenciar/produtos">Produtos</Link>
                   </li>
                   <li>
-                    <a href="/scr/gerenciar/tiposcaminhao">Tipos de Caminhão</a>
+                    <Link to="/scr/gerenciar/tiposcaminhao">Tipos de Caminhão</Link>
                   </li>
                   <li>
-                    <a href="/scr/gerenciar/categorias">Categorias de Contas</a>
+                    <Link to="/scr/gerenciar/categorias">Categorias de Contas</Link>
                   </li>
                   <li>
-                    <a href="/scr/gerenciar/formaspagamento">Formas de Pagamento</a>
+                    <Link to="/scr/gerenciar/formaspagamento">Formas de Pagamento</Link>
                   </li>
                 </ul>
               </li>
@@ -105,10 +105,10 @@ const Header = () => {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="/scr/orcamento/venda">Venda</a>
+                    <Link to="/scr/orcamento/venda">Venda</Link>
                   </li>
                   <li>
-                    <a href="/scr/orcamento/frete">Frete</a>
+                    <Link to="/scr/orcamento/frete">Frete</Link>
                   </li>
                 </ul>
               </li>
@@ -125,17 +125,17 @@ const Header = () => {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="/scr/pedido/venda">Venda</a>
+                    <Link to="/scr/pedido/venda">Venda</Link>
                   </li>
                   <li>
-                    <a href="/scr/pedido/frete">Frete</a>
+                    <Link to="/scr/pedido/frete">Frete</Link>
                   </li>
                   <li>
-                    <a href="/scr/pedido/status">Alterar status</a>
+                    <Link to="/scr/pedido/status">Alterar status</Link>
                   </li>
                   {user.user.level == 1 ? (
                     <li>
-                      <a href="/scr/pedido/autorizar">Autorizar Carregamento</a>
+                      <Link to="/scr/pedido/autorizar">Autorizar Carregamento</Link>
                     </li>
                   ) : (
                     <></>
@@ -157,13 +157,13 @@ const Header = () => {
                   </a>
                   <ul className="dropdown-menu">
                     <li>
-                      <a href="/scr/controlar/contas/pagar">Contas a Pagar</a>
+                      <Link to="/scr/controlar/contas/pagar">Contas a Pagar</Link>
                     </li>
                     <li>
-                      <a href="/scr/controlar/contas/receber">Contas a Receber</a>
+                      <Link to="/scr/controlar/contas/receber">Contas a Receber</Link>
                     </li>
                     <li>
-                      <a href="/scr/controlar/lancar/despesas">Lançar Despesas</a>
+                      <Link to="/scr/controlar/lancar/despesas">Lançar Despesas</Link>
                     </li>
                   </ul>
                 </li>
@@ -185,28 +185,28 @@ const Header = () => {
                   </a>
                   <ul className="dropdown-menu">
                     <li>
-                      <a href="/scr/relatorio/cliente/">Clientes</a>
+                      <Link to="/scr/relatorio/cliente/">Clientes</Link>
                     </li>
                     <li>
-                      <a href="/scr/relatorio/pedido/venda">Pedido de Venda</a>
+                      <Link to="/scr/relatorio/pedido/venda">Pedido de Venda</Link>
                     </li>
                     <li>
-                      <a href="/scr/relatorio/pedido/frete">Pedido de Frete</a>
+                      <Link to="/scr/relatorio/pedido/frete">Pedido de Frete</Link>
                     </li>
                     <li>
-                      <a href="/scr/relatorio/orcamento/venda">Orçamento de Venda</a>
+                      <Link to="/scr/relatorio/orcamento/venda">Orçamento de Venda</Link>
                     </li>
                     <li>
-                      <a href="/scr/relatorio/orcamento/frete">Orçamento de Frete</a>
+                      <Link to="/scr/relatorio/orcamento/frete">Orçamento de Frete</Link>
                     </li>
                     <li>
-                      <a href="/scr/relatorio/conta/pagar">Contas a Pagar</a>
+                      <Link to="/scr/relatorio/conta/pagar">Contas a Pagar</Link>
                     </li>
                     <li>
-                      <a href="/scr/relatorio/conta/receber">Contas a Receber</a>
+                      <Link to="/scr/relatorio/conta/receber">Contas a Receber</Link>
                     </li>
                     <li>
-                      <a href="/scr/relatorio/produto">Produtos</a>
+                      <Link to="/scr/relatorio/produto">Produtos</Link>
                     </li>
                   </ul>
                 </li>
@@ -229,20 +229,20 @@ const Header = () => {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  USER
+                  {user.user.name}
                   <span className="caret"></span>
                 </a>
                 <ul className="dropdown-menu">
                   <li className="dropdown-header">Configurações</li>
                   {user.user.level == 1 ? (
                     <li>
-                      <a href="/scr/configuracao/parametrizacao">Parametrização</a>
+                      <Link to="/scr/configuracao/parametrizacao">Parametrização</Link>
                     </li>
                   ) : (
                     <></>
                   )}
                   <li>
-                    <a href="/scr/configuracao/dados">Meus Dados</a>
+                    <Link to="/scr/configuracao/dados">Meus Dados</Link>
                   </li>
                   <li role="separator" className="divider"></li>
                   <li>
