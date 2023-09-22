@@ -3,10 +3,13 @@ import Parameterization from '../models/parameterization';
 import axios from './axios';
 import { AxiosError, AxiosRequestConfig } from 'axios';
 import { processApiError } from '../utils/process-api-error';
+import { Security } from '../utils/security';
 
 class ParameterizationService {
   async save(parameterization: Parameterization) {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response: AxiosRequestConfig = await axios.post('/parameterization', {
         parameterization,
       });
@@ -25,6 +28,8 @@ class ParameterizationService {
 
   async update(parameterization: Parameterization) {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response: AxiosRequestConfig = await axios.put(`/parameterization/`, {
         parameterization,
       });
@@ -43,6 +48,8 @@ class ParameterizationService {
 
   async get() {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response = await axios.get(`/parameterization`);
       const parameterization: Parameterization | undefined = response.data;
 

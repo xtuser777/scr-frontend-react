@@ -44,9 +44,7 @@ const FormAuthDataProvider = (props: any) => {
   const [errorLevel, setErrorLevel] = useState<string | undefined>(undefined);
   const [errorLogin, setErrorLogin] = useState<string | undefined>(undefined);
   const [errorPassword, setErrorPassword] = useState<string | undefined>(undefined);
-  const [errorPasswordConfirm, setErrorPasswordConfirm] = useState<string | undefined>(
-    undefined,
-  );
+  const [errorPasswordConfirm, setErrorPasswordConfirm] = useState<string | undefined>(undefined);
 
   const verifyAdmin = async () => {
     const users = await new EmployeeService().get();

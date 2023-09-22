@@ -8,6 +8,8 @@ import { Security } from '../utils/security';
 class EmployeeService {
   async save(employee: Employee) {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response: AxiosRequestConfig = await axios.post('/employee', { employee });
       if (response.data.length == 0) {
         toast.success('Funcionário cadastrado com sucesso!');
@@ -24,6 +26,8 @@ class EmployeeService {
 
   async update(employee: Employee) {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response: AxiosRequestConfig = await axios.put(`/employee/${employee.id}`, {
         employee,
       });
@@ -42,6 +46,8 @@ class EmployeeService {
 
   async delete(id: number) {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response: AxiosRequestConfig = await axios.delete(`/employee/${id}`);
       if (response.data.length == 0) {
         toast.success('Funcionário excluído com sucesso!');
@@ -72,6 +78,8 @@ class EmployeeService {
 
   async get() {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response = await axios.get(`/employee`);
       const users: Employee[] = [];
       for (const data of response.data) users.push(data);

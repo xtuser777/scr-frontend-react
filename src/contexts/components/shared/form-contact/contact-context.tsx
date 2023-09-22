@@ -80,9 +80,7 @@ const FormContactProvider = (props: any) => {
 
   const [errorStreet, setErrorStreet] = useState<string | undefined>(undefined);
   const [errorNumber, setErrorNumber] = useState<string | undefined>(undefined);
-  const [errorNeighborhood, setErrorNeighborhood] = useState<string | undefined>(
-    undefined,
-  );
+  const [errorNeighborhood, setErrorNeighborhood] = useState<string | undefined>(undefined);
   const [errorCode, setErrorCode] = useState<string | undefined>(undefined);
   const [errorState, setErrorState] = useState<string | undefined>(undefined);
   const [errorCity, setErrorCity] = useState<string | undefined>(undefined);
@@ -184,9 +182,7 @@ const FormContactProvider = (props: any) => {
           isValid: false,
         };
       } else {
-        (contact.address as Address).city = cities.find(
-          (item) => item.id == Number(value),
-        );
+        (contact.address as Address).city = cities.find((item) => item.id == Number(value));
         return {
           message: undefined,
           isValid: true,
@@ -339,9 +335,7 @@ const FormContactProvider = (props: any) => {
     setCode((contact.address as Address).code);
     setState((((contact.address as Address).city as City).state as State).id.toString());
     const states = await getStates();
-    setCities(
-      states[(((contact.address as Address).city as City).state as State).id - 1].cities,
-    );
+    setCities(states[(((contact.address as Address).city as City).state as State).id - 1].cities);
     setCity(((contact.address as Address).city as City).id.toString());
     setPhone(contact.phone);
     setCellphone(contact.cellphone);
