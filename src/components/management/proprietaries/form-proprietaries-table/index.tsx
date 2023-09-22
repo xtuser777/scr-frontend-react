@@ -4,10 +4,11 @@ import FormTable from '../../../shared/form-table';
 import { formatarData } from '../../../../utils/format';
 import ProprietariesContextType from '../../../../contexts/pages/management/proprietaries/proprietaries-context-type';
 import { ProprietariesContext } from '../../../../contexts/pages/management/proprietaries/proprietaries-context';
+import Person from '../../../../models/person';
+import Contact from '../../../../models/contact';
 
 const FormProprietariesTable = () => {
-  const { proprietaries, remove } =
-    useContext<ProprietariesContextType>(ProprietariesContext);
+  const { proprietaries, remove } = useContext<ProprietariesContextType>(ProprietariesContext);
   return (
     <FieldsetCard legend="Proprietários cadastrados" obrigatoryFields={false}>
       <FormTable id="table-proprietaries">
@@ -27,10 +28,10 @@ const FormProprietariesTable = () => {
           {proprietaries.map((prop) => (
             <tr key={prop.id}>
               <td>{prop.id}</td>
-              <td>{prop.person.individual?.name}</td>
-              <td>{prop.person.individual?.cpf}</td>
+              <td>{(prop.person as Person).individual?.name}</td>
+              <td>{(prop.person as Person).individual?.cpf}</td>
               <td>{formatarData(prop.register)}</td>
-              <td>{prop.person.contact.email}</td>
+              <td>{((prop.person as Person).contact as Contact).email}</td>
               <td>
                 <a
                   role="button"

@@ -11,9 +11,7 @@ const FieldsetCard = (props: {
       <div className="fieldset-card-container">
         {props.children}
         {props.obrigatoryFields ? (
-          <div className="fieldset-card-legend-obg">
-            * Campos de preenchimento obrigatório.
-          </div>
+          <div className="fieldset-card-legend-obg">* Campos de preenchimento obrigatório.</div>
         ) : (
           <></>
         )}

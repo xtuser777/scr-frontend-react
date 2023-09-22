@@ -4,6 +4,9 @@ import FormTable from '../../../shared/form-table';
 import EmployeesContextType from '../../../../contexts/pages/management/employees/employees-context-type';
 import { EmployeesContext } from '../../../../contexts/pages/management/employees/employees-context';
 import { formatarData } from '../../../../utils/format';
+import Person from '../../../../models/person';
+import Contact from '../../../../models/contact';
+import Level from '../../../../models/level';
 
 const FormEmployeesTable = () => {
   const { employees, desactivate, reactivate, remove } =
@@ -31,14 +34,14 @@ const FormEmployeesTable = () => {
         <tbody id="tbody-employees">
           {employees.map((employee) => (
             <tr key={employee.id}>
-              <td>{employee.person.individual?.name}</td>
+              <td>{(employee.person as Person).individual?.name}</td>
               <td>{employee.login}</td>
-              <td>{employee.level.description}</td>
-              <td>{employee.person.individual?.cpf}</td>
+              <td>{(employee.level as Level).description}</td>
+              <td>{(employee.person as Person).individual?.cpf}</td>
               <td>{formatarData(employee.admission)}</td>
               <td>{employee.type == 1 ? 'INTERNO' : 'VENDEDOR'}</td>
               <td>{employee.demission ? 'NÃO' : 'SIM'}</td>
-              <td>{employee.person.contact.email}</td>
+              <td>{((employee.person as Person).contact as Contact).email}</td>
               <td>
                 <a
                   role="button"

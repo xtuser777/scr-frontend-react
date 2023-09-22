@@ -11,10 +11,7 @@ const FormCategoriesFilter = () => {
   const { filter, handleFilterChange, orderBy, handleOrderByChange, handleFilterClick } =
     useContext<CategoriesContextType>(CategoriesContext);
   return (
-    <FieldsetCard
-      legend="Filtragem de categorias de contas a pagar"
-      obrigatoryFields={false}
-    >
+    <FieldsetCard legend="Filtragem de categorias de contas a pagar" obrigatoryFields={false}>
       <div className="row">
         <FormInputText
           col={10}

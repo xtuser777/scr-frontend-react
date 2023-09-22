@@ -5,8 +5,7 @@ import { PaymentFormsContext } from '../../../../contexts/pages/management/payme
 import PaymentFormsContextType from '../../../../contexts/pages/management/payment-forms/payment-forms-context-type';
 
 const FormPaymentFormsTable = () => {
-  const { paymentForms, remove } =
-    useContext<PaymentFormsContextType>(PaymentFormsContext);
+  const { paymentForms, remove } = useContext<PaymentFormsContextType>(PaymentFormsContext);
   return (
     <FieldsetCard legend="Formas de pagamento cadastrados" obrigatoryFields={false}>
       <FormTable id="table-paymentForms">

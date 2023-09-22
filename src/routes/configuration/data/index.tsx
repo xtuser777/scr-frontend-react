@@ -10,17 +10,17 @@ import { Protected } from '../../../components/shared/protected';
 const UserDataRoute = () => {
   return (
     <Protected>
-      <FormAuthDataContext>
-        <FormContactContext>
-          <FormIndividualPersonContext>
-            <UserContext>
-              <Layout>
+      <Layout>
+        <FormAuthDataContext>
+          <FormContactContext>
+            <FormIndividualPersonContext>
+              <UserContext>
                 <UserPage />
-              </Layout>
-            </UserContext>
-          </FormIndividualPersonContext>
-        </FormContactContext>
-      </FormAuthDataContext>
+              </UserContext>
+            </FormIndividualPersonContext>
+          </FormContactContext>
+        </FormAuthDataContext>
+      </Layout>
     </Protected>
   );
 };

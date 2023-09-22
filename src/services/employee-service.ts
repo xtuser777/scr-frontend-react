@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import Employee from '../models/employee';
 import axios from './axios';
 import { processApiError } from '../utils/process-api-error';
+import { Security } from '../utils/security';
 
 class EmployeeService {
   async save(employee: Employee) {
@@ -57,8 +58,10 @@ class EmployeeService {
 
   async getOne(id: number) {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response = await axios.get(`/employee/${id}`);
-      const user = response.data ? new Employee(response.data) : undefined;
+      const user: Employee | undefined = response.data;
 
       return user;
     } catch (e) {

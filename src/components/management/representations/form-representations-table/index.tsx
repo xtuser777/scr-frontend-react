@@ -4,6 +4,8 @@ import FormTable from '../../../shared/form-table';
 import { formatarData } from '../../../../utils/format';
 import { RepresentationsContext } from '../../../../contexts/pages/management/representations/representations-context';
 import RepresentationsContextType from '../../../../contexts/pages/management/representations/representations-context-type';
+import Person from '../../../../models/person';
+import Contact from '../../../../models/contact';
 
 const FormRepresentationsTable = () => {
   const { representations, remove } =
@@ -28,11 +30,11 @@ const FormRepresentationsTable = () => {
         <tbody id="tbody-representations">
           {representations.map((representation) => (
             <tr key={representation.id}>
-              <td>{representation.person.enterprise?.fantasyName}</td>
-              <td>{representation.person.enterprise?.cnpj}</td>
+              <td>{(representation.person as Person).enterprise?.fantasyName}</td>
+              <td>{(representation.person as Person).enterprise?.cnpj}</td>
               <td>{formatarData(representation.register)}</td>
               <td>{representation.unity}</td>
-              <td>{representation.person.contact.email}</td>
+              <td>{((representation.person as Person).contact as Contact).email}</td>
               <td>
                 <a
                   role="button"

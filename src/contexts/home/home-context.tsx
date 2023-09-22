@@ -42,7 +42,7 @@ const HomeProvider = (props: any) => {
   };
 
   useEffect(() => {
-    //getData();
+    getData();
   });
 
   const filterData = (): Event[] => {

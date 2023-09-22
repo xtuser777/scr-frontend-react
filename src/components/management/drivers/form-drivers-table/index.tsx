@@ -4,6 +4,8 @@ import FormTable from '../../../shared/form-table';
 import { formatarData } from '../../../../utils/format';
 import DriversContextType from '../../../../contexts/pages/management/drivers/drivers-context-type';
 import { DriversContext } from '../../../../contexts/pages/management/drivers/drivers-context';
+import Person from '../../../../models/person';
+import Contact from '../../../../models/contact';
 
 const FormDriversTable = () => {
   const { drivers, remove } = useContext<DriversContextType>(DriversContext);
@@ -26,10 +28,10 @@ const FormDriversTable = () => {
           {drivers.map((driver) => (
             <tr key={driver.id}>
               <td>{driver.id}</td>
-              <td>{driver.person.individual?.name}</td>
-              <td>{driver.person.individual?.cpf}</td>
+              <td>{(driver.person as Person).individual?.name}</td>
+              <td>{(driver.person as Person).individual?.cpf}</td>
               <td>{formatarData(driver.register)}</td>
-              <td>{driver.person.contact.email}</td>
+              <td>{((driver.person as Person).contact as Contact).email}</td>
               <td>
                 <a
                   role="button"

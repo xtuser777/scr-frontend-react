@@ -3,9 +3,10 @@ import FieldsetCard from '../../../shared/fieldset-card';
 import FormInputText from '../../../shared/form-input-text';
 import TruckContextType from '../../../../contexts/pages/management/truck/truck-context-type';
 import { TruckContext } from '../../../../contexts/pages/management/truck/truck-context';
-import { EnterprisePerson } from '../../../../models/enterprise-person';
-import { IndividualPerson } from '../../../../models/individual-person';
+import EnterprisePerson from '../../../../models/enterprise-person';
+import IndividualPerson from '../../../../models/individual-person';
 import FormInputSelect from '../../../shared/form-input-select';
+import Person from '../../../../models/person';
 
 const FormTruckData = () => {
   const {
@@ -123,9 +124,9 @@ const FormTruckData = () => {
           <option value="0">SELECIONE</option>
           {proprietaries.map((item) => (
             <option key={item.id} value={item.id}>
-              {item.person.type == 1
-                ? (item.person.individual as IndividualPerson).name
-                : (item.person.enterprise as EnterprisePerson).fantasyName}
+              {(item.person as Person).type == 1
+                ? ((item.person as Person).individual as IndividualPerson).name
+                : ((item.person as Person).enterprise as EnterprisePerson).fantasyName}
             </option>
           ))}
         </FormInputSelect>

@@ -8,6 +8,7 @@ import Address from '../../../../models/address';
 import StateService from '../../../../services/state-service';
 
 export const FormContactContext = createContext<FormContactContextType>({
+  contact: new Contact(),
   states: [],
   cities: [],
   street: '',
@@ -50,9 +51,7 @@ export const FormContactContext = createContext<FormContactContextType>({
   handleEmailChange: (e: ChangeEvent<HTMLInputElement>) => {
     /** */
   },
-  validateFields: () => {
-    /** */
-  },
+  validateFields: () => false,
   clearFields: () => {
     /** */
   },
@@ -97,7 +96,7 @@ const FormContactProvider = (props: any) => {
 
   useEffect(() => {
     getStates();
-  });
+  }, []);
 
   const validate = {
     street: (value: string) => {
@@ -333,7 +332,7 @@ const FormContactProvider = (props: any) => {
     setComplement((contact.address as Address).complement);
     setCode((contact.address as Address).code);
     setState((((contact.address as Address).city as City).state as State).id.toString());
-    setCities(states[0].cities);
+    setCities(states[(((contact.address as Address).city as City).state as State).id - 1].cities);
     setCity(((contact.address as Address).city as City).id.toString());
     setPhone(contact.phone);
     setCellphone(contact.cellphone);
@@ -343,6 +342,7 @@ const FormContactProvider = (props: any) => {
   return (
     <FormContactContext.Provider
       value={{
+        contact,
         states,
         cities,
         street,

@@ -4,6 +4,7 @@ import City from '../../../../models/city';
 import Contact from '../../../../models/contact';
 
 export default interface FormContactContextType {
+  contact: Contact;
   states: State[];
   cities: City[];
   street: string;
@@ -35,7 +36,7 @@ export default interface FormContactContextType {
   handlePhoneChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleCellphoneChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleEmailChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  validateFields: () => void;
+  validateFields: () => boolean;
   clearFields: () => void;
   loadContact: (contact: Contact) => void;
 }

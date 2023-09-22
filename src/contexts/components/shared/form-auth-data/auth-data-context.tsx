@@ -55,8 +55,8 @@ const FormAuthDataProvider = (props: any) => {
   };
 
   const vefifyLogin = async (login: string): Promise<boolean> => {
-    const users = await axios.get('/employee');
-    const user = users.data.find((item: { login: string }) => item.login == login);
+    const users = await new EmployeeService().get();
+    const user = users.find((item: { login: string }) => item.login == login);
     if (user) {
       if (user.id == data.id) return false;
       else return true;

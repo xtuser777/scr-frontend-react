@@ -4,6 +4,8 @@ import FormTable from '../../../shared/form-table';
 import { formatarData } from '../../../../utils/format';
 import { ClientsContext } from '../../../../contexts/pages/management/clients/clients-context';
 import ClientsContextType from '../../../../contexts/pages/management/clients/clients-context-type';
+import Person from '../../../../models/person';
+import Contact from '../../../../models/contact';
 
 const FormClientsTable = () => {
   const { clients, remove } = useContext<ClientsContextType>(ClientsContext);
@@ -26,11 +28,11 @@ const FormClientsTable = () => {
         <tbody id="tbody-employees">
           {clients.map((client) => (
             <tr key={client.id}>
-              <td>{client.person.individual?.name}</td>
-              <td>{client.person.individual?.cpf}</td>
+              <td>{(client.person as Person).individual?.name}</td>
+              <td>{(client.person as Person).individual?.cpf}</td>
               <td>{formatarData(client.register)}</td>
-              <td>{client.person.type == 1 ? 'FISICA' : 'JURIDICA'}</td>
-              <td>{client.person.contact.email}</td>
+              <td>{(client.person as Person).type == 1 ? 'FISICA' : 'JURIDICA'}</td>
+              <td>{((client.person as Person).contact as Contact).email}</td>
               <td>
                 <a
                   role="button"

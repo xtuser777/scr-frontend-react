@@ -6,14 +6,8 @@ import EmployeeContextType from '../../../../contexts/pages/management/employee/
 import { EmployeeContext } from '../../../../contexts/pages/management/employee/employee-context';
 
 const FormEmployeeData = () => {
-  const {
-    admission,
-    type,
-    errorAdmission,
-    errorType,
-    handleAdmissionChange,
-    handleTypeChange,
-  } = useContext<EmployeeContextType>(EmployeeContext);
+  const { admission, type, errorAdmission, errorType, handleAdmissionChange, handleTypeChange } =
+    useContext<EmployeeContextType>(EmployeeContext);
   return (
     <FieldsetCard legend="Dados do funcionário" obrigatoryFields>
       <div className="row">
