@@ -1,8 +1,9 @@
-import { ChangeEvent, createContext, useState } from 'react';
+import { ChangeEvent, createContext, useEffect, useState } from 'react';
 import FormAuthDataContextType from './auth-data-context-type';
 import Employee from '../../../../models/employee';
 import Level from '../../../../models/level';
 import EmployeeService from '../../../../services/employee-service';
+import LevelService from '../../../../services/level-service';
 
 export const FormAuthDataContext = createContext<FormAuthDataContextType>({
   data: new Employee(),
@@ -45,6 +46,16 @@ const FormAuthDataProvider = (props: any) => {
   const [errorLogin, setErrorLogin] = useState<string | undefined>(undefined);
   const [errorPassword, setErrorPassword] = useState<string | undefined>(undefined);
   const [errorPasswordConfirm, setErrorPasswordConfirm] = useState<string | undefined>(undefined);
+
+  const getLevels = async () => {
+    const service = new LevelService();
+    const levels = await service.get();
+    setLevels(levels);
+  };
+
+  useEffect(() => {
+    getLevels();
+  });
 
   const verifyAdmin = async () => {
     const users = await new EmployeeService().get();

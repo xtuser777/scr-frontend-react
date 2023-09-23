@@ -1,4 +1,4 @@
-import { ChangeEvent, createContext, useContext, useState } from 'react';
+import { ChangeEvent, createContext, useContext, useEffect, useState } from 'react';
 import EmployeeContextType from './employee-context-type';
 import Employee from '../../../../models/employee';
 import FormIndividualPersonContextType from '../../../components/shared/form-individual-person/individual-person-context-type';
@@ -7,6 +7,11 @@ import FormContactContextType from '../../../components/shared/form-contact/cont
 import { FormContactContext } from '../../../components/shared/form-contact/contact-context';
 import FormAuthDataContextType from '../../../components/shared/form-auth-data/auth-data-context-type';
 import { FormAuthDataContext } from '../../../components/shared/form-auth-data/auth-data-context';
+import { useParams } from 'react-router-dom';
+import EmployeeService from '../../../../services/employee-service';
+import Person from '../../../../models/person';
+import IndividualPerson from '../../../../models/individual-person';
+import Contact from '../../../../models/contact';
 
 export const EmployeeContext = createContext<EmployeeContextType>({
   admission: '',
@@ -39,6 +44,32 @@ const EmployeeProvider = (props: any) => {
 
   const [errorAdmission, setErrorAdmission] = useState<string | undefined>(undefined);
   const [errorType, setErrorType] = useState<string | undefined>(undefined);
+
+  const routeParams = useParams();
+  const method = routeParams.method as string;
+  let id = 0;
+  if (routeParams.id) id = Number.parseInt(routeParams.id);
+
+  const getData = async () => {
+    const service = new EmployeeService();
+    const data = await service.getOne(id);
+
+    if (data) {
+      setEmployee(data);
+      individualPersonContext.loadPerson(
+        (data.person as Person).individual as IndividualPerson,
+        true,
+      );
+      setAdmission(data.admission);
+      setType(employee.type.toString());
+      contactContext.loadContact((data.person as Person).contact as Contact);
+      authDataContext.loadData(data);
+    }
+  };
+
+  useEffect(() => {
+    if (method == 'editar' && id) getData();
+  });
 
   const validate = {
     admission: (value: string) => {
@@ -95,10 +126,21 @@ const EmployeeProvider = (props: any) => {
   };
 
   const persistData = async () => {
-    individualPersonContext.validateFields();
-    validateFields();
-    contactContext.validateFields();
-    authDataContext.validateFields();
+    let valid = true;
+    valid = await individualPersonContext.validateFields();
+    valid = validateFields();
+    valid = contactContext.validateFields();
+    valid = await authDataContext.validateFields();
+
+    if (valid) {
+      setEmployee(authDataContext.data);
+      (employee.person as Person).individual = individualPersonContext.person;
+      (employee.person as Person).contact = contactContext.contact;
+
+      const service = new EmployeeService();
+      if (method == 'novo') await service.save(employee);
+      else await service.update(employee);
+    }
   };
 
   return (

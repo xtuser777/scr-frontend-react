@@ -10,7 +10,7 @@ export default interface EmployeesContextType {
   handleAdmissionChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleOrderByChange: (e: ChangeEvent<HTMLSelectElement>) => void;
   handleFilterClick: () => void;
-  desactivate: (id: number) => Promise<void>;
+  desactivate: (id: number, nivel: string) => Promise<void>;
   reactivate: (id: number) => Promise<void>;
-  remove: (id: number) => Promise<void>;
+  remove: (id: number, nivel: string) => Promise<void>;
 }
