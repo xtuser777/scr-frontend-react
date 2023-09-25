@@ -11,7 +11,7 @@ const FormClientsTable = () => {
   const { clients, remove } = useContext<ClientsContextType>(ClientsContext);
   return (
     <FieldsetCard legend="Clientes cadastrados" obrigatoryFields={false}>
-      <FormTable id="table-employees">
+      <FormTable id="table-clients">
         <thead>
           <tr>
             <th className="hidden">ID</th>
@@ -25,7 +25,7 @@ const FormClientsTable = () => {
           </tr>
         </thead>
 
-        <tbody id="tbody-employees">
+        <tbody id="tbody-clients">
           {clients.map((client) => (
             <tr key={client.id}>
               <td>
@@ -48,7 +48,7 @@ const FormClientsTable = () => {
                   data-toggle="tooltip"
                   data-placement="top"
                   title="ALTERAR"
-                  href={`/representacoes/gerenciar/client/editar/${client.id}`}
+                  href={`/scr/gerenciar/client/editar/${client.id}`}
                 ></a>
               </td>
               <td>
