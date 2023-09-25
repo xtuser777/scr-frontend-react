@@ -6,8 +6,7 @@ import PaymentFormContextType from '../../../contexts/pages/management/payment-f
 import FormFooterButtons from '../../../components/shared/form-footer-buttons';
 
 const PaymentFormPage = () => {
-  const { clearFields, persistData } =
-    useContext<PaymentFormContextType>(PaymentFormContext);
+  const { clearFields, persistData } = useContext<PaymentFormContextType>(PaymentFormContext);
   return (
     <>
       <CardTitle title="Cadastrar nova forma de pagamento" />

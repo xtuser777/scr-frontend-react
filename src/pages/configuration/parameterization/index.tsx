@@ -7,9 +7,7 @@ import FormContact from '../../../components/shared/form-contact';
 import FormFooterButtons from '../../../components/shared/form-footer-buttons';
 
 const ParameterizationPage = () => {
-  const { persistData } = useContext<ParameterizationContextType>(
-    ParameterizationContext,
-  );
+  const { persistData } = useContext<ParameterizationContextType>(ParameterizationContext);
 
   return (
     <div>

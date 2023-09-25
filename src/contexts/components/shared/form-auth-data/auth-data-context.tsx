@@ -55,7 +55,7 @@ const FormAuthDataProvider = (props: any) => {
 
   useEffect(() => {
     getLevels();
-  });
+  }, []);
 
   const verifyAdmin = async () => {
     const users = await new EmployeeService().get();

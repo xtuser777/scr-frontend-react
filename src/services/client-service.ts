@@ -3,10 +3,13 @@ import { toast } from 'react-toastify';
 import axios from './axios';
 import Client from '../models/client';
 import { processApiError } from '../utils/process-api-error';
+import { Security } from '../utils/security';
 
 class ClientService {
   async save(client: Client) {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response: AxiosRequestConfig = await axios.post('/client', { client });
       if (response.data.length == 0) {
         toast.success('Cliente cadastrado com sucesso!');
@@ -23,6 +26,8 @@ class ClientService {
 
   async update(client: Client) {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response: AxiosRequestConfig = await axios.put(`/client/${client.id}`, { client });
       if (response.data.length == 0) {
         toast.success('Cliente atualizado com sucesso!');
@@ -39,6 +44,8 @@ class ClientService {
 
   async delete(id: number) {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response: AxiosRequestConfig = await axios.delete(`/client/${id}`);
       if (response.data.length == 0) {
         toast.success('Cliente excluído com sucesso!');
@@ -55,6 +62,8 @@ class ClientService {
 
   async getOne(id: number) {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response = await axios.get(`/client/${id}`);
       const client: Client | undefined = response.data;
 
@@ -67,6 +76,8 @@ class ClientService {
 
   async get() {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response = await axios.get(`/client`);
       const clients: Client[] = [];
       for (const data of response.data) clients.push(data);

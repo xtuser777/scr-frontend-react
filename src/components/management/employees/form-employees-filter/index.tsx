@@ -80,7 +80,7 @@ const FormEmployeesFilter = () => {
           color="btn-success"
           label
           text="NOVO"
-          link="/representacoes/gerenciar/funcionario/novo"
+          link="/scr/gerenciar/funcionario/novo"
         />
       </div>
     </FieldsetCard>

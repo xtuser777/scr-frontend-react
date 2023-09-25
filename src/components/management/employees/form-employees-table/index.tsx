@@ -52,7 +52,7 @@ const FormEmployeesTable = () => {
                   href="#"
                   onClick={async () =>
                     employee.demission == undefined
-                      ? await desactivate(employee.id)
+                      ? await desactivate(employee.id, (employee.level as Level).description)
                       : await reactivate(employee.id)
                   }
                 ></a>
@@ -64,7 +64,7 @@ const FormEmployeesTable = () => {
                   data-toggle="tooltip"
                   data-placement="top"
                   title="ALTERAR"
-                  href={`/representacoes/gerenciar/funcionario/editar/${employee.id}`}
+                  href={`/scr/gerenciar/funcionario/editar/${employee.id}`}
                 ></a>
               </td>
               <td>
@@ -75,7 +75,7 @@ const FormEmployeesTable = () => {
                   data-placement="top"
                   title="EXCLUIR"
                   href="#"
-                  onClick={async () => remove(employee.id)}
+                  onClick={async () => remove(employee.id, (employee.level as Level).description)}
                 ></a>
               </td>
             </tr>

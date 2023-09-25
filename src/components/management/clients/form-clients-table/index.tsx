@@ -28,8 +28,16 @@ const FormClientsTable = () => {
         <tbody id="tbody-employees">
           {clients.map((client) => (
             <tr key={client.id}>
-              <td>{(client.person as Person).individual?.name}</td>
-              <td>{(client.person as Person).individual?.cpf}</td>
+              <td>
+                {(client.person as Person).type == 1
+                  ? (client.person as Person).individual?.name
+                  : (client.person as Person).enterprise?.fantasyName}
+              </td>
+              <td>
+                {(client.person as Person).type == 1
+                  ? (client.person as Person).individual?.cpf
+                  : (client.person as Person).enterprise?.cnpj}
+              </td>
               <td>{formatarData(client.register)}</td>
               <td>{(client.person as Person).type == 1 ? 'FISICA' : 'JURIDICA'}</td>
               <td>{((client.person as Person).contact as Contact).email}</td>

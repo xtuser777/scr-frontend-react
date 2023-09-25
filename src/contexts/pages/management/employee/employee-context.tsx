@@ -61,7 +61,7 @@ const EmployeeProvider = (props: any) => {
         true,
       );
       setAdmission(data.admission);
-      setType(employee.type.toString());
+      setType(data.type.toString());
       contactContext.loadContact((data.person as Person).contact as Contact);
       authDataContext.loadData(data);
     }
@@ -69,7 +69,7 @@ const EmployeeProvider = (props: any) => {
 
   useEffect(() => {
     if (method == 'editar' && id) getData();
-  });
+  }, []);
 
   const validate = {
     admission: (value: string) => {

@@ -9,8 +9,7 @@ import ProprietaryContextType from '../../../contexts/pages/management/proprieta
 import { ProprietaryContext } from '../../../contexts/pages/management/proprietary/proprietary-context';
 
 const ProprietaryPage = () => {
-  const { type, clearFields, persistData } =
-    useContext<ProprietaryContextType>(ProprietaryContext);
+  const { type, clearFields, persistData } = useContext<ProprietaryContextType>(ProprietaryContext);
 
   return (
     <>

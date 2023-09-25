@@ -22,7 +22,7 @@ const ParameterizationProvider = (props: any) => {
   );
   const contactContext = useContext<FormContactContextType>(FormContactContext);
 
-  const [data, setData] = useState(new Parameterization);
+  const [data, setData] = useState(new Parameterization());
 
   const [method, setMethod] = useState(1);
 
@@ -33,8 +33,8 @@ const ParameterizationProvider = (props: any) => {
     if (data) {
       setMethod(2);
       setData(data);
-      enterprisePersonContext.loadPerson(((data.person as Person).enterprise as EnterprisePerson));
-      contactContext.loadContact(((data.person as Person).contact as Contact));
+      enterprisePersonContext.loadPerson((data.person as Person).enterprise as EnterprisePerson);
+      contactContext.loadContact((data.person as Person).contact as Contact);
     }
   };
 

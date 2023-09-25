@@ -9,8 +9,7 @@ import EmployeeContextType from '../../../contexts/pages/management/employee/emp
 import { EmployeeContext } from '../../../contexts/pages/management/employee/employee-context';
 
 const EmployeePage = () => {
-  const { type, clearFields, persistData } =
-    useContext<EmployeeContextType>(EmployeeContext);
+  const { type, clearFields, persistData } = useContext<EmployeeContextType>(EmployeeContext);
   return (
     <div>
       <CardTitle title="Cadastrar novo funcionário" />
@@ -19,7 +18,7 @@ const EmployeePage = () => {
       <FormContact />
       {type == '1' ? <FormAuthData type={1} /> : <></>}
       <FormFooterButtons
-        link="/representacoes/gerenciar/funcionarios/"
+        link="/scr/gerenciar/funcionarios/"
         clear
         save
         clearFields={clearFields}

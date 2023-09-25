@@ -7,8 +7,7 @@ import RepresentationContextType from '../../../contexts/pages/management/repres
 import { RepresentationContext } from '../../../contexts/pages/management/representation/representation-contact';
 
 const RepresentationPage = () => {
-  const { clearFields, persistData } =
-    useContext<RepresentationContextType>(RepresentationContext);
+  const { clearFields, persistData } = useContext<RepresentationContextType>(RepresentationContext);
 
   return (
     <>
