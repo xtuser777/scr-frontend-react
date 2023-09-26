@@ -1,4 +1,4 @@
-import React, { ChangeEvent, createContext, useContext, useState } from 'react';
+import React, { ChangeEvent, createContext, useContext, useEffect, useState } from 'react';
 import { FormContactContext } from '../../../components/shared/form-contact/contact-context';
 import FormContactContextType from '../../../components/shared/form-contact/contact-context-type';
 import { FormIndividualPersonContext } from '../../../components/shared/form-individual-person/individual-person-context';
@@ -6,6 +6,11 @@ import FormIndividualPersonContextType from '../../../components/shared/form-ind
 import DriverContextType from './driver-context-type';
 import Driver from '../../../../models/driver';
 import BankData from '../../../../models/bank-data';
+import { useParams } from 'react-router-dom';
+import DriverService from '../../../../services/driver-service';
+import Person from '../../../../models/person';
+import IndividualPerson from '../../../../models/individual-person';
+import Contact from '../../../../models/contact';
 
 export const DriverContext = createContext<DriverContextType>({
   cnh: '',
@@ -55,6 +60,34 @@ const DriverProvider = (props: any) => {
   const [errorAgency, setErrorAgency] = useState<string | undefined>(undefined);
   const [errorAccount, setErrorAccount] = useState<string | undefined>(undefined);
   const [errorType, setErrorType] = useState<string | undefined>(undefined);
+
+  const routeParams = useParams();
+  const method = routeParams.method as string;
+  let id = 0;
+  if (routeParams.id) id = Number.parseInt(routeParams.id);
+
+  const getData = async () => {
+    const service = new DriverService();
+    const data = await service.getOne(id);
+
+    if (data) {
+      setDriver(data);
+      individualPersonContext.loadPerson(
+        (driver.person as Person).individual as IndividualPerson,
+        false,
+      );
+      setCnh(data.cnh);
+      setBank((data.bankData as BankData).bank);
+      setAgency((data.bankData as BankData).agency);
+      setAccount((data.bankData as BankData).account);
+      setType((data.bankData as BankData).type.toString());
+      await contactContext.loadContact((driver.person as Person).contact as Contact);
+    }
+  };
+
+  useEffect(() => {
+    if (method == 'editar' && id) getData();
+  }, []);
 
   const validate = {
     cnh: (value: string) => {
