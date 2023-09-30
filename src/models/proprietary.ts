@@ -3,8 +3,8 @@ import Person from './person';
 
 class Proprietary {
   constructor(
-    public id: number,
-    public register: string,
+    public id: number = 0,
+    public register: string = '',
     public driver?: Driver,
     public person?: Person,
   ) {}

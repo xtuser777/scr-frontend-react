@@ -5,7 +5,7 @@ import { ProprietaryContext } from '../../../../contexts/pages/management/propri
 import ProprietaryContextType from '../../../../contexts/pages/management/proprietary/proprietary-context-type';
 
 const FormProprietaryLink = () => {
-  const { driver, type, handleDriverChange, handleTypeChange } =
+  const { drivers, driver, type, handleDriverChange, handleTypeChange } =
     useContext<ProprietaryContextType>(ProprietaryContext);
 
   return (
@@ -21,6 +21,13 @@ const FormProprietaryLink = () => {
           handle={handleDriverChange}
         >
           <option value="0">SELECIONE</option>
+          {
+            drivers.map(
+              d => (
+                <option key={d.id} value={d.id}>{d.person?.individual?.name}</option>
+              )
+            )
+          }
         </FormInputSelect>
         <FormInputSelect
           col={6}

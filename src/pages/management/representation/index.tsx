@@ -3,8 +3,8 @@ import CardTitle from '../../../components/shared/card-title';
 import FormEnterprisePerson from '../../../components/shared/form-enterprise-person';
 import FormContact from '../../../components/shared/form-contact';
 import FormFooterButtons from '../../../components/shared/form-footer-buttons';
-import RepresentationContextType from '../../../contexts/pages/management/representation/representation-contact-type';
-import { RepresentationContext } from '../../../contexts/pages/management/representation/representation-contact';
+import RepresentationContextType from '../../../contexts/pages/management/representation/representation-context-type';
+import { RepresentationContext } from '../../../contexts/pages/management/representation/representation-context';
 
 const RepresentationPage = () => {
   const { clearFields, persistData } = useContext<RepresentationContextType>(RepresentationContext);

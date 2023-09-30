@@ -1,9 +1,11 @@
-import { createContext, useContext, useEffect } from 'react';
-import RepresentationContextType from './representation-contact-type';
+import { createContext, useContext, useEffect, useState } from 'react';
+import RepresentationContextType from './representation-context-type';
 import FormEnterprisePersonContextType from '../../../components/shared/form-enterprise-person/enterprise-person-context-type';
 import { FormEnterprisePersonContext } from '../../../components/shared/form-enterprise-person/enterprise-person-context';
 import FormContactContextType from '../../../components/shared/form-contact/contact-context-type';
 import { FormContactContext } from '../../../components/shared/form-contact/contact-context';
+import RepresentationService from '../../../../services/representation-service';
+import Representation from '../../../../models/representation';
 
 export const RepresentationContext = createContext<RepresentationContextType>({
   clearFields: () => {
@@ -20,48 +22,18 @@ const RepresentationProvider = (props: any) => {
   );
   const contactContext = useContext<FormContactContextType>(FormContactContext);
 
+  const [represntation, setRepresentation] = useState(new Representation());
+
+  const getData = async () => {
+    const service = new RepresentationService();
+    const data = await service.getOne();
+
+    if (data) {
+      setRepresentation(data);
+    }
+  };
+
   useEffect(() => {
-    enterprisePersonContext.loadPerson({
-      id: 1,
-      corporateName: 'Teste',
-      fantasyName: 'Teste',
-      cnpj: '11.111.111/0001-23',
-    });
-    contactContext.loadContact({
-      id: 1,
-      phone: '(18) 3265-4356',
-      cellphone: '(18) 98117-1256',
-      email: 'lucaoxt@gmail.com',
-      address: {
-        id: 1,
-        street: 'Rua Clarinho',
-        number: '165',
-        neighborhood: 'Vila Martins',
-        complement: 'B',
-        code: '19.600-000',
-        city: {
-          id: 5181,
-          name: 'Rancharia',
-          state: {
-            id: 26,
-            name: 'São Paulo',
-            acronym: 'SP',
-            cities: [
-              {
-                id: 5181,
-                name: 'Rancharia',
-                state: {
-                  id: 26,
-                  name: 'São Paulo',
-                  acronym: 'SP',
-                  cities: [],
-                },
-              },
-            ],
-          },
-        },
-      },
-    });
   }, []);
 
   const clearFields = () => {

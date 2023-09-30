@@ -209,7 +209,7 @@ const DriverProvider = (props: any) => {
     contactContext.clearFields();
   };
   const persistData = async () => {
-    individualPersonContext.validateFields();
+    await individualPersonContext.validateFields();
     validateFields();
     contactContext.validateFields();
   };
