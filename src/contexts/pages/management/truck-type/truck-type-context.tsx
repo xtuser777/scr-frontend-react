@@ -1,6 +1,8 @@
-import { ChangeEvent, createContext, useState } from 'react';
+import { ChangeEvent, createContext, useEffect, useState } from 'react';
 import TruckTypeContextType from './truck-type-context-type';
 import TruckType from '../../../../models/truck-type';
+import { useParams } from 'react-router-dom';
+import TruckTypeService from '../../../../services/truck-type-service';
 
 export const TruckTypeContext = createContext<TruckTypeContextType>({
   description: '',
@@ -33,6 +35,27 @@ const TruckTypeProvider = (props: any) => {
   const [errorDescription, setErrorDescription] = useState<string | undefined>(undefined);
   const [errorAxes, setErrorAxes] = useState<string | undefined>(undefined);
   const [errorCapacity, setErrorCapacity] = useState<string | undefined>(undefined);
+
+  const routeParams = useParams();
+  const method = routeParams.method as string;
+  let id = 0;
+  if (routeParams.id) id = Number.parseInt(routeParams.id);
+
+  const getData = async () => {
+    const service = new TruckTypeService();
+    const data = await service.getOne(id);
+
+    if (data) {
+      setTruckType(data);
+      setDescription(data.description);
+      setAxes(data.axes);
+      setCapacity(data.capacity.toString());
+    }
+  };
+
+  useEffect(() => {
+    if (method == 'editar' && id) getData();
+  }, []);
 
   const validate = {
     description: (value: string) => {
@@ -110,7 +133,11 @@ const TruckTypeProvider = (props: any) => {
     setCapacity('');
   };
   const persistData = async () => {
-    validateFields();
+    if (validateFields()) {
+      const service = new TruckTypeService();
+      if (method == 'novo') await service.save(truckType);
+      else await service.update(truckType);
+    }
   };
 
   return (

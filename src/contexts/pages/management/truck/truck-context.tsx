@@ -1,8 +1,11 @@
-import { ChangeEvent, createContext, useState } from 'react';
+import { ChangeEvent, createContext, useEffect, useState } from 'react';
 import TruckContextType from './truck-context-type';
 import TruckType from '../../../../models/truck-type';
 import Proprietary from '../../../../models/proprietary';
 import Truck from '../../../../models/truck';
+import { useParams } from 'react-router-dom';
+import TruckService from '../../../../services/truck-service';
+import { TupleType } from 'typescript';
 
 export const TruckContext = createContext<TruckContextType>({
   types: [],
@@ -70,6 +73,32 @@ const TruckProvider = (props: any) => {
   const [errorManufactureYear, setErrorManufactureYear] = useState<string | undefined>(undefined);
   const [errorType, setErrorType] = useState<string | undefined>(undefined);
   const [errorProprietary, setErrorProprietary] = useState<string | undefined>(undefined);
+
+  const routeParams = useParams();
+  const method = routeParams.method as string;
+  let id = 0;
+  if (routeParams.id) id = Number.parseInt(routeParams.id);
+
+  const getData = async () => {
+    const service = new TruckService();
+    const data = await service.getOne(id);
+
+    if (data) {
+      setTruck(data);
+      setPlate(data.plate);
+      setBrand(data.brand);
+      setModel(data.model);
+      setColor(data.color);
+      setModelYear(data.modelYear.toString());
+      setManufactureYear(data.manufactureYear.toString());
+      setType((data.type as TruckType).id.toString());
+      setProprietary((data.proprietary as Proprietary).id.toString());
+    }
+  };
+
+  useEffect(() => {
+    if (method == 'editar' && id) getData();
+  }, []);
 
   const validate = {
     plate: (value: string) => {
@@ -272,7 +301,11 @@ const TruckProvider = (props: any) => {
     setProprietary('0');
   };
   const persistData = async () => {
-    validateFields();
+    if (validateFields()) {
+      const service = new TruckService();
+      if (method == 'novo') await service.save(truck);
+      else await service.update(truck);
+    }
   };
 
   return (

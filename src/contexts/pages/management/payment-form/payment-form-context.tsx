@@ -1,6 +1,8 @@
-import { ChangeEvent, createContext, useState } from 'react';
+import { ChangeEvent, createContext, useEffect, useState } from 'react';
 import PaymentFormContextType from './payment-form-context-type';
 import PaymentForm from '../../../../models/payment-form';
+import { useParams } from 'react-router-dom';
+import PaymentFormService from '../../../../services/payment-form-service';
 
 export const PaymentFormContext = createContext<PaymentFormContextType>({
   description: '',
@@ -33,6 +35,27 @@ const PaymentFormProvider = (props: any) => {
   const [errorDescription, setErrorDescription] = useState<string | undefined>(undefined);
   const [errorDeadline, setErrorDeadline] = useState<string | undefined>(undefined);
   const [errorLink, setErrorLink] = useState<string | undefined>(undefined);
+
+  const routeParams = useParams();
+  const method = routeParams.method as string;
+  let id = 0;
+  if (routeParams.id) id = Number.parseInt(routeParams.id);
+
+  const getData = async () => {
+    const service = new PaymentFormService();
+    const data = await service.getOne(id);
+    
+    if (data) {
+      setPaymentForm(data);
+      setDescription(data.description);
+      setDeadline(data.deadline);
+      setLink(data.link.toString());
+    }
+  };
+
+  useEffect(() => {
+    if (method == 'editar' && id) getData();
+  }, []);
 
   const validate = {
     description: (value: string) => {
@@ -110,7 +133,11 @@ const PaymentFormProvider = (props: any) => {
     setLink('');
   };
   const persistData = async () => {
-    validateFields();
+    if (validateFields()) {
+      const service = new PaymentFormService();
+      if (method == 'novo') await service.save(paymentForm);
+      else await service.update(paymentForm);
+    }
   };
 
   return (
