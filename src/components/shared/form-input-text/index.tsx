@@ -6,6 +6,7 @@ const FormInputText = (props: {
   label: string;
   value: string;
   obrigatory: boolean;
+  placeholder?: string;
   message?: string;
   handle: (e: ChangeEvent<HTMLInputElement>) => void;
 }) => {
@@ -20,6 +21,7 @@ const FormInputText = (props: {
         name={props.id}
         id={props.id}
         className="form-control input-sm expanded"
+        placeholder={props.placeholder}
         value={props.value}
         onChange={props.handle}
       />
