@@ -59,9 +59,10 @@ const RepresentationProvider = (props: any) => {
 
     const service = new RepresentationService();
     if (v1 && v2) {
-      represntation.unity = contactContext.contact.address?.city?.name + 
-      " - " + 
-      contactContext.contact.address?.city?.state?.acronym;
+      represntation.unity =
+        contactContext.contact.address?.city?.name +
+        ' - ' +
+        contactContext.contact.address?.city?.state?.acronym;
       if (method == 'editar') {
         represntation.register = new Date().toISOString().substring(0, 10);
         await service.update(represntation);

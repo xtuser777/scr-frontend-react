@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import FieldsetCard from '../../../shared/fieldset-card';
 import FormInputSelect from '../../../shared/form-input-select';
 import FormButton from '../../../shared/form-button';
 import FormTable from '../../../shared/form-table';
+import ProductContextType from '../../../../contexts/pages/management/product/product-context-type';
+import { ProductContext } from '../../../../contexts/pages/management/product/product-context';
 
 const FormPoductTruckTypes = () => {
+  const { type, types, typesLinked, addType, delType, handleTypeChange, errorType } =
+    useContext<ProductContextType>(ProductContext);
   return (
     <div className="row">
       <div className="col-sm-5">
@@ -15,18 +19,16 @@ const FormPoductTruckTypes = () => {
               id="tipocaminhao"
               label="Tipo de Caminhão"
               obrigatory
-              value={'0'}
-              handle={(e) => {
-                /** */
-              }}
-              message={undefined}
+              value={type}
+              handle={handleTypeChange}
+              message={errorType}
             >
               <option value="0">SELECIONE</option>
-              {/* {types.map((item) => (
+              {types.map((item) => (
                 <option key={item.id} value={item.id}>
                   {item.description + ' - ' + item.axes + ' Eixos'}
                 </option>
-              ))} */}
+              ))}
             </FormInputSelect>
           </div>
           <div className="row">
@@ -36,9 +38,7 @@ const FormPoductTruckTypes = () => {
               color="success"
               label={false}
               text="ADICIONAR TIPO"
-              action={() => {
-                /** */
-              }}
+              action={addType}
             />
           </div>
         </FieldsetCard>
@@ -59,23 +59,24 @@ const FormPoductTruckTypes = () => {
                 </thead>
 
                 <tbody id="tbodyLinks">
-                  {/* {typesLinked.map((item) => (
+                  {typesLinked.map((item) => (
                     <tr key={item.id}>
                       <td>{item.id}</td>
                       <td>{item.description}</td>
                       <td>{item.axes}</td>
                       <td>{item.capacity}</td>
                       <td>
-                        <FaTrash
+                        <a
                           role="button"
-                          color="red"
-                          size={14}
+                          className="glyphicon glyphicon-trash"
+                          data-toggle="tooltip"
+                          data-placement="top"
                           title="Excluir"
-                          onClick={() => this.delType(item.id)}
-                        />
+                          onClick={() => delType(item.id)}
+                        ></a>
                       </td>
                     </tr>
-                  ))} */}
+                  ))}
                 </tbody>
               </FormTable>
             </div>

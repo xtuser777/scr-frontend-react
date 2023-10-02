@@ -23,6 +23,8 @@ import TruckRoute from '../routes/management/truck';
 import TruckTypeRoute from '../routes/management/truck-type';
 import TruckTypesRoute from '../routes/management/truck-types';
 import TrucksRoute from '../routes/management/trucks';
+import ProductsRoute from '../routes/management/products';
+import ProductRoute from '../routes/management/product';
 
 const Router = () => {
   return (
@@ -44,6 +46,8 @@ const Router = () => {
         <Route path="/scr/gerenciar/representacao/:method/:id?" element={<RepresentationRoute />} />
         <Route path="/scr/gerenciar/caminhoes" element={<TrucksRoute />} />
         <Route path="/scr/gerenciar/caminhao/:method/:id?" element={<TruckRoute />} />
+        <Route path="/scr/gerenciar/produtos" element={<ProductsRoute />} />
+        <Route path="/scr/gerenciar/produto/:method/:id?" element={<ProductRoute />} />
         <Route path="/scr/gerenciar/tiposcaminhao" element={<TruckTypesRoute />} />
         <Route path="/scr/gerenciar/tipocaminhao/:method/:id?" element={<TruckTypeRoute />} />
         <Route path="/scr/gerenciar/formaspagamento" element={<PaymentFormsRoute />} />

@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import FieldsetCard from '../../../shared/fieldset-card';
 import FormInputText from '../../../shared/form-input-text';
 import FormInputSelect from '../../../shared/form-input-select';
 import FormInputGroupText from '../../../shared/form-input-group-text';
+import ProductContextType from '../../../../contexts/pages/management/product/product-context-type';
+import { ProductContext } from '../../../../contexts/pages/management/product/product-context';
+import Person from '../../../../models/person';
 
 const FormProductData = () => {
+  const {
+    representations,
+    description,
+    measure,
+    weight,
+    price,
+    priceOut,
+    representation,
+    errorDescription,
+    errorRepresentation,
+    errorMeasure,
+    errorWeight,
+    errorPrice,
+    errorPriceOut,
+    handleDescriptionChange,
+    handleRepresentationChange,
+    handleMeasureChange,
+    handleWeightChange,
+    handlePriceChange,
+    handlePriceOutChange,
+  } = useContext<ProductContextType>(ProductContext);
   return (
     <FieldsetCard legend="Dados do Produto" obrigatoryFields>
       <div className="row">
@@ -13,29 +37,25 @@ const FormProductData = () => {
           id="descricao"
           label="Descrição"
           obrigatory
-          value={''}
-          handle={(e) => {
-            /** */
-          }}
-          message={undefined}
+          value={description}
+          handle={handleDescriptionChange}
+          message={errorDescription}
         />
         <FormInputSelect
           col={5}
           id="representacao"
           label="Representação"
           obrigatory
-          value={'0'}
-          handle={(e) => {
-            /** */
-          }}
-          message={undefined}
+          value={representation}
+          handle={handleRepresentationChange}
+          message={errorRepresentation}
         >
           <option value="0">SELECIONE</option>
-          {/* {representations.map((item) => (
+          {representations.map((item) => (
             <option key={item.id} value={item.id}>
-              {item.person.enterprise?.fantasyName + ' (' + item.unity + ')'}
+              {(item.person as Person).enterprise?.fantasyName + ' (' + item.unity + ')'}
             </option>
-          ))} */}
+          ))}
         </FormInputSelect>
       </div>
       <div className="row">
@@ -45,11 +65,9 @@ const FormProductData = () => {
           label="Medida"
           obrigatory
           placeholder="Exemplo: Kg, Sacos de X Kg..."
-          value={''}
-          handle={(e) => {
-            /** */
-          }}
-          message={undefined}
+          value={measure}
+          handle={handleMeasureChange}
+          message={errorMeasure}
         />
         <FormInputGroupText
           col={3}
@@ -57,11 +75,9 @@ const FormProductData = () => {
           label="Peso"
           icon={'glyphicon-scale'}
           obrigatory
-          value={''}
-          handle={(e) => {
-            /** */
-          }}
-          message={undefined}
+          value={weight}
+          handle={handleWeightChange}
+          message={errorWeight}
         />
         <FormInputGroupText
           col={3}
@@ -69,11 +85,9 @@ const FormProductData = () => {
           label="Preço"
           icon={'glyphicon-usd'}
           obrigatory
-          value={''}
-          handle={(e) => {
-            /** */
-          }}
-          message={undefined}
+          value={price}
+          handle={handlePriceChange}
+          message={errorPrice}
         />
         <FormInputGroupText
           col={3}
@@ -81,11 +95,9 @@ const FormProductData = () => {
           label="Preço fora do estado"
           icon={'glyphicon-usd'}
           obrigatory
-          value={''}
-          handle={(e) => {
-            /** */
-          }}
-          message={undefined}
+          value={priceOut}
+          handle={handlePriceOutChange}
+          message={errorPriceOut}
         />
       </div>
     </FieldsetCard>

@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import FieldsetCard from '../../../shared/fieldset-card';
 import FormTable from '../../../shared/form-table';
 import { formatarValor } from '../../../../utils/format';
+import ProductsContextType from '../../../../contexts/pages/management/pruducts/products-context-type';
+import { ProductsContext } from '../../../../contexts/pages/management/pruducts/products-context';
+import Representation from '../../../../models/representation';
+import Person from '../../../../models/person';
 
 const FormProductsTable = () => {
+  const { products, remove } = useContext<ProductsContextType>(ProductsContext);
   return (
     <FieldsetCard legend="Produtos Cadastrados" obrigatoryFields={false}>
       <FormTable id="table-products">
@@ -20,36 +25,37 @@ const FormProductsTable = () => {
         </thead>
 
         <tbody id="tbodyProducts">
-          {/* {products.map((item) => (
+          {products.map((item) => (
             <tr key={item.id}>
               <td hidden>{item.id}</td>
               <td>{item.description}</td>
               <td>{item.measure}</td>
               <td>{formatarValor(item.price)}</td>
-              <td>{item.representation.person.enterprise?.fantasyName}</td>
               <td>
-                <FaEdit
-                  role="button"
-                  color="blue"
-                  size={14}
-                  title="Editar"
-                  onClick={() => {
-                    history.push(`/produto/editar/${item.id}`);
-                    window.location.reload();
-                  }}
-                />
+                {((item.representation as Representation).person as Person).enterprise?.fantasyName}
               </td>
               <td>
-                <FaTrash
+                <a
                   role="button"
-                  color="red"
-                  size={14}
+                  className="glyphicon glyphicon-edit"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Editar"
+                  href={`/produto/editar/${item.id}`}
+                ></a>
+              </td>
+              <td>
+                <a
+                  role="button"
+                  className="glyphicon glyphicon-trash"
+                  data-toggle="tooltip"
+                  data-placement="top"
                   title="Excluir"
-                  onClick={async () => await this.remove(item.id)}
-                />
+                  onClick={async () => await remove(item.id)}
+                ></a>
               </td>
             </tr>
-          ))} */}
+          ))}
         </tbody>
       </FormTable>
     </FieldsetCard>
