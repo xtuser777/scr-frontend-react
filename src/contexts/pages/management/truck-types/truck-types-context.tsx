@@ -1,4 +1,4 @@
-import { ChangeEvent, createContext, useState } from 'react';
+import { ChangeEvent, createContext, useState, useEffect } from 'react';
 import TruckTypesContextType from './truck-types-context-type';
 import TruckType from '../../../../models/truck-type';
 import TruckTypeService from '../../../../services/truck-type-service';
@@ -31,10 +31,13 @@ const TruckTypesProvider = (props: any) => {
   const getData = async () => {
     const service = new TruckTypeService();
     const data = await service.get();
-
     setData(data);
     setTruckTypes(data);
   };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const filterData = (orderBy: string) => {
     let filteredData: TruckType[] = [...data];

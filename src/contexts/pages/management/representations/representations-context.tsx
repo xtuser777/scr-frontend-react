@@ -1,4 +1,4 @@
-import { ChangeEvent, createContext, useState } from 'react';
+import { ChangeEvent, createContext, useEffect, useState } from 'react';
 import RepresentationsContextType from './representations-context-type';
 import Representation from '../../../../models/representation';
 import EnterprisePerson from '../../../../models/enterprise-person';
@@ -36,12 +36,21 @@ const RepresentationsProvider = (props: any) => {
   const [register, setRegister] = useState('');
   const [orderBy, setOrderBy] = useState('1');
 
+  const getData = async () => {
+    const service = new RepresentationService();
+    const data = await service.get();
+    setData(data);
+    setRepresentations(data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const filterData = (orderBy: string) => {
     let filteredData: Representation[] = [...data];
     if (register.length == 10) {
-      filteredData = filteredData.filter(
-        (item) => item.register.substring(0, 10) == register,
-      );
+      filteredData = filteredData.filter((item) => item.register.substring(0, 10) == register);
     }
 
     if (filter.length > 0) {
@@ -150,18 +159,30 @@ const RepresentationsProvider = (props: any) => {
         break;
       case '11':
         filteredData = filteredData.sort((x, y) => {
-          if (((x.person as Person).contact as Contact).email.toUpperCase() > ((y.person as Person).contact as Contact).email.toUpperCase())
+          if (
+            ((x.person as Person).contact as Contact).email.toUpperCase() >
+            ((y.person as Person).contact as Contact).email.toUpperCase()
+          )
             return 1;
-          if (((x.person as Person).contact as Contact).email.toUpperCase() < ((y.person as Person).contact as Contact).email.toUpperCase())
+          if (
+            ((x.person as Person).contact as Contact).email.toUpperCase() <
+            ((y.person as Person).contact as Contact).email.toUpperCase()
+          )
             return -1;
           return 0;
         });
         break;
       case '12':
         filteredData = filteredData.sort((x, y) => {
-          if (((y.person as Person).contact as Contact).email.toUpperCase() > ((x.person as Person).contact as Contact).email.toUpperCase())
+          if (
+            ((y.person as Person).contact as Contact).email.toUpperCase() >
+            ((x.person as Person).contact as Contact).email.toUpperCase()
+          )
             return 1;
-          if (((y.person as Person).contact as Contact).email.toUpperCase() < ((x.person as Person).contact as Contact).email.toUpperCase())
+          if (
+            ((y.person as Person).contact as Contact).email.toUpperCase() <
+            ((x.person as Person).contact as Contact).email.toUpperCase()
+          )
             return -1;
           return 0;
         });

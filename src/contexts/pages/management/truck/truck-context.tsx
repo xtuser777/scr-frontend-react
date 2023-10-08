@@ -6,6 +6,8 @@ import Truck from '../../../../models/truck';
 import { useParams } from 'react-router-dom';
 import TruckService from '../../../../services/truck-service';
 import { TupleType } from 'typescript';
+import TruckTypeService from '../../../../services/truck-type-service';
+import ProprietaryService from '../../../../services/proprietary-service';
 
 export const TruckContext = createContext<TruckContextType>({
   types: [],
@@ -79,6 +81,18 @@ const TruckProvider = (props: any) => {
   let id = 0;
   if (routeParams.id) id = Number.parseInt(routeParams.id);
 
+  const getTypes = async () => {
+    const service = new TruckTypeService();
+    const types = await service.get();
+    setTypes(types);
+  };
+
+  const getProprietaries = async () => {
+    const service = new ProprietaryService();
+    const proprietaries = await service.get();
+    setProprietaries(proprietaries);
+  };
+
   const getData = async () => {
     const service = new TruckService();
     const data = await service.getOne(id);
@@ -97,6 +111,8 @@ const TruckProvider = (props: any) => {
   };
 
   useEffect(() => {
+    getTypes();
+    getProprietaries();
     if (method == 'editar' && id) getData();
   }, []);
 

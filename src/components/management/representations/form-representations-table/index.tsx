@@ -42,7 +42,7 @@ const FormRepresentationsTable = () => {
                   data-toggle="tooltip"
                   data-placement="top"
                   title="ALTERAR"
-                  href={`/representacoes/gerenciar/representacao/unidade/${representation.id}`}
+                  href={`/scr/gerenciar/representacao/unidade/${representation.id}`}
                 ></a>
               </td>
               <td>
@@ -52,7 +52,7 @@ const FormRepresentationsTable = () => {
                   data-toggle="tooltip"
                   data-placement="top"
                   title="ALTERAR"
-                  href={`/representacoes/gerenciar/representacao/editar/${representation.id}`}
+                  href={`/scr/gerenciar/representacao/editar/${representation.id}`}
                 ></a>
               </td>
               <td>

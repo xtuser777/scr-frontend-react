@@ -3,10 +3,13 @@ import axios from '../services/axios';
 import { AxiosError, AxiosRequestConfig } from 'axios';
 import TruckType from '../models/truck-type';
 import { processApiError } from '../utils/process-api-error';
+import { Security } from '../utils/security';
 
 class TruckTypeService {
   save = async (truckType: TruckType) => {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response: AxiosRequestConfig = await axios.post('/type', { truckType });
       if (response.data.length == 0) {
         toast.success('Tipo de caminhão cadastrado com sucesso!');
@@ -23,6 +26,8 @@ class TruckTypeService {
 
   update = async (truckType: TruckType) => {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response: AxiosRequestConfig = await axios.put('/type/' + truckType.id, { truckType });
       if (response.data.length == 0) {
         toast.success('Tipo de caminhão atualizado com sucesso!');
@@ -39,6 +44,8 @@ class TruckTypeService {
 
   delete = async (id: number) => {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response: AxiosRequestConfig = await axios.delete('/type/' + id);
       if (response.data.length == 0) {
         toast.success('Tipo de caminhão removido com sucesso!');
@@ -55,6 +62,8 @@ class TruckTypeService {
 
   async getOne(id: number) {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response = await axios.get(`/type/${id}`);
       const type: TruckType = response.data;
 
@@ -67,6 +76,8 @@ class TruckTypeService {
 
   async get() {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response = await axios.get(`/type`);
       const types: TruckType[] = [];
       for (const data of response.data) types.push(data);

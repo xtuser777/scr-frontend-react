@@ -31,11 +31,12 @@ const FormPoductTruckTypes = () => {
               ))}
             </FormInputSelect>
           </div>
+          <div style={{ height: '40px' }}></div>
           <div className="row">
             <FormButton
               col={12}
               id="add-type"
-              color="success"
+              color="btn-success"
               label={false}
               text="ADICIONAR TIPO"
               action={addType}
@@ -61,7 +62,7 @@ const FormPoductTruckTypes = () => {
                 <tbody id="tbodyLinks">
                   {typesLinked.map((item) => (
                     <tr key={item.id}>
-                      <td>{item.id}</td>
+                      <td className="hidden">{item.id}</td>
                       <td>{item.description}</td>
                       <td>{item.axes}</td>
                       <td>{item.capacity}</td>

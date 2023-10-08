@@ -25,7 +25,7 @@ const FormTrucksTable = () => {
         <tbody id="tbody-trucks">
           {trucks.map((truck) => (
             <tr key={truck.id}>
-              <td>{truck.id}</td>
+              <td className="hidden">{truck.id}</td>
               <td>{truck.plate}</td>
               <td>{truck.brand}</td>
               <td>{truck.model}</td>
@@ -38,7 +38,7 @@ const FormTrucksTable = () => {
                   data-toggle="tooltip"
                   data-placement="top"
                   title="ALTERAR"
-                  href={`/representacoes/gerenciar/caminhao/editar/${truck.id}`}
+                  href={`/scr/gerenciar/caminhao/editar/${truck.id}`}
                 ></a>
               </td>
               <td>

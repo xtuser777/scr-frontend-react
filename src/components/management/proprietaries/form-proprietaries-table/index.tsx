@@ -27,9 +27,17 @@ const FormProprietariesTable = () => {
         <tbody id="tbody-proprietaries">
           {proprietaries.map((prop) => (
             <tr key={prop.id}>
-              <td>{prop.id}</td>
-              <td>{(prop.person as Person).individual?.name}</td>
-              <td>{(prop.person as Person).individual?.cpf}</td>
+              <td className="hidden">{prop.id}</td>
+              <td>
+                {(prop.person as Person).type == 1
+                  ? (prop.person as Person).individual?.name
+                  : (prop.person as Person).enterprise?.fantasyName}
+              </td>
+              <td>
+                {(prop.person as Person).type == 1
+                  ? (prop.person as Person).individual?.cpf
+                  : (prop.person as Person).enterprise?.cnpj}
+              </td>
               <td>{formatarData(prop.register)}</td>
               <td>{((prop.person as Person).contact as Contact).email}</td>
               <td>
@@ -39,7 +47,7 @@ const FormProprietariesTable = () => {
                   data-toggle="tooltip"
                   data-placement="top"
                   title="ALTERAR"
-                  href={`/representacoes/gerenciar/motorista/editar/${prop.id}`}
+                  href={`/scr/gerenciar/propritario/editar/${prop.id}`}
                 ></a>
               </td>
               <td>

@@ -56,7 +56,7 @@ const FormTrucksFilter = () => {
           color="btn-success"
           label
           text="NOVO"
-          link="/representacoes/gerenciar/caminhao/novo"
+          link="/scr/gerenciar/caminhao/novo"
         />
       </div>
     </FieldsetCard>

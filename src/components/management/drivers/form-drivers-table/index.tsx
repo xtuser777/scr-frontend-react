@@ -27,7 +27,7 @@ const FormDriversTable = () => {
         <tbody id="tbody-drivers">
           {drivers.map((driver) => (
             <tr key={driver.id}>
-              <td>{driver.id}</td>
+              <td className="hidden">{driver.id}</td>
               <td>{(driver.person as Person).individual?.name}</td>
               <td>{(driver.person as Person).individual?.cpf}</td>
               <td>{formatarData(driver.register)}</td>

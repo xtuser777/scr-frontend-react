@@ -23,7 +23,7 @@ const FormTruckTypesTable = () => {
         <tbody id="tbody-truckTypes">
           {truckTypes.map((truckType) => (
             <tr key={truckType.id}>
-              <td>{truckType.id}</td>
+              <td className="hidden">{truckType.id}</td>
               <td>{truckType.description}</td>
               <td>{truckType.axes}</td>
               <td>{truckType.capacity}</td>
@@ -34,7 +34,7 @@ const FormTruckTypesTable = () => {
                   data-toggle="tooltip"
                   data-placement="top"
                   title="ALTERAR"
-                  href={`/representacoes/gerenciar/tipocaminhao/editar/${truckType.id}`}
+                  href={`/scr/gerenciar/tipocaminhao/editar/${truckType.id}`}
                 ></a>
               </td>
               <td>

@@ -43,7 +43,7 @@ const HomeProvider = (props: any) => {
 
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   const filterData = (): Event[] => {
     let filteredData: Event[] = [...data];

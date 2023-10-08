@@ -3,10 +3,13 @@ import axios from '../services/axios';
 import { toast } from 'react-toastify';
 import Representation from '../models/representation';
 import { processApiError } from '../utils/process-api-error';
+import { Security } from '../utils/security';
 
 class RepresentationService {
   save = async (representation: Representation) => {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response: AxiosRequestConfig = await axios.post('/representation', { representation });
       if (response.data.length == 0) {
         toast.success('Representação cadastrada com sucesso!');
@@ -23,6 +26,8 @@ class RepresentationService {
 
   async update(representation: Representation) {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response: AxiosRequestConfig = await axios.put(`/representation/${representation.id}`, {
         representation,
       });
@@ -41,6 +46,8 @@ class RepresentationService {
 
   async delete(id: number) {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response: AxiosRequestConfig = await axios.delete(`/representation/${id}`);
       if (response.data.length == 0) {
         toast.success('Representação excluída com sucesso!');
@@ -57,6 +64,8 @@ class RepresentationService {
 
   async getOne(id: number) {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response = await axios.get(`/representation/${id}`);
       const representation: Representation = response.data;
 
@@ -69,6 +78,8 @@ class RepresentationService {
 
   async get() {
     try {
+      const token = Security.getToken();
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       const response = await axios.get(`/representation`);
       const reps: Representation[] = [];
       for (const data of response.data) reps.push(data);

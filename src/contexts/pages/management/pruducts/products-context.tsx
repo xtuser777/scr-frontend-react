@@ -5,6 +5,7 @@ import Representation from '../../../../models/representation';
 import EnterprisePerson from '../../../../models/enterprise-person';
 import Person from '../../../../models/person';
 import ProductService from '../../../../services/product-service';
+import RepresentationService from '../../../../services/representation-service';
 
 export const ProductsContext = createContext<ProductsContextType>({
   data: [],
@@ -40,6 +41,12 @@ const ProductsProvider = (props: any) => {
   const [representation, setRepresentation] = useState('0');
   const [orderBy, setOrderBy] = useState('1');
 
+  const getRepresentations = async () => {
+    const service = new RepresentationService();
+    const representations = await service.get();
+    setRepresentations(representations);
+  };
+
   const getData = async () => {
     const service = new ProductService();
     const data = await service.get();
@@ -48,6 +55,7 @@ const ProductsProvider = (props: any) => {
   };
 
   useEffect(() => {
+    getRepresentations();
     getData();
   }, []);
 

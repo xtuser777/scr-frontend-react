@@ -10,8 +10,6 @@ import Person from '../../../../models/person';
 
 const FormProductsFilter = () => {
   const {
-    data,
-    products,
     representations,
     filter,
     representation,
@@ -50,7 +48,7 @@ const FormProductsFilter = () => {
         </FormInputSelect>
         <FormButton
           col={2}
-          color="primary"
+          color="btn-primary"
           id="filtrar"
           label
           text="FILTRAR"
@@ -79,7 +77,7 @@ const FormProductsFilter = () => {
         </FormInputSelect>
         <FormLinkButton
           col={2}
-          color="success"
+          color="btn-success"
           id="novo"
           label
           text="NOVO"

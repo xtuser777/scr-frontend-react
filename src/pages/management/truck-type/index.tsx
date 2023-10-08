@@ -12,7 +12,7 @@ const TruckTypePage = () => {
       <CardTitle title="Cadastrar Novo Tipo de Caminhão" />
       <FormTruckTypeData />
       <FormFooterButtons
-        link="/representacoes/gerenciar/tiposcaminhao"
+        link="/scr/gerenciar/tiposcaminhao"
         clear
         save
         clearFields={clearFields}

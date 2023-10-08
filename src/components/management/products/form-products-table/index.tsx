@@ -41,7 +41,7 @@ const FormProductsTable = () => {
                   data-toggle="tooltip"
                   data-placement="top"
                   title="Editar"
-                  href={`/produto/editar/${item.id}`}
+                  href={`/scr/gerenciar/produto/editar/${item.id}`}
                 ></a>
               </td>
               <td>

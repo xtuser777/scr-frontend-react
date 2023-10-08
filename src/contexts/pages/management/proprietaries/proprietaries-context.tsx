@@ -52,9 +52,7 @@ const ProprietariesProvider = (props: any) => {
   const filterData = (orderBy: string) => {
     let filteredData: Proprietary[] = [...data];
     if (register.length == 10) {
-      filteredData = filteredData.filter(
-        (item) => item.register.substring(0, 10) == register,
-      );
+      filteredData = filteredData.filter((item) => item.register.substring(0, 10) == register);
     }
 
     if (filter.length > 0) {
@@ -318,18 +316,30 @@ const ProprietariesProvider = (props: any) => {
         break;
       case '9':
         filteredData = filteredData.sort((x, y) => {
-          if (((x.person as Person).contact as Contact).email.toUpperCase() > ((y.person as Person).contact as Contact).email.toUpperCase())
+          if (
+            ((x.person as Person).contact as Contact).email.toUpperCase() >
+            ((y.person as Person).contact as Contact).email.toUpperCase()
+          )
             return 1;
-          if (((x.person as Person).contact as Contact).email.toUpperCase() < ((y.person as Person).contact as Contact).email.toUpperCase())
+          if (
+            ((x.person as Person).contact as Contact).email.toUpperCase() <
+            ((y.person as Person).contact as Contact).email.toUpperCase()
+          )
             return -1;
           return 0;
         });
         break;
       case '10':
         filteredData = filteredData.sort((x, y) => {
-          if (((y.person as Person).contact as Contact).email.toUpperCase() > ((x.person as Person).contact as Contact).email.toUpperCase())
+          if (
+            ((y.person as Person).contact as Contact).email.toUpperCase() >
+            ((x.person as Person).contact as Contact).email.toUpperCase()
+          )
             return 1;
-          if (((y.person as Person).contact as Contact).email.toUpperCase() < ((x.person as Person).contact as Contact).email.toUpperCase())
+          if (
+            ((y.person as Person).contact as Contact).email.toUpperCase() <
+            ((x.person as Person).contact as Contact).email.toUpperCase()
+          )
             return -1;
           return 0;
         });
@@ -357,7 +367,7 @@ const ProprietariesProvider = (props: any) => {
   const remove = async (id: number) => {
     const response = confirm('Confirma o exclusão deste proprietário?');
     if (response) {
-      const service = new ProprietaryService()
+      const service = new ProprietaryService();
       if (await service.delete(id)) {
         const newData = [...data];
         newData.splice(
@@ -373,7 +383,6 @@ const ProprietariesProvider = (props: any) => {
         setProprietaries(newProprietary);
       }
     }
-
   };
 
   return (

@@ -107,6 +107,7 @@ const ProductProvider = (props: any) => {
       setPrice(data.price.toString());
       setPriceOut(data.priceOut.toString());
       setRepresentation((data.representation as Representation).id.toString());
+      setTypesLinked(data.types);
     }
   };
 
@@ -278,6 +279,7 @@ const ProductProvider = (props: any) => {
     setPrice('');
     setPriceOut('');
     setRepresentation('0');
+    setType('0');
     setTypesLinked([]);
   };
   const persistData = async () => {
@@ -323,7 +325,7 @@ const ProductProvider = (props: any) => {
         persistData,
       }}
     >
-      {props.childen}
+      {props.children}
     </ProductContext.Provider>
   );
 };
